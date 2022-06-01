@@ -56,9 +56,9 @@ Fact として次を認める。
   $L=(\int_{0}^{1} \frac{dt}{\phi(t\dot{x})})^2$ とすると、 $||x|| \geq 1 \Rightarrow L \leq g(x)$ 。よって $||f(x)||=g(x)\cdot ||x|| \leq L||x||\xrightarrow{||x|| \to +\infty} +\infty$ 。
   \\
   (ii) $A(x)<+\infty$ のとき \\
-  $\phi(A(x)\dot{x})=0$ と $\phi$ は $C^\infty$ 級なので、平均値の定理より $\forall t \in [0,1),\exists u \in [t,1],\mbox{s.t.} \frac{|\phi(A(x)\dot{x})-\phi(t\dot{x})|}{A(x)-t}=\phi'(u\dot{x})$ 。 \\
+  $\phi$ は $C^\infty$ 級なので、平均値の定理より $\forall t \in [0,1),\exists u \in [t,1],\mbox{s.t.} \frac{|\phi(A(x)\dot{x})-\phi(t\dot{x})|}{A(x)-t}=\phi'(u\dot{x})$ 。 \\
   よって $M=\sup\{\phi'(u\dot{x}):u \in [0,1]\}$ とすると、 $\phi'$ は $C^\infty$ 級かつ $[0,1]:\mbox{cpt}$ より $M$ は有限。 \\
-  このとき $\forall t \in [0,1),\phi(t\dot{x}) \leq M(A(x)-t)$ より
+  このとき $\phi(A(x)\dot{x})=0$ より $\forall t \in [0,1),\phi(t\dot{x}) \leq M(A(x)-t)$ より
   \begin{align*}
     g(x) &=(\int_{0}^{u} \frac{dt}{\phi(t\dot{x})})^2 \\
     & \geq (\int_{0}^{u} \frac{dt}{M(A(x)-t)})^2 \\
