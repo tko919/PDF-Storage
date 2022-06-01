@@ -1,0 +1,77 @@
+\documentclass[a4paper,10pt]{jsarticle}
+\usepackage{mathtools}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{type1cm}
+
+\renewcommand{\refname}{References}
+\newtheorem{thm}{定理}[section]
+\newtheorem{defi}{定義}
+\newtheorem{prop}{命題}
+\newtheorem{cor}{系}
+\newtheorem{lem}{補題}
+
+\begin{document}
+
+\title{$\mathbb{R}^n$ の空でない星状開集合 $U$ は $\mathbb{R}^n$ と微分同相}
+\author{tko919}
+\date{}
+\maketitle
+
+$U$ が星状 $\xLeftrightarrow{\mbox{def}}$ $\exists x_0 \in U,\forall x \in U,0 \leq \forall t \leq 1,(1-t)x_0+tx \in U$ \\
+
+Fact として次を認める。
+\begin{quote}
+  $\mathbb{R}^n$ の閉集合 $V$ に対し、$C^\infty$ 級関数 $f:\mathbb{R}^n\to \mathbb{R}$ で $f(V)=0,0 \notin f(V^c)$ となるものが存在する。
+\end{quote}
+証明は "Bump function" 等で調べれば出てくるが、本筋ではないので割愛する。 \\
+
+\begin{thm}
+  $\mathbb{R}^n$ の空でない星状開集合 $U$ は $\mathbb{R}^n$ と微分同相である。
+\end{thm}
+
+\begin{proof}
+  平行移動によって $x_0=0$ としてよい。
+
+  \subsubsection*{微分同相写像 $f$ の構成}
+  Fact より $C^\infty$ 級関数 $\phi:\mathbb{R}^n \to \mathbb{R}_{\geq 0}$ で $\phi^{-1}(0)=U^c$ となるものが取れる。このとき、
+  \begin{align*}
+    g:U &\to \mathbb{R} \\
+    x &\mapsto (\int_{0}^1 \frac{dt}{\phi(xt)})^2 \cdot ||x||^2 \\
+    f:U &\to \mathbb{R} \\
+    x &\mapsto g(x)\cdot x \\
+  \end{align*}
+  と定義する。 
+
+  \subsubsection*{$f:C^\infty$ 級関数}
+  $\phi$ は $C^\infty$ 級なので $\frac{1}{\phi}$ および $\int_{0}^1 \frac{dt}{\phi(xt)}$ は $U$ 上 $C^\infty$ 級。また $||x||^2$ は各成分の多項式で表せるので特に $C^\infty$ 級。よって $g$ および $f$ は $U$ 上 $C^\infty$ 級。
+  
+  \subsubsection*{$f:$ 単射}
+  $x \neq y$ を $U$ の元とする。$x=0,y \neq 0$ ならば $\phi$ は $\{ty:0 \leq t \leq 1\}$ 上で正なので $g(y)>0$ 。 \\
+  $\dot{x}=\frac{x}{||x||}$ として、 $\dot{x} \neq \dot{y}$ ならば $\dot{f(x)} \neq \dot{f(y)}$ より $f(x) \neq f(y)$ 。 \\
+  また $\dot{x}=\dot{y}$ ならば一般性を失わず $||x||<||y||$ 。また置換積分によって $g(x)=(\int_{0}^{||x||} \frac{dt}{\phi(t\dot{x})})^2$ よりノルムの大きさに対して狭義単調増加。よって $g(x)<g(y),||f(x)||=g(x)||x||<g(y)||y||=||f(y)||$ 。
+  
+  \subsubsection*{$f:$ 全射}
+  $A(x)=\{t \geq 0: t\dot{x} \in U\}$ と置く。 \\
+  (i) $A(x)=+\infty$ のとき \\
+  $L=(\int_{0}^{1} \frac{dt}{\phi(t\dot{x})})^2$ とすると、 $||x|| \geq 1 \Rightarrow L \leq g(x)$ 。よって $||f(x)||=g(x)\cdot ||x|| \leq L||x||\xrightarrow{||x|| \to +\infty} +\infty$ 。
+  \\
+  (ii) $A(x)<+\infty$ のとき \\
+  $\phi(A(x)\dot{x})=0$ と $\phi$ は $C^\infty$ 級なので、平均値の定理より $\forall t \in [0,1),\exists u \in [t,1],\mbox{s.t.} \frac{|\phi(A(x)\dot{x})-\phi(t\dot{x})|}{A(x)-t}=\phi'(u\dot{x})$ 。 \\
+  よって $M=\sup\{\phi'(u\dot{x}):u \in [0,1]\}$ とすると、 $\phi'$ は $C^\infty$ 級かつ $[0,1]:\mbox{cpt}$ より $M$ は有限。 \\
+  このとき $\forall t \in [0,1),\phi(t\dot{x}) \leq M(A(x)-t)$ より
+  \begin{align*}
+    g(x) &=(\int_{0}^{u} \frac{dt}{\phi(t\dot{x})})^2 \\
+    & \geq (\int_{0}^{u} \frac{dt}{M(A(x)-t)})^2 \\
+    & \geq \frac{1}{M} (\int_{A(x)-u}^{A(x)} \frac{dt}{t})^2 \xrightarrow{u \to A(x)} +\infty \\
+  \end{align*}
+  したがって連続性から中間値の定理を用いて $f$ は全射である。
+
+  \subsubsection*{$f^{-1}:C^\infty$ 級関数}
+  逆関数定理の系を用いると、 $\forall x \in U,h \neq 0$ について $d_hf(x) \neq 0$ となることを言えばよい。背理法で示す。 \\
+  chain ruleにより $d_hf(x)=g(x)h+d_hg(x)x=0$ となり、$h \neq 0$ より $h,x$ は一次従属。よって $h=\mu x(\mu \neq 0,x \neq 0)$ とおくと、$g(x)+d_xg(x)=0$ が成り立つ。 \\
+  しかし $0 \leq g(x)$ であり、$\lambda:\mathbb{R} \to \mathbb{R},t \mapsto g(tx)$ とすると狭義単調増加性より $d_xg(x)=\lambda'(1)>0$ 。これは仮定に反する。
+\end{proof}
+
+
+
+\end{document}
