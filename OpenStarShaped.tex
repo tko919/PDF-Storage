@@ -21,7 +21,7 @@ $U$ が星状 $\xLeftrightarrow{\mbox{def}}$ $\exists x_0 \in U,\forall x \in U,
 
 Fact として次を認める。
 \begin{quote}
-  $\mathbb{R}^n$ の閉集合 $V$ に対し、$C^\infty$ 級関数 $f:\mathbb{R}^n\to \mathbb{R}$ で $f(V)=0,0 \notin f(V^c)$ となるものが存在する。
+  $\mathbb{R}^n$ の閉集合 $V$ に対し、$C^\infty$ 級関数 $f:\mathbb{R}^n\to \mathbb{R}_{\geq 0}$ で $f(V)=0,0 \notin f(V^c)$ となるものが存在する。
 \end{quote}
 証明は "Bump function" 等で調べれば出てくるが、本筋ではないので割愛する。 \\
 
@@ -48,7 +48,7 @@ Fact として次を認める。
   \subsubsection*{$f:$ 単射}
   $x \neq y$ を $U$ の元とする。$x=0,y \neq 0$ ならば $\phi$ は $\{ty:0 \leq t \leq 1\}$ 上で正なので $g(y)>0$ 。 \\
   $\dot{x}=\frac{x}{||x||}$ として、 $\dot{x} \neq \dot{y}$ ならば $\dot{f(x)} \neq \dot{f(y)}$ より $f(x) \neq f(y)$ 。 \\
-  また $\dot{x}=\dot{y}$ ならば一般性を失わず $||x||<||y||$ 。また置換積分によって $g(x)=(\int_{0}^{||x||} \frac{dt}{\phi(t\dot{x})})^2$ よりノルムの大きさに対して狭義単調増加。よって $g(x)<g(y),||f(x)||=g(x)||x||<g(y)||y||=||f(y)||$ 。
+  また $\dot{x}=\dot{y}$ ならば一般性を失わず $||x||<||y||$ としてよく、置換積分によって $g(x)=(\int_{0}^{||x||} \frac{dt}{\phi(t\dot{x})})^2$ よりこれはノルムの大きさに対して狭義単調増加。よって $g(x)<g(y),||f(x)||=g(x)||x||<g(y)||y||=||f(y)||$ 。
   
   \subsubsection*{$f:$ 全射}
   $A(x)=\{t \geq 0: t\dot{x} \in U\}$ と置く。 \\
@@ -56,13 +56,13 @@ Fact として次を認める。
   $L=(\int_{0}^{1} \frac{dt}{\phi(t\dot{x})})^2$ とすると、 $||x|| \geq 1 \Rightarrow L \leq g(x)$ 。よって $||f(x)||=g(x)\cdot ||x|| \leq L||x||\xrightarrow{||x|| \to +\infty} +\infty$ 。
   \\
   (ii) $A(x)<+\infty$ のとき \\
-  $\phi$ は $C^\infty$ 級なので、平均値の定理より $\forall t \in [0,1),\exists u \in [t,1],\mbox{s.t.} \frac{|\phi(A(x)\dot{x})-\phi(t\dot{x})|}{A(x)-t}=\phi'(u\dot{x})$ 。 \\
-  よって $M=\sup\{\phi'(u\dot{x}):u \in [0,1]\}$ とすると、 $\phi'$ は $C^\infty$ 級かつ $[0,1]:\mbox{cpt}$ より $M$ は有限。 \\
-  このとき $\phi(A(x)\dot{x})=0$ より $\forall t \in [0,1),\phi(t\dot{x}) \leq M(A(x)-t)$ より
+  $\phi$ は $C^\infty$ 級なので、平均値の定理より $\forall t \in [0,A(x)),\exists u \in [t,A(x)],\mbox{s.t.} \frac{|\phi(A(x)\dot{x})-\phi(t\dot{x})|}{A(x)-t}=\phi'(u\dot{x})$ 。 \\
+  よって $M=\sup\{\phi'(u\dot{x}):u \in [0,A(x)]\}$ とすると、 $\phi'$ は $C^\infty$ 級かつ $[0,A(x)]:\mbox{cpt}$ より $M$ は有限。 \\
+  このとき $\phi(A(x)\dot{x})=0$ なので $\forall t \in [0,A(x)],\phi(t\dot{x}) \leq M(A(x)-t)$ より
   \begin{align*}
-    g(x) &=(\int_{0}^{u} \frac{dt}{\phi(t\dot{x})})^2 \\
-    & \geq (\int_{0}^{u} \frac{dt}{M(A(x)-t)})^2 \\
-    & \geq \frac{1}{M} (\int_{A(x)-u}^{A(x)} \frac{dt}{t})^2 \xrightarrow{u \to A(x)} +\infty \\
+    g(x) &=(\int_{0}^{||x||} \frac{dt}{\phi(t\dot{x})})^2 \\
+    & \geq (\int_{0}^{||x||} \frac{dt}{M(A(x)-t)})^2 \\
+    & \geq \frac{1}{M} (\int_{A(x)-||x||}^{A(x)} \frac{dt}{t})^2 \xrightarrow{||x|| \to A(x)} +\infty \\
   \end{align*}
   したがって連続性から中間値の定理を用いて $f$ は全射である。
 
