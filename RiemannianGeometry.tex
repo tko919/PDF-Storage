@@ -1,0 +1,246 @@
+\documentclass[dvipdfmx,a4paper]{jsreport}
+
+%%%%% package %%%%%
+\usepackage{amsmath, amssymb,amsthm}
+\usepackage{type1cm}
+\usepackage{verbatim}
+\usepackage{ascmac}
+\usepackage{fancybox}
+\usepackage{mathrsfs}
+\usepackage{physics}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+\usepackage[all]{xy}
+
+%%%%% theorem environment %%%%%
+\def\theenumi{\arabic{enumi}}
+\def\labelenumi{(\theenumi)}
+\theoremstyle{definition}
+\newtheorem{thm}{定理}[section]
+\newtheorem*{prf}{証明}
+\newtheorem{prob}{問題}[chapter]
+\newtheorem{ans}{解答}[chapter]
+\newtheorem{lem}{補題}[section]
+\newtheorem{define}{定義}[section]
+\newtheorem*{war}{注意}
+\newtheorem{prop}{命題}[section]
+\newtheorem{cor}{系}[section]
+\newtheorem{eg}{例}[section]
+\newtheorem{rem}{注意}[section]
+\newtheorem{ex}{演習}[section]
+
+%%%%% command %%%%%
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\emp}{\emptyset}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\res}{{\rm res}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\rk}{{\rm rank}}
+\renewcommand{\deg}{{\rm deg}}
+\newcommand{\id}{{\rm id}}
+\newcommand{\Fr}{{\rm Frac}}
+\newcommand{\p}{\mathfrak{p}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\nMods}{{\bf \rm nMods}}
+\newcommand{\fMods}{{\bf \rm fMods}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\Der}{{\rm Der}}
+\newcommand{\Spec}{{\rm Spec}}
+\newcommand{\im}{{\rm Im}}
+\newcommand{\ctens}{\widehat{\otimes}}
+\newcommand{\Ctens}{\widehat{\bigotimes}}
+\newcommand{\ch}{{\rm char}}
+\renewcommand{\L}{\mathscr{L}}
+\newcommand{\der}{\partial}
+\renewcommand{\tilde}{\widetilde}
+\newcommand{\hlus}{\widehat{\bigoplus}}
+\newcommand{\cplus}{\widehat{\oplus}}
+\renewcommand{\bar}{\overline}
+\newcommand{\ilim}[1][]{\mathop{\varinjlim}\limits_{#1}}
+\newcommand{\plim}[1][]{\mathop{\varprojlim}\limits_{#1}}
+\newcommand{\Op}{{\rm Op}}
+\newcommand{\Ker}{{\rm Ker}}
+\newcommand{\pr}{{\rm pr}}
+\renewcommand{\id}{{\rm id}}
+\newcommand{\Cok}{{\rm Cok}}
+\renewcommand{\hat}{\widehat}
+\newcommand{\Mor}{{\rm Mor}}
+\renewcommand{\ch}{{\rm Char}}
+\newcommand{\Ob}{{\rm Ob}}
+\newcommand{\resp}{{\rm resp.}}
+\newcommand{\GL}{{\rm GL}}
+\renewcommand{\phi}{\varphi}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\diag}{{\rm diag}}
+
+%%%%% counter %%%%%
+\makeatletter
+\let\sectionorig\section
+\def\@sectionorig#1{\sectionorig*{\MakeUppercase{#1}}}
+\def\@@sectionorig#1{\sectionorig{\MakeUppercase{#1}}}
+\makeatother
+
+%%%%% title %%%%%
+\title{Riemann幾何学とリッチフロー}
+\author{tko919}
+\date{}
+
+
+%%%%% document %%%%%
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter{Riemann多様体}
+
+\section{Riemann計量と接続}
+\define $M$ を $n$ 次元可微分多様体とする。 $M$ 上の\textbf{Riemann計量}とは、各点 $p \in M$ の接ベクトル空間に対する内積 $\langle -,- \rangle_p \colon T_pM \times T_pM \to \R$ の族であり、$\langle -,- \rangle \colon M \ni p \mapsto \langle -,- \rangle_p$ が $C^\infty$ 級であるものを指す。組 $(M,\langle -,- \rangle)$ を\textbf{Riemann多様体}という。\\
+
+Euclid空間ではベクトルの平行移動が自然に行えるが、一般の多様体上では移動したベクトルが接空間の外にはみ出してしまうことがある。そこで、異なる点の接空間を「つなげる」ことで形式的に平行移動を可能にする機構を作りたい。
+
+\define $M$ を $n$ 次元可微分多様体、$\mathfrak{X}(M)$ を $M$ 上のベクトル場全体とする。\\
+ $M$ 上の\textbf{Affine接続}ないし\textbf{共変微分}とは、写像 $\nabla:\mathfrak{X}(M) \times \mathfrak{X}(M) \to \mathfrak{X}(M)$ であって、次の条件を満たすものである。( $X,Y,Z \in \mathfrak{X}(M), f,g \in C^\infty(M,\R)$ とする)
+\begin{enumerate}
+    \item $\nabla_{fX+gY}Z=f\nabla_XZ+g\nabla_Y Z$
+    \item $\nabla_{X}(Y+Z)=\nabla_XY+\nabla_X Z$ 
+    \item $\nabla_{X}fY=(Xf)Y+f\nabla_X Y$
+\end{enumerate}
+
+この条件を満たす接続は無数に存在する。そこでRiemann計量に対する良い性質を持った接続をひとつ採用したい。
+
+\define Affine接続 $\nabla$ が\textbf{対称的}とは、$X,Y \in \mathfrak{X}(M)$ について $\nabla_XY-\nabla_YX=[X,Y]$ を満たすものをいう。
+
+\define Riemann多様体 $(M,\langle -,- \rangle)$ 上のAffine接続 $\nabla$ が\textbf{計量と両立する}とは、$X,Y,Z \in \mathfrak{X}(M)$ について $X \langle Y,Z \rangle=\langle \nabla_X Y,Z \rangle+\langle Y,\nabla_X Z \rangle$ を満たすものをいう。\\
+
+接続 $\nabla$ が計量と両立するとき、曲線 $\gamma(t)$ に沿ったベクトル場 $X(t),Y(t)$ に対して $\frac{d}{dt}\langle X(t),Y(t) \rangle=\langle \nabla_{d\gamma \over {dt}} X(t),Y(t)\rangle+\langle X(t),\nabla_{d\gamma \over {dt}} Y(t)\rangle=0$ より $\langle X(t),Y(t)\rangle$ は定数になる。
+
+\thm Riemann多様体 $(M,\langle -,- \rangle)$ 上で対称的かつ計量と両立するAffine接続 $\nabla$ が一意に存在する。これを\textbf{Levi-Civita接続}という。\qed
+
+\section{測地線と第一変分公式}
+
+\define $(M,\langle -,- \rangle)$ を連結なRiemann多様体、 $\gamma \colon [a,b] \to M$ を区分的なめらかな曲線(つまり、 $[a,b]$ の分割 $\{s_i\}$ が存在して各区間 $[s_i,s_{i+1}]$ 上 $C^\infty$ 級な連続写像)とする。 $\gamma$ の\textbf{長さ} を $L(\gamma) := \sum_{i} \int_{s_i}^{s_{i+1}}|\frac{\der \gamma}{\der s}(s)| ds$ とする($|v|=\sqrt{\langle v,v\rangle}$)。$M$ 上の2点 $p,q$ について $\rho(p,q) := \inf\{L(\gamma) \colon \gamma(a)=p,\gamma(b)=q\}$ が定められ、距離の公理を満たす。また $\gamma$ の\textbf{エネルギー}を $E(\gamma) := \int_{a}^b |\frac{\der \gamma}{\der s}(s)|^2 ds$ とする。$E(p,q)$ も同様に定める。\\
+
+Cauchy-Schwarzの不等式より $L(\gamma)^2 \leq |b-a|E(\gamma)$ が成り立ち、等号が成立するのは $|\frac{\der \gamma}{\der s}(s)|$ が定数のときである。\\
+
+端点 $p,q$ を固定したまま $\gamma$ を摂動して、エネルギー $E$ が極小値をとる曲線を調べたい。そのために区分的滑らかな曲線の1パラメータ族 $\hat{\gamma}:[a,b] \times (-\epsilon,\epsilon) \ni (s,u)\mapsto \hat{\gamma}_u(s) \in M$ をとり $U(s)={{\der \hat{\gamma}} \over {\der u}}(s,0)$ とおく。逆に $U$ が与えられたとき、条件を満たす $\hat{\gamma}$ を構成することもできる。端点を固定しているので $U(a)=U(b)=0$ に注意する。
+
+ある $U$ について $u \mapsto E(\hat{\gamma})$ の $u=0$ による微分は $\hat{\gamma}$ の取り方に依存しない。よって $\dot{E}(U) := {\der E(\hat{\gamma}) \over \der u}|_{u=0}$ を定義でき、これは $\gamma$ を $U$ に沿って滑らかに変形したときの差分を表す。特に $E(p,q)$ を実現する $\gamma$ は $\dot{E}(U)=0$ を満たすと考えられる。
+
+$\nabla$ を Levi-Civita接続とすると、$E$ の被積分関数の $u$ による微分が
+\begin{align*}
+    {1 \over 2}{\der \over \der u}|{\der \hat{\gamma} \over \der s}|^2 &= \langle \nabla_{\der \over \der u}{\der \over \der s}\hat{\gamma},{\der \hat{\gamma} \over \der s}\rangle \\
+    &= \langle \nabla_{\der \over \der s}{\der \over \der u}\hat{\gamma},{\der \hat{\gamma} \over \der s}\rangle \ ( \because [{\der \over \der s},{\der \over \der u}]=0) \\
+    &= {\der \over \der s} \langle {\der\hat{\gamma} \over \der u},{\der\hat{\gamma} \over \der s} \rangle-\langle {\der \hat{\gamma} \over \der u},\nabla_{\der \over \der s}{\der \over \der u}\hat{\gamma} \rangle \\
+\end{align*}
+となり、これを積分すると
+\begin{align}\label{1stvar}
+    {1 \over 2}\dot{E}(U) &= \sum_i [\langle U,{\der \hat{\gamma}_0 \over \der s} \rangle]_{s_i}^{s_{i+1}}-\int_{a}^b \langle U,\nabla_{\der \over \der s}{\der \over \der s}\hat{\gamma}_0 \rangle ds
+\end{align}
+が得られる。これを \textbf{第一変分公式}と呼ぶ。\\
+$\hat{\gamma}$ が滑らかなとき第一項が消え、全ての $U$ に対して第一変分が0となるときには \textbf{Euler-Lagrange方程式}
+\begin{align}\label{euler}
+    \nabla_{\der \over \der s}{\der \over \der s}\hat{\gamma}_0=0
+\end{align}
+が成り立つ。この方程式を満たす $\hat{\gamma}_0$ を\textbf{測地線}という。\\ \\
+改めて $\gamma$ を測地線, $\dot{\gamma} := {d\gamma \over ds}$ としたとき、 ${1 \over 2}{d \over ds}|\dot{\gamma}|^2=\langle \nabla_{\der \over \der s}{\der \over \der s} \gamma,\dot{\gamma} \rangle=0$ より $|\dot{\gamma}|$ は定数。よって $s$ は $\gamma$ の弧長パラメータに比例する。また、\ref{euler}はAffine変換に対して不変なので、 $s\mapsto |\dot{\gamma}|s$ に取り替えることで最初から弧長パラメータ表示を持つと仮定してよい。
+
+\ref{euler} は2階の常微分方程式なので、初期値 $\gamma(0)=p \in M,\dot{\gamma}(0)=v \in T_pM$ が与えられると、Picard-Lindel\"{o}fの定理より $\exists \delta>0,\exists! \gamma_v:(-\delta,\delta) \to M \mbox{ s.t. }$ \ref{euler}。この $\delta$ は $(p,v) \in TM$ に対して局所一様連続となるので、結局 $p \in M$ に対して $0 \in \exists U \subset T_pM \mbox{ s.t. }\delta>1$ より \textbf{指数写像} $\exp_p:U \ni v \mapsto \gamma_v(1) \in M$ が定義できる。一般論からこれは $C^\infty$ 級となる。
+
+\lem $\gamma:[0,a]\to M$ を2点 $p,q$ を結ぶ区分的滑らかな曲線で、弧長に比例するパラメータを持つとする。もし $L(\gamma)=\rho(p,q)$ のとき、 $\gamma$ は滑らかで\ref{euler}を満たす。このとき $\gamma$ を\textbf{最短測地線}と呼ぶ。
+
+\prf パラメータの仮定から $L(\gamma)^2=aE(\gamma)$ より $\gamma$ は $E$ の最小値をとるので $\forall U,\dot{E(U)}=0$ 。$\gamma$ に属する $[0,a]$ の分割 $\{s_i\}$ について、$s_i$ の近傍で0となる適切な $U$ を選ぶことで\ref{1stvar}の第一項を消すことができ、$\gamma$ のsmoothな点全体で\ref{euler}が成り立つ。有限集合は測度0なので特に\ref{1stvar}の第二項は無視できる。よって $\sum_i \langle U(s_i),\dot{\gamma}(s_i^+)-\dot{\gamma}(s_i^-) \rangle=0$ より $\dot{\gamma}(s_i^+)=\dot{\gamma}(s_i^-)$ 。したがって $\gamma$ は $C^1$ 級であり、解の一意性から滑らかな曲線であることがわかる。\qed \\
+
+
+逆関数定理から $\exp_p$ は $0 \in T_pM$ の近傍 $U$ で局所微分同相となる。$\iota_p:=\inf\{r>0 \colon B(0;r) \subset U\}>0$ を $p$ の\textbf{単射半径}という。また $\iota(V)=\inf_{p \in V} \iota_p$ を $V$ の単射半径と呼ぶが、これは0になることがある。$r \leq \iota_p$ について $\exp_p$ による $B(0;r) \subset T_pM$ は $p$ の局所座標近傍を定める。これを\textbf{正規座標}と呼ぶ。
+
+
+\lem\label{radius} 任意の $p$ について $\iota(V)>0$ なる近傍 $p \in V$ が存在する。
+
+\prf $(p,0) \in TM$ のある近傍 $D$ が存在して $\exp:D \ni (q,v) \mapsto \exp_q(v) \in M \times M$ が定義される。これについて逆関数定理を使うことで所望の結論を得る。 \qed
+
+
+\lem\label{gauss} (Gauss) $p \in M,\delta<\iota_p,v,w \in B(0;\delta) \subset T_pM,q:=\exp_p v \in M$ とすると、微分 $d_v\exp_p:T_v(T_pM) \cong T_pM \to T_qM$ は内積を保存する。つまり、 $\langle d_v\exp_p v,d_v\exp_p w \rangle_q=\langle v,w \rangle_p$ 。
+
+\prf $\epsilon>0$ を十分小さくとり $\phi:[0,1] \times (-\epsilon,\epsilon) \to M,(s,t) \mapsto \exp_p(s(v+tw))$ とおく。このとき
+\begin{align*}
+    d_v \exp_p(v)&= {\der \over \der s}\exp_p((s+1)v)|_{s=0}={\der \phi \over \der s}(1,0) \\
+    d_v \exp_p(w)&= {\der \over \der t}\exp_p(v+tw)|_{t=0}={\der \phi \over \der t}(1,0) \\
+\end{align*}
+より示したいことは $\langle {\der \phi \over \der s}(1,0),{\der \phi \over \der t}(1,0) \rangle_q=\langle v,w \rangle_p$ と言い換えられる。\\
+$s \mapsto \phi(s,t)$ は測地線なので $\nabla_{\der \over \der s}{\der \phi \over \der s}(s,t)=0$ 。よって Levi-Civita接続の性質から
+\begin{align*}
+    {\der \over \der s} \ev{{\der \phi \over \der s},{\der \phi \over \der t}} &= \underset{0}{\underline{\ev{\nabla_{{\der \over \der s}}{\der \phi \over \der s},{\der \phi \over \der t}}}}+\ev{{\der \phi \over \der s},\nabla_{{\der \over \der s}}{\der \phi \over \der t}} \\
+    &= \ev{{\der \phi \over \der s},\nabla_{{\der \over \der t}}{\der \phi \over \der s}} \\
+    &= {1 \over 2}{\der \over \der t}\ev{{\der \phi \over \der s},{\der \phi \over \der s}} \\
+    &= {1 \over 2}{\der \over \der t}|v+tw,v+tw|^2 = \ev{v,w}+t\ev{w,w}
+\end{align*}
+より ${\der \over \der s} \ev{{\der \phi \over \der s},{\der \phi \over \der t}}(s,0)=\ev{v,w}$ 。また ${\der \phi \over \der t}(0,0)={\der \over \der t}\exp_p(0)=0$ と併せて $\ev{{\der \phi \over \der s},{\der \phi \over \der t}}(s,0)=s\ev{v,w}$ が分かるので、$s=1$ を代入して題意を得る。 \qed
+
+
+\prop\label{minleng} $p \in M,r_0 <\iota_p$ とし、 $\gamma:[0,1] \to B(p;r_0):=\exp_p(B(0;r_0)),\gamma(0)=p,\gamma(1)=q,r=\rho(p,q)$ を区分的滑らかな曲線とすると、$L(\gamma) \geq r$ で等号が成り立つのは $\gamma$ が測地線(をパラメータ変換したもの)のときに限る。
+
+\prf $\exists r:[0,1] \to \mathbb{R}_{\geq 0},\eta:[0,1] \to \{X \in T_pM \colon |X|=1\}\mbox{ s.t. }\gamma(t)=\exp_p(r(t)\eta(t))$ より、$\dot{\gamma}(t)=d_{\gamma(t)}\exp_p(\dot{r}(t)\eta(t))+d_{\gamma(t)}\exp_p(r(t)\dot{\eta}(t))$ 。ここで $\eta$ が微分可能な $t$ では ${d \over dt}\underset{1}{\underline{\ev{\eta(t),\eta(t)}}}=2\ev{\dot{\eta}(t),\eta(t)}=0$ なので\ref{gauss}より、上の $\dot{\gamma}(t)$ の分解は直交分解。よって
+\begin{align*}
+    |\dot{\gamma}(t)| &\geq |d_{\gamma(t)}\exp_p(\dot{r}(t)\eta(t))| \\
+    &=|\dot{r}(t)| \cdot |d_{\gamma(t)}\exp_p(\eta(t))| =|\dot{r}(t)| \\
+    L(\gamma) &\geq \int_{0}^1 |\dot{r}(t)| dt \\
+    &\geq |\int_{0}^1 \dot{r}(t) dt| \\
+    &= r(1)-r(0)=r
+\end{align*}
+等号が成り立つのは $\eta(t)$ が区分的定数かつ $\dot{r}\geq 0$ のときだが、$\eta(t)$ が定数のところでは正規化して $\dot{r}=1$ を仮定してよいので、結局 $\eta$ は定数関数にできる。このとき $\gamma$ は測地線を定数倍したものになる。 \qed
+
+
+\lem\label{midpoint} $r_0<\iota_p$ とし $p,q\in M$ を $\rho(p,q)$ とすると $\exists q' \in \der B(p;r_0)\mbox{ s.t. }\rho(p,q)=\rho(p,q')+r_0$ 。
+
+\prf
+$p,q$ を結ぶ曲線の族 $\{\gamma_i\}$ で $L(\gamma_i)\to \rho(p,q)$ なるものをとり、$\der B(p;r_0)$ との交点を $q_i$ とするとコンパクト性から $q_i \to \exists q'$ 。距離の公理からこの $q'$ は条件を満たす。 \qed
+
+
+\prop\label{complete} $(M,g)$ が完備のとき、$v \in T_pM$ を初期値とする\ref{euler}の解は $[0,\infty)$ 上に延長できる。つまり $\exp_p$ は $T_pM$ 全体で定義される。
+
+\prf 解の存在区間の上限を $A$ としたとき、 $A<\infty$ を仮定して矛盾を言えばよい。$\rho$ の定義より $\rho(\gamma_v(s),\gamma_v(t)) \leq |s-t|\cdot |v|$ 。$s \uparrow A$ とすると $\gamma_v(s)$ はCauchy列なので、完備性から $\exists q=\lim_{s \uparrow A}\gamma_v(s)$ 。ここで\ref{radius}を使うと測地線が $[0,A+\delta)$ まで延長できるので仮定に矛盾する。 \qed
+
+\thm\label{hopf} (Hopf-Rinow) $(M,g)$ が完備のとき、$\forall p,q \in M$ について $p,q$ を結ぶ最短測地線が存在する。
+
+\prf $r_0<\iota_p$ として、 $\rho(p,q)>r_0$ を仮定してよい。\ref{midpoint}で得られる $q'$ をとると \ref{minleng} から $\exists v \in T_pM,q'=\exp_p(r_0v)$ 。また \ref{complete}より $\gamma(s)=\exp_p(sv)$ は $[0,\infty)$ 上で定義される。\\
+$K=\{s \in [0,\infty) \colon L(\gamma|_{[0,s]})+\rho(\gamma(s),q)=\rho(p,q)\}$ とおくと、$s_0 \in K$ のとき $L(\gamma|_{[0,s_0]})=\rho(p,q)-\rho(\gamma(s_0),q) \leq \rho(p,\gamma(s_0))$ より $\gamma|_{[0,s_0]}$ は最短測地線。$K$ はコンパクトなので $\bar{s}:= \max K \in K$ であり $q_2=\gamma(\bar{s})$ がとれるので、$q_2=q$ を示せばよい。\\
+そうでないとき、 $r_1=\min(\rho(q_2,q)/2,\iota_{q_2})>0$ とおくと、\ref{midpoint}より $\exists q_3 \in \der B(q_2,r_1)\mbox{ s.t. }\rho(q_2,q_3)+\rho(q_3,q)=\rho(q_2,q)$ 。三角不等式より 
+\begin{align*}
+    \rho(p,q_2)+\rho(q_2,q_3)&=\rho(p,q_2)+\rho(q_2,q)-\rho(q_3,q) \\
+    &=\rho(p,q)-\rho(q_3,q) \leq \rho(p,q_3) \\
+\end{align*}
+より $\rho(p,q_2)+\rho(q_2,q_3)=\rho(p,q_3)$ 。よって、常微分方程式の解の一意性から $q_2,q_3$ を結ぶ最短測地線は $\gamma$ と一致し、$q_3=\gamma(\bar{s}+r_1)$ より $L(\gamma|_[0,s+r_1])+\rho(q_3,q)=\rho(p,q_2)+\rho(q_2,q_3)+\rho(q_3,q)=\rho(p,q)$ 。これは $\bar{s}$ の最大性に矛盾する。 \qed \\
+
+
+Riemann多様体に局所的な完備性を仮定しても、同様の結論が得られる。
+
+\define Riemann多様体 $(M,g)$ と1点 $p \in M$ の組 $(M,g,p)$ を \textbf{基点つきRiemann多様体}という。
+
+\define $D>0$ とする。 $\forall l<D$ について基点つきRiemann多様体 $(M,g,p)$ の閉測地球 $\overline{B(p;l)}$ がコンパクトのとき、\textbf{D-完備}という。
+
+\thm D-完備な基点つきRiemann多様体 $(M,g,p)$ について $\exp_p:B(0;D)\to M$ が定義され、$\rho(p,q)<D$ なる $p,q \in M$ を結ぶ最短測地線が存在する。 \qed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

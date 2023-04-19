@@ -83,8 +83,6 @@
 \let\sectionorig\section
 \def\@sectionorig#1{\sectionorig*{\MakeUppercase{#1}}}
 \def\@@sectionorig#1{\sectionorig{\MakeUppercase{#1}}}
-\renewcommand{\section}{\@ifstar{\@sectionorig}{\@@sectionorig}}
-\makeatother
 
 %%%%% title %%%%%
 \title{集合論 メモ}
