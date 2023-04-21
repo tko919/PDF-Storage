@@ -279,7 +279,7 @@ $\gamma:[0,a] \to M$ を測地線とし $\hat{\gamma},U$ をその変分・変�
 
 を得る。
 
-$\mathcal{V}$ を $\gamma$ に沿った区分的滑らかなベクトル場全体の集合、$\mathcal{V}^0=\{X\in \mathcal{V} \colon X(a)=X(b)=0\}$ とする。第二変分公式の第二項について、$U,V\in \mathcal{V}$ として
+$\mathcal{V}_s$ を $\gamma|_{0,s}$ に沿った区分的滑らかなベクトル場全体の集合、$\mathcal{V}^0_s=\{X\in \mathcal{V}_s \colon X(0)=X(s)=0\}$ とする(特に $\mathcal{V}:=\mathcal{V}_a,\mathcal{V}^0:=\mathcal{V}^0_a$ )。第二変分公式の第二項について、$U,V\in \mathcal{V}$ として
 \begin{align*}
     I(U,V) &:=\int_0^a (\langle \nabla_{\dot{\gamma}} U, \nabla_{\dot{\gamma}} V \rangle-\langle R(U,\dot{\gamma})\dot{\gamma} ,V\rangle) ds \\
     &=[\ev{\nabla_{\dot{\gamma}}U,V}]_0^a -\int_0^a \langle \nabla_{\dot{\gamma}}\nabla_{\dot{\gamma}}U+R(U,\dot{\gamma})\dot{\gamma} ,V \rangle ds \\
@@ -327,7 +327,7 @@ $\{e_i\}$ を $T_pM$ の正規直交基底として、
 
 \lem\label{lemindex} (指数定理) 測地線 $\gamma:[0,a] \to M$ の指数形式が半正定値とする。$\gamma$ に沿ったJacobi場 $Y$ と $V \in \mathcal{V}$ が $Y(0)=V(0),Y(a)=V(a)$ を満たすとき、$I(Y,Y) \leq I(V,V)$ が成り立つ。等号が成立する条件は $V$ がJacobi場であるときのみ。
 
-\prf 指数定理の定義より $I(Y,Y-V)=0$ なので
+\prf 指数形式の定義より $I(Y,Y-V)=0$ なので
 \begin{align*}
     0 &\leq I(Y-V,Y-V) \\
     &=I(-Y-V,Y-V)+2I(Y,Y-V) \\
@@ -348,8 +348,10 @@ $\{e_i\}$ を $T_pM$ の正規直交基底として、
     0 & (\mbox{otherwise})
 \end{cases}$ は $\gamma$ 上に区分的滑らかなベクトル場であり $I(U,U)=0$ を得る。$I$ が正定値ならば $V \equiv 0$ である。半正定値ならば補題\ref{lemjacobi}より $U$ はJacobi場だが、$s_1 \neq a$ のとき $U$ は $a$ の近傍で恒等的に0なので $U(a)=\nabla_{\dot{\gamma}}U(a)=0$ 。初期値を満たすJacobi場の一意性より $V \equiv 0$ を得る。
 
-十分性を示す。(2)の十分性のみ示せばよい。($\because \ $ 特に $\gamma$ 上 $p$ と共役な点が存在しないときも $I$ は半正定値なので、$V \in \mathcal{V}^0,I(V,V)=0$ について補題\ref{lemjacobi}より $V$ はJacobi場。$V(0)=V(a)=0$ と仮定から $V \equiv 0$ が従い $I$ は正定値となる)
-$\gamma_s:=\gamma|_{[0,s]}$ に対し $I_s:=I_{\gamma_s}$ が半正定値となる $s$ の上限を $s_1$ とおく。補題\ref{lemrad}、命題\ref{propmin}より $s_1>0$ であり、 $I$ の連続性から $I_{s_1}$ も半正定値。$s_1<a$ ならば $p,\gamma(s_1)$ が共役であることを言いたい。再び補題\ref{lemrad}より $0<\forall \epsilon<\delta$ について $\sigma_{\epsilon}=\gamma|_{[s_1-\delta,s_1+\epsilon]}$ が最短となる $\delta>0$ が存在する。このとき $I_{s_1+\epsilon}$ は半正定値でないので、 $\exists X_\epsilon \in \mathcal{V}^0_{s_1+\epsilon},I_{s_1+\epsilon}(X_\epsilon,X_\epsilon)<0$ 。$s_1-\delta$ の近傍での変形とスカラー倍によって $|X_\epsilon(s_1-\delta)|=1$ を仮定してよい。例\ref{egjacobi}より $U^-(0)=0,U^-(s_1-\delta)=X_\epsilon(s_1-\delta)$ なる $\gamma_{s_1-\delta}$ 上のJacobi場が存在し、補題\ref{lemindex}より $I_{s_1-\delta}(U^-,U^-) \leq I_{s_1-\delta}(X_\epsilon,X_\epsilon)$ 。同様に $U^+(s_1+\epsilon)=0,U^+(s_1-\delta)=X_\epsilon(s_1-\delta)$ なる $\sigma_{\epsilon}$ 上のJacobi場をとると $I_{\sigma_{\epsilon}}(U^+,U^+) \leq I_{\sigma_{\epsilon}}(X_\epsilon,X_\epsilon)$ が分かる。
+十分性を示す。「$I$ が半正定値でないなら端点でない $p$ と共役な点が存在する」ことを示せばよい。($\because \ $ 特に $\gamma$ 上 $p$ と共役な点が存在しないときも $I$ は半正定値なので、$V \in \mathcal{V}^0,I(V,V)=0$ について補題\ref{lemjacobi}より $V$ はJacobi場。$V(0)=V(a)=0$ と仮定から $V \equiv 0$ が従い $I$ は正定値となる)
+$\gamma_s:=\gamma|_{[0,s]}$ に対し $I_s:=I_{\gamma_s}$ が半正定値となる $s$ の上限を $s_1$ とおく。補題\ref{lemrad}、命題\ref{propmin}より $s_1>0$ であり、 $I$ の連続性から $I_{s_1}$ も半正定値。$s_1<a$ ならば $p,\gamma(s_1)$ が共役であることを言いたい。
+
+再び補題\ref{lemrad}より $0<\forall \epsilon<\delta$ について $\sigma_{\epsilon}=\gamma|_{[s_1-\delta,s_1+\epsilon]}$ が最短となる $\delta>0$ が存在する。このとき $I_{s_1+\epsilon}$ は半正定値でないので、 $\exists X_\epsilon \in \mathcal{V}^0_{s_1+\epsilon},I_{s_1+\epsilon}(X_\epsilon,X_\epsilon)<0$ 。$s_1-\delta$ の近傍での変形によって $|X_\epsilon(s_1-\delta)|=1$ を仮定してよい。例\ref{egjacobi}より $U^-(0)=0,U^-(s_1-\delta)=X_\epsilon(s_1-\delta)$ なる $\gamma_{s_1-\delta}$ 上のJacobi場が存在し、補題\ref{lemindex}より $I_{s_1-\delta}(U^-,U^-) \leq I_{s_1-\delta}(X_\epsilon,X_\epsilon)$ 。同様に $U^+(s_1+\epsilon)=0,U^+(s_1-\delta)=X_\epsilon(s_1-\delta)$ なる $\sigma_{\epsilon}$ 上のJacobi場をとると $I_{\sigma_{\epsilon}}(U^+,U^+) \leq I_{\sigma_{\epsilon}}(X_\epsilon,X_\epsilon)$ が分かる。
 
 $U^-,U^+$ を $s_1-\delta$ で接続したベクトル場を $V_\epsilon \in \mathcal{V}^0_{s_1+\epsilon}$ とすると、辺々足して $I_{s_1+\epsilon}(V_\epsilon,V_\epsilon) \leq I_{s_1+\epsilon}(X_\epsilon,X_\epsilon)<0$ 。$\epsilon \downarrow 0$ なる列を適切に選び $U^-,U^+$ を収束させると、 $|V_\epsilon(s_1-\delta)|=1$ より $V_\epsilon$ は0でないベクトル場 $V \in \mathcal{V}^0_{s_1}$ に収束する。これは $I_{s_1}(V,V) \leq 0$ を満たすが、$I_{s_1}$ は半正定値なので0に等しく、補題\ref{lemjacobi}より $V$ はJacobi場。よって $p,\gamma(s_1)$ は共役。
 \qed
