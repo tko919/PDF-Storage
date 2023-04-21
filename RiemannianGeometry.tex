@@ -122,7 +122,7 @@ $M$ 上の\textbf{Affine接続}ないし\textbf{共変微分}とは、写像 $\n
 \define Riemann多様体 $(M,\langle -,- \rangle)$ 上のAffine接続 $\nabla$ が\textbf{計量と両立する}とは、$X,Y,Z \in \mathfrak{X}(M)$ について $X \langle Y,Z \rangle=\langle \nabla_X Y,Z \rangle+\langle Y,\nabla_X Z \rangle$ を満たすものをいう。
 
 
-接続 $\nabla$ が計量と両立するとき、曲線 $\gamma(t)$ に沿った平行なベクトル場 $X(t),Y(t)$ に対して $\frac{d}{dt}\langle X(t),Y(t) \rangle=\langle \nabla_{d\gamma \over {dt}} X(t),Y(t)\rangle+\langle X(t),\nabla_{d\gamma \over {dt}} Y(t)\rangle=0$ より $\langle X(t),Y(t)\rangle$ は定数になる。
+接続 $\nabla$ が計量と両立するとき、曲線 $\gamma(t)$ に沿った平行なベクトル場 $X(t),Y(t)$ に対して $\frac{d}{dt}\langle X(t),Y(t) \rangle=\langle \nabla_{d\gamma \over {dt}} X(t),Y(t)\rangle+\langle X(t),\nabla_{d\gamma \over {dt}} Y(t)\rangle=0$ より $\langle X(t),Y(t)\rangle$ は定数になる。つまり、平行移動によって2つのベクトルの「角度」が保存されることを表現している。
 
 \thm Riemann多様体 $(M,\langle -,- \rangle)$ 上で対称的かつ計量と両立するAffine接続 $\nabla$ が一意に存在する。これを\textbf{Levi-Civita接続}という。\qed
 
@@ -190,7 +190,7 @@ $s \mapsto \phi(s,t)$ は測地線なので $\nabla_{\der \over \der s}{\der \ph
     {\der \over \der s} \ev{{\der \phi \over \der s},{\der \phi \over \der t}} &= \underset{0}{\underline{\ev{\nabla_{{\der \over \der s}}{\der \phi \over \der s},{\der \phi \over \der t}}}}+\ev{{\der \phi \over \der s},\nabla_{{\der \over \der s}}{\der \phi \over \der t}} \\
     &= \ev{{\der \phi \over \der s},\nabla_{{\der \over \der t}}{\der \phi \over \der s}} \\
     &= {1 \over 2}{\der \over \der t}\ev{{\der \phi \over \der s},{\der \phi \over \der s}} \\
-    &= {1 \over 2}{\der \over \der t}|v+tw,v+tw|^2 = \ev{v,w}+t\ev{w,w}
+    &= {1 \over 2}{\der \over \der t}|v+tw|^2 = \ev{v,w}+t\ev{w,w}
 \end{align*}
 より ${\der \over \der s} \ev{{\der \phi \over \der s},{\der \phi \over \der t}}(s,0)=\ev{v,w}$ 。また ${\der \phi \over \der t}(0,0)={\der \over \der t}\exp_p(0)=0$ と併せて $\ev{{\der \phi \over \der s},{\der \phi \over \der t}}(s,0)=s\ev{v,w}$ が分かるので、$s=1$ を代入して題意を得る。 \qed
 
@@ -280,12 +280,12 @@ $\gamma:[0,a] \to M$ を測地線とし $\hat{\gamma},U$ をその変分・変�
 を得る。
 
 $\mathcal{V}$ を $\gamma$ に沿った区分的滑らかなベクトル場全体の集合、$\mathcal{V}^0=\{X\in \mathcal{V} \colon X(a)=X(b)=0\}$ とする。第二変分公式の第二項について、$U,V\in \mathcal{V}$ として
-
 \begin{align*}
-    I(U,V):=\int_0^a (\langle \nabla_{\dot{\gamma}} U, \nabla_{\dot{\gamma}} V \rangle-\langle V,R(U,\dot{\gamma})\dot{\gamma} \rangle) ds
+    I(U,V) &:=\int_0^a (\langle \nabla_{\dot{\gamma}} U, \nabla_{\dot{\gamma}} V \rangle-\langle R(U,\dot{\gamma})\dot{\gamma} ,V\rangle) ds \\
+    &=[\ev{\nabla_{\dot{\gamma}}U,V}]_0^a -\int_0^a \langle \nabla_{\dot{\gamma}}\nabla_{\dot{\gamma}}U+R(U,\dot{\gamma})\dot{\gamma} ,V \rangle ds \\
 \end{align*}
 
-を\textbf{指数形式}という。$\forall X \in \mathcal{V}^0,I(X,X) \geq 0$ のとき $I$ を\textbf{半正定値}であるといい、さらに$0\neq \forall X \in \mathcal{V}^0,I(X,X) >0$ のとき $I$ を\textbf{正定値}であるという。$\hat{\gamma}_u(s)=\exp_{\gamma(s)}uX(s)$ を考えることで、$\gamma$ が最短ならば $I$ が半正定値であることが従う。 % ??
+を\textbf{指数形式}という。$\forall X \in \mathcal{V}^0,I(X,X) \geq 0$ のとき $I$ を\textbf{半正定値}であるといい、さらに$0\neq \forall X \in \mathcal{V}^0,I(X,X) >0$ のとき $I$ を\textbf{正定値}であるという。$\hat{\gamma}_u(s)=\exp_{\gamma(s)}uX(s)$ を考えることで、$\gamma$ が最短ならば $I$ が半正定値であることが従う。
 
 $\{e_i\}$ を $T_pM$ の正規直交基底として、
 
@@ -297,19 +297,59 @@ $\{e_i\}$ を $T_pM$ の正規直交基底として、
 
 \thm\label{thmmyers} (Myersの定理) $\lambda>0,D>{\pi \over \sqrt{\lambda}}$ とする。D-完備な $n$ 次元Riemann多様体 $(M,g)$ について $\mbox{Rc} \geq (n-1)\lambda$ が成り立てば、 $M$ はコンパクトで $\mbox{diam}(M) \leq {\pi \over \sqrt{\lambda}}$ 
 
-\prf 2点 $p,q \in M$ をとり $\rho(p,q)=l<D$ とする。定理\ref{thmhopf}より最短測地線 $\gamma:[0,l] \to M$ が存在する。$\{e_i\}_{i=1}^n \ (e_1=\dot{\gamma})$ を $\gamma$ に沿った平行なベクトル場で、各点の接空間の正規直交基底を成すとする。そして $U_i=\sin(\pi s/l)e_i$ とおくと、 $U_i$ は全域で滑らかなことに注意して
+\prf 2点 $p,q \in M$ をとり $\rho(p,q)=l<D$ とする。定理\ref{thmhopf}より最短測地線 $\gamma:[0,1] \to M$ が存在する。$\{e_i\}_{i=1}^n \ (e_1=\dot{\gamma}/l)$ を $\gamma$ に沿った平行なベクトル場で、各点の接空間の正規直交基底を成すとする。そして $U_i=\sin(\pi s)e_i$ とおくと、 $U_i$ は全域で滑らかなことに注意して
 \begin{align*}
-    I(U_i,U_i) &=\int_0^l (|\nabla_{\dot{\gamma}}U_i|^2-\ev{R(U_i,\dot{\gamma})\dot{\gamma},U_i}) ds\\
-    &=-\int_0^l \ev{U_i,\nabla_{\dot{\gamma}}\nabla_{\dot{\gamma}}U_i+R(U_i,\dot{\gamma})\dot{\gamma}} ds \\
-    &=\int_0^l \sin^2(\pi s/l)(\pi^2/l^2-\ev{R(e_i,\dot{\gamma})\dot{\gamma},e_i}) ds \\ % ??
-    \sum_{i=2}^n I(U_i,U_i) &=\int_0^l \sin^2(\pi s/l)((n-1)\pi^2/l^2-\mbox{Rc}(\dot{\gamma},\dot{\gamma})) ds
+    I(U_i,U_i) &=-\int_0^1 \ev{U_i,\nabla_{\dot{\gamma}}\nabla_{\dot{\gamma}}U_i+R(U_i,\dot{\gamma})\dot{\gamma}} ds \\
+    &=-\int_0^1 {\der^2 \sin(\pi s) \over \der s^2}+l^2\sin^2(\pi s) \ev{R(e_i,\dot{\gamma})\dot{\gamma},e_i} ds \\
+    &=\int_0^1 \sin^2(\pi s)(\pi^2-l^2 \ev{R(e_i,\dot{\gamma})\dot{\gamma},e_i}) ds \\
+    \sum_{i=2}^n I(U_i,U_i) &=\int_0^1 \sin^2(\pi s)((n-1)\pi^2-l^2 \mbox{Rc}(\dot{\gamma},\dot{\gamma})) ds
 \end{align*}
 
-ここで $l>\pi/\sqrt{\lambda}$ とすると右辺は負になるので、$\exists U_i,I(U_i,U_i)<0$ 。よって $I$ は半正定値でないので $\gamma$ の最短性に矛盾する。 \qed
+ここで $l>\pi/\sqrt{\lambda}$ とすると右辺は負になるので、$\exists U_i,I(U_i,U_i)<0$ 。よって $I$ は半正定値でないので $\gamma$ の最短性に矛盾する。定理\ref{thmhopf}から $M=\exp_p(\bar{B(0;\pi/\sqrt{\lambda})})$ より $M$ はコンパクト。 \qed
 
+\define $\gamma$ に沿ったベクトル場 $V$ が 
+\begin{align}\label{jacobi}
+    \mathcal{J}_\gamma V &=\nabla_{\dot{\gamma}}\nabla_{\dot{\gamma}}V+R(V,\nabla_{\dot{\gamma}})\nabla_{\dot{\gamma}}=0
+\end{align}
 
+を満たすとき、 $V$ を\textbf{Jacobi場}という。
+\ref{jacobi}は2階の常微分方程式なので、基点 $p=\gamma(0)$ での初期値 $V(0),\nabla_{\dot{\gamma}}V(0) \in T_pM$ が与えられたとき、条件を満たすJacobi場が一意的にとれる。よって、Jacobi場全体は $2n$ 次元のベクトル空間をなす。
 
+\eg\label{egjacobi} $\gamma(s,u)$ を測地線の1パラメータ族とすると $\nabla_{\der \over \der s} \dot{\gamma}$ 。よってJacobi作用素の定義から $U={\der \gamma \over \der u}|_{u=0}$ 。特に $\gamma(s,t)=\exp_p (s(X+uY))$ のとき $U=d_{sX}\exp_{p}(sY)$ であり、初期値は $J(0)=0,\nabla_{\dot{\gamma}}U(0)=Y$ なので $J(0)=0$ なるJacobi場は全てこの形になる。
 
+\lem\label{lemjacobi} 測地線 $\gamma:[0,a] \to M$ の指数形式が半正定値で $U \in \mathcal{V}^0,I(U,U)=0$ ならば、$U$ はJacobi場。
+
+\prf $\forall V \in \mathcal{V}^0,\forall \alpha \in \mathbb{R}$ について $I(U+\alpha V,U+\alpha V)=2\alpha I(U,V)+\alpha^2I(V,V)\geq 0$ より $I(U,V) =0$ (そうでないなら、$\alpha$ を適切に設定して左辺を負にすることが出来る)。よって、
+\begin{align*}
+    0=I(U,V)=\sum_i \ev{\nabla_{\dot{\gamma}}U(s_i^-)-\nabla_{\dot{\gamma}}U(s_i^+),V}-\int_0^a \ev{\mathcal{J}_\gamma U,V} ds
+\end{align*}
+が成り立ち、 $V$ は任意なので $\mathcal{J}_\gamma U=0$ が従う。 \qed
+
+\lem\label{index} (指数定理) 測地線 $\gamma:[0,a] \to M$ の指数形式が半正定値とする。$\gamma$ に沿ったJacobi場 $Y$ と $V \in \mathcal{V}$ が $Y(0)=V(0),Y(a)=V(a)$ を満たすとき、$I(Y,Y) \leq I(V,V)$ が成り立つ。等号が成立する条件は $V$ がJacobi場であるときのみ。
+
+\prf 指数定理の定義より $I(Y,Y-V)=0$ なので
+\begin{align*}
+    0 &\leq I(Y-V,Y-V) \\
+    &=I(-Y-V,Y-V)+2I(Y,Y-V) \\
+    &=I(V,V)-I(Y,Y)
+\end{align*}
+等号条件は前の補題とJacobi場の線形性から成り立つ。 \qed
+
+\define 測地線 $\gamma$ 上の相異なる2点 $p=\gamma(0),q=\gamma(s_1)$ に対して $V(0)=V(s_1)=0$ なる $\gamma$ 上の0でないJacobi場が存在するとき、 $p,q$ は $\gamma$ に沿って \textbf{共役} であるという。例\ref{egjacobi}より $\gamma_X$ に沿って $p$ と $q=\exp_p(X)$ が共役なことと $X$ が $\exp_p$ の臨界点であることは同値。
+
+\prop $\gamma:[0,a] \to M$ を測地線とする。
+\begin{enumerate}
+    \item $\gamma$ 上 $p=\gamma(0)$ と共役な点が存在しない $\iff$ $I$ が正定値
+    \item $\gamma$ 上 $p=\gamma(0)$ と共役な $q=\gamma(a)$ でない点が存在しない $\iff$ $I$ が半正定値
+\end{enumerate}
+
+\prf 必要性を示す。$q_1=\gamma(s_1)$ とし、$V$ を $\gamma$ 上のJacobi場で $V(p)=V(q_1)=0$ を満たすとする。このとき、$U(s)=\begin{cases}
+    V(s)&(s \in [0,s_1]) \\
+    0 & (\mbox{otherwise})
+\end{cases}$ は $\gamma$ 上に区分的滑らかなベクトル場であり $I(U,U)=0$ を得る。$I$ が正定値ならば $V \equiv 0$ である。半正定値ならば補題\ref{lemjacobi}より $U$ はJacobi場だが、$s_1 \neq a$ のとき $U$ は $a$ の近傍で恒等的に0なので $U(a)=\nabla_{\dot{\gamma}}U(a)=0$ 。初期値を満たすJacobi場の一意性より $U \equiv 0$ を得る。
+
+十分性を示す。% TODO
+\qed
 
 
 
