@@ -97,7 +97,7 @@
 \maketitle
 \tableofcontents
 
-\chapter{Riemann多様体}
+\chapter{Riemann幾何}
 
 \section{Riemann計量と接続}
 \define $M$ を $n$ 次元可微分多様体とする。 $M$ 上の\textbf{Riemann計量}とは、各点 $p \in M$ の接ベクトル空間に対する内積 $\langle -,- \rangle_p \colon T_pM \times T_pM \to \R$ の族であり、$\langle -,- \rangle \colon M \ni p \mapsto \langle -,- \rangle_p$ が $C^\infty$ 級であるものを指す。組 $(M,\langle -,- \rangle)$ を\textbf{Riemann多様体}という。
@@ -253,8 +253,8 @@ Riemann多様体に局所的な完備性を仮定しても、同様の結論が�
 $\gamma:[0,a] \to M$ を測地線とし $\hat{\gamma},U$ をその変分・変分ベクトルとすると、被積分関数の $u$ による2階微分は
 \begin{align*}
     {1 \over 2}({\der \over \der u})^2|{\der \hat{\gamma} \over \der s}|^2 &= {\der \over \der u}({\der \over \der s} \langle {\der\hat{\gamma} \over \der u},{\der\hat{\gamma} \over \der s} \rangle-\langle {\der \hat{\gamma} \over \der u},\nabla_{\der \over \der s}{\der \over \der s}\hat{\gamma} \rangle) \\
-    &= {\der^2\over \der s \der u} \langle {\der\hat{\gamma} \over \der u},{\der\hat{\gamma} \over \der s} \rangle
-    -\underset{0}{\underline{\langle \nabla_{\der \over \der u}{\der \hat{\gamma} \over \der u},\nabla_{\der \over \der s}{\der \over \der s}\hat{\gamma} \rangle}}
+    &= {\der^2\over \der s \der u}\langle {\der\hat{\gamma} \over \der u},{\der\hat{\gamma} \over \der s} \rangle
+    -\underset{0\ (u=0)}{\underline{\langle \nabla_{\der \over \der u}{\der \hat{\gamma} \over \der u},\nabla_{\der \over \der s}{\der \over \der s}\hat{\gamma} \rangle}}
     -\langle {\der \hat{\gamma} \over \der u},\nabla_{\der \over \der u} \nabla_{\der \over \der s}{\der \over \der s}\hat{\gamma} \rangle \\
     &= {\der \over \der s}(\langle \nabla_{\der \over \der u}{\der\hat{\gamma} \over \der u},{\der\hat{\gamma} \over \der s} \rangle
     +\langle {\der\hat{\gamma} \over \der u},\nabla_{\der \over \der u}{\der\hat{\gamma} \over \der s} \rangle)
@@ -309,11 +309,17 @@ $\{e_i\}$ を $T_pM$ の正規直交基底として、
 
 \define $\gamma$ に沿ったベクトル場 $V$ が 
 \begin{align}\label{jacobi}
-    \mathcal{J}_\gamma V &=\nabla_{\dot{\gamma}}\nabla_{\dot{\gamma}}V+R(V,\nabla_{\dot{\gamma}})\nabla_{\dot{\gamma}}=0
+    \mathcal{J}_\gamma V &=\nabla_{\dot{\gamma}}\nabla_{\dot{\gamma}}V+R(V,{\dot{\gamma}}){\dot{\gamma}}=0
 \end{align}
 
 を満たすとき、 $V$ を\textbf{Jacobi場}という。
 \ref{jacobi}は2階の常微分方程式なので、基点 $p=\gamma(0)$ での初期値 $V(0),\nabla_{\dot{\gamma}}V(0) \in T_pM$ が与えられたとき、条件を満たすJacobi場が一意的にとれる。よって、Jacobi場全体は $2n$ 次元のベクトル空間をなす。
+
+\lem\label{lemnormal} $V$ を $\gamma$ に沿ったJacobi場とする。
+$\ev{V,\dot{\gamma}}=0$ と $\ev{V(0),\dot{\gamma}(0)}=\ev{\nabla_{\dot{\gamma}}V(0),\dot{\gamma}(0)}=0$ は同値(このような $V$ を\textbf{直交Jacobi場}という)。
+
+\prf ${d^2 \over dt^2}\ev{V,\dot{\gamma}}=\ev{\nabla_{\dot{\gamma}}\nabla_{\dot{\gamma}}V,\dot{\gamma}}=-\ev{R(\dot{\gamma},V)\dot{\gamma},\dot{\gamma}}=0$ より $\ev{V,\dot{\gamma}}=ct+d\ (c,d \in \R)$ と書ける。 $U=V-{ct+d \over |\dot{\gamma}|^2}\dot{\gamma}$ とおくと $\ev{U,\dot{\gamma}}=0$ より $U$ は直交Jacobi場となる。このとき $\ev{V(0),\dot{\gamma}(0)}=d,\ev{\nabla_{\dot{\gamma}}V(0),\dot{\gamma}(0)}=c$ より題意を得る。\qed
+
 
 \eg\label{egjacobi} $\gamma(s,u)$ を測地線の1パラメータ族とすると $\nabla_{\der \over \der s} \dot{\gamma}$ 。よってJacobi作用素の定義から $U={\der \gamma \over \der u}|_{u=0}$ 。特に $\gamma(s,t)=\exp_p (s(X+uY))$ のとき $U=d_{sX}\exp_{p}(sY)$ であり、初期値は $U(0)=0,\nabla_{\dot{\gamma}}U(0)=Y$ なので $U(0)=0$ なるJacobi場は全てこの形になる。
 
@@ -337,7 +343,7 @@ $\{e_i\}$ を $T_pM$ の正規直交基底として、
 
 \define 測地線 $\gamma$ 上の相異なる2点 $p=\gamma(0),q=\gamma(s_1)$ に対して $V(0)=V(s_1)=0$ なる $\gamma$ 上の0でないJacobi場が存在するとき、 $p,q$ は $\gamma$ に沿って \textbf{共役} であるという。例\ref{egjacobi}より $\gamma_X$ に沿って $p$ と $q=\exp_p(X)$ が共役なことと $X$ が $\exp_p$ の臨界点であることは同値。
 
-\prop $\gamma:[0,a] \to M$ を測地線とする。
+\prop\label{propconj} $\gamma:[0,a] \to M$ を測地線とする。
 \begin{enumerate}
     \item $\gamma$ 上 $p=\gamma(0)$ と共役な点が存在しない $\iff$ $I$ が正定値
     \item $\gamma$ 上 $p=\gamma(0)$ と共役な $q=\gamma(a)$ でない点が存在しない $\iff$ $I$ が半正定値
@@ -356,7 +362,90 @@ $\gamma_s:=\gamma|_{[0,s]}$ に対し $I_s:=I_{\gamma_s}$ が半正定値とな�
 $U^-,U^+$ を $s_1-\delta$ で接続したベクトル場を $V_\epsilon \in \mathcal{V}^0_{s_1+\epsilon}$ とすると、辺々足して $I_{s_1+\epsilon}(V_\epsilon,V_\epsilon) \leq I_{s_1+\epsilon}(X_\epsilon,X_\epsilon)<0$ 。$\epsilon \downarrow 0$ なる列を適切に選び $U^-,U^+$ を収束させると、 $|V_\epsilon(s_1-\delta)|=1$ より $V_\epsilon$ は0でないベクトル場 $V \in \mathcal{V}^0_{s_1}$ に収束する。これは $I_{s_1}(V,V) \leq 0$ を満たすが、$I_{s_1}$ は半正定値なので0に等しく、補題\ref{lemjacobi}より $V$ はJacobi場。よって $p,\gamma(s_1)$ は共役。
 \qed
 
+\lem\label{lemnbhd} D-完備なRiemann多様体 $(M,g)$ 上の2点 $p,q=\exp_p v$ 間の最短測地線 $\gamma:s \mapsto \exp_p sv$ が  $|v|<D$ であり、$p,q$ が $\gamma$ 上共役でないとする。このとき
+\begin{enumerate}
+    \item $v \in T_pM$ の近傍 $U$ が存在し、$w \in U$ ならば測地線 $s \mapsto \exp_p sw$ は $[0,1]$ 上最短。
+    \item $p,q$ を結ぶ最短測地線は $\gamma$ のみ。
+\end{enumerate}
 
+\prf $p,q$ は共役でないので $\exp_p$ は $v$ で正則。よって逆関数定理より $v$ の近傍 $U$ と $q$ の近傍 $V$ の微分同相を導く。条件(1) が成立するとき $\epsilon>0$ が存在して $\gamma$ は $[0,1+\epsilon]$ まで延長できるので、
+常微分方程式の一意性から(2)がわかる。
+
+逆に (1) が成り立たないとき、$\gamma$ に収束し $[0,1]$ 上最短でない測地線の列 $\{\gamma_i\}$ がとれる。$p,q_i=\gamma_i(1)$ を結ぶ最短測地線を $\sigma_i$ とおくと、$q_i \in V$ を仮定してよいので $w_i:=\dot{\sigma_i}(0) \notin U$ となる必要がある。このとき $w_i \to w \in \bar{B(0;D)} \setminus U$ となるように列を取り直すと、 $\sigma_i \to (s \mapsto \exp_p(sw)) \neq \gamma$ より (2) も不適。 \qed
+
+\define $v \in S_pM$ について $\mbox{cut}(v):=\sup\{s_0 \in [0,D) \colon [0,s_0] \ni s \mapsto \exp_p(sv)\mbox{が最短}\}$  とおく。$q=\exp_p(\mbox{cut}(v)v)$ を $p$ の\textbf{切片} と呼ぶ。 命題\ref{propmin}よりこれは正であり、特に $(M,g)$ が完備なら $\mbox{cut}(v)=\infty$ になり得る。このとき $s \mapsto \exp_p(sv)$ はどの有界区間に制限しても最短になる。このような測地線を\textbf{半直線}と呼ぶ。
+
+\lem $(M,g)$ が完備Riemann多様体のとき、$(M,g)$ がコンパクト $\iff$ $p$ を始点とする半直線が存在しない。
+
+\prf コンパクトならば有界なので十分性は明らか。逆に非コンパクトのとき $\rho(p,q_i) \to \infty$ なる点列を取り、$\gamma_i$ を $p,q_i$ を結ぶ弧長パラメータ表示を持つ最短測地線とする。このとき $(M,g)$ の完備性と $S_pM$ のコンパクト性から $\gamma_i$ が $[0,\infty)$ 上の測地線 $\gamma$ に収束するようにでき、これは半直線となる。 \qed
+
+\cor\label{corsmth} $s_0<\mbox{cut}(v)$ に対して $p,q=\exp_p(s_0v)$ を結ぶ最短測地線は一意で、 $q$ の近傍で $\rho(p,-)$ は滑らか。
+
+\prf 補題\ref{lemnbhd} と常微分方程式の一意性から従う。 \qed
+
+\cor $q$ が $p$ の切片 $\iff$ $p,q$ を結ぶ最短測地線上で $p,q$ が共役、または $p,q$ を結ぶ最短測地線が複数存在する。
+
+\prf 命題 \ref{propconj}、補題\ref{lemnbhd} と常微分方程式の一意性から従う。 \qed
+
+\lem $S_pM \ni v \mapsto \mbox{cut}(v)$ は連続。
+
+\prf $v_i \to v$ とする。最短測地線の収束性から $\limsup_{i \to \infty} \mbox{cut}(v_i) \leq \mbox{cut}(v)$ 。一方、系\ref{corsmth}より $l<\mbox{cut}(v)$ について $\gamma:[0,l] \to M,s \mapsto \exp_p(sv)$ は線分で前の系から端点は共役でない。したがって補題\ref{lemnbhd}より $\gamma_i:s \mapsto \exp_p(sv)$ も $[0,l]$ 上で最短測地線なので $\liminf_{i \to \infty} \mbox{cut}(v_i) \geq \mbox{cut}(v)$ 。 \qed
+
+\section{Rauchの比較定理}
+
+$(M,g),(\tilde{M},\tilde{g})$ を $m$ 次元Riemann多様体、$\gamma:[0,a] \to M,\tilde{\gamma}:[0,a] \to \tilde{M}$ を $\gamma(0)=p,\tilde{\gamma}(0)=\tilde{p}$ なる正規測地線とする。 $t \in [0,a]$ について $K^-(t)=\min\{K(\Pi_{\gamma}) \colon \dot{\gamma}(t) \in \Pi_{\gamma}\},\tilde{K}^+(t)=\min\{\tilde{K}(\tilde{\Pi}_{\tilde{\gamma}}) \colon \dot{\tilde{\gamma}}(t) \in \tilde{\Pi}_{\tilde{\gamma}}\}$ とおく(ここで $K,\tilde{K}$ は断面曲率)。
+
+\lem $X,\tilde{X}$ を$\gamma,\tilde{\gamma}$ に沿った直交Jacobi場とし、
+\begin{enumerate}
+    \item $X(0)=\tilde{X}(0)=0$ 
+    \item $|X(a)|=|\tilde{X}(a)|$
+\end{enumerate}
+
+さらに定理の(4),(5)を満たすとき、$I(X,X)\leq I(\tilde{X},\tilde{X})$ が成り立つ。
+
+\prf $\{e_i(t)\},\{\tilde{e_i}(t)\}$ を $\gamma,\tilde{\gamma}$ に沿った正規直交基底とし、$e_1=\dot{\gamma},\tilde{e_1}=\dot{\tilde{\gamma}},e_2(a)=X(a)/|X(a)|,\tilde{e_2}(a)=\tilde{X}(a)/|\tilde{X}(a)|$ を満たすとする。ここで、(4)より $|X(a)|=|\tilde{X}(a)|=\alpha \neq 0$ に注意する。
+
+$X,\tilde{X}$ の $\{e_i(t)\},\{\tilde{e_i}(t)\}$ による成分表示を $\{X^i(t)\},\{\tilde{X}^i(t)\}$ とおくと、条件から
+\begin{enumerate}
+    \item $\forall i,X^i(0)=\tilde{X}^i(0)=0$
+    \item $X^2(a)=\tilde{X}^2(a)=\alpha,\forall i \neq 2,X^i(a)=\tilde{X}^i(a)=0$
+    \item $\forall t\in [0,a],X^1(t)=\tilde{X}^1(t)=0$ 
+\end{enumerate}
+
+が成り立つ。$Y:=\sum_i \tilde{X}^i(t)e_i(t)$ とおくと $Y(0)=0,Y(a)=X(a)$ であり、$X$ はJacobi場なので補題\ref{lemindex}より $I(X,X) \leq I(Y,Y)$ 。一方、(5) を用いて $I(Y,Y) \leq I(\tilde{X},\tilde{X})$ が分かるので、併せて題意を得る。 \qed 
+
+\thm\label{thmrauch} (Rauchの比較定理) $X,\tilde{X}$ を $\gamma,\tilde{\gamma}$ のJacobi場とし、次の条件を満たすと仮定する。
+\begin{enumerate}
+    \item $X(0)=\tilde{X}(0)=0$
+    \item $|\nabla_{\dot{\gamma}} X(0)|=|\tilde{\nabla}_{\dot{\tilde{\gamma}}} \tilde{X}(0)|$
+    \item $\ev{\dot{\gamma}(0),\nabla_{\dot{\gamma}}X(0)}=\ev{\dot{\tilde{\gamma}}(0),\tilde{\nabla}_{\dot{\tilde{\gamma}}} \tilde{X}(0)}$
+    \item $\gamma$ には $[0,a]$ 上共役な点対が存在しない
+    \item $\forall t \in [0,a],\tilde{K}^+(t) \leq K^-(t)$ 
+\end{enumerate}
+
+このとき、$\tilde{\gamma}$ には $[0,a]$ 上共役な点対が存在せず、$\forall t\in [0,a],|X(t)|\leq |\tilde{X}(t)|$ 。
+
+\prf (1),(3)より初期値の接線成分が一致することから、一般性を失わず $X,\tilde{X}$ は直交Jacobi場としてよい(補題\ref{lemnormal}を参照)。
+
+$u(t)=|X(t)|^2,\tilde{u}(t)=|\tilde{X}(t)|^2$ とおくと、$\tilde{u}(t)/u(t)$ は $(0,a)$ 上well-definedであり、L'Hospitalの定理より
+\begin{align*}
+    \lim_{t \to 0}{{\tilde{u}(t)} \over {u}(t)} &= \lim_{t \to 0} {\ddot{\tilde{u}(t)} \over \ddot{u}(t)} \\
+    &= {|\nabla_{\dot{\gamma}}X(0)|^2 \over |\nabla_{\dot{\tilde{\gamma}}}\tilde{X}(0)|^2}=1
+\end{align*}
+よって $|X| \leq |\tilde{X}|$ を示すためには ${d \over dt}{\tilde{u}(t) \over u(t)} \geq 0 \iff \dot{\tilde{u}}(t)u(t)-\tilde{u}(t)\dot{u}(t) \geq 0$ が分かればよい。
+
+(4)より $(0,a]$ 上 $u(t)>0$ が成り立つ。 $c=\sup\{t \colon \tilde{u}(t)>0\} \leq a$ とおき、 $b \in (0,c)$ について $X_b(t)={X(t) \over |X(b)|},\tilde{X}_b(t)={\tilde{X}(t) \over |\tilde{X}(b)|}$ とすると、$[0,b]$ 上 $X_b,\tilde{X}_b$ は前補題の条件を満たすので $I(X_b,X_b) \leq I(\tilde{X}_b,\tilde{X}_b)$ 。指数形式の定義(に部分積分を施した形)から $I(X_b,X_b)=\ev{\nabla_{\dot{\gamma}}X_b(b),X_b(b)} \leq I(\tilde{X}_b,\tilde{X}_b)=\ev{\tilde{\nabla}_{\dot{\tilde{\gamma}}}\tilde{X}_b(b),\tilde{X}_b(b)}$ となるので、$\forall b \in (0,c)$ で
+\begin{align*}
+    {1 \over 2}{\dot{u}(b)\over u(b)} &= {\ev{\nabla_{\dot{\gamma}}X_b(b),X_b(b)} \over \ev{X(b),X(b)}} \\
+    &\leq {\ev{\tilde{\nabla}_{\dot{\tilde{\gamma}}}\tilde{X}_b(b),\tilde{X}_b(b)} \over \ev{\tilde{X}(b),\tilde{X}(b)}} \\
+    &= {1 \over 2}{\dot{\tilde{u}}(b)\over \tilde{u}(b)}
+\end{align*}
+
+が成り立つ。これを移項して欲しかった不等式を得る。
+
+もし $c<a$ ならば連続性から $|\tilde{X}(c)| \geq |X(c)|>0$ となり $c$ の選び方に矛盾。したがって $c=a$ より $\tilde{\gamma}$ は $[0,a]$ 上共役な点対が存在しない。 \qed
+
+この定理は定曲率を持つ単連結Riemann多様体をモデルとし、考察しているRiemann多様体 $(M,g)$ の曲率と大小関係を持つという仮定のもと調べる、という形で応用されることが多い。
 
 
 
