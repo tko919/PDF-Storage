@@ -134,7 +134,7 @@ $M$ 上の\textbf{Affine接続}ないし\textbf{共変微分}とは、写像 $\n
 Cauchy-Schwarzの不等式より $L(\gamma)^2 \leq |b-a|E(\gamma)$ が成り立ち、等号が成立するのは $|\frac{\der \gamma}{\der s}(s)|$ が定数のときである。
 
 
-端点 $p,q$ を固定したまま $\gamma$ を摂動して、エネルギー $E$ が極小値をとる曲線を調べたい。そのために区分的滑らかな曲線の1パラメータ族 $\hat{\gamma}:[a,b] \times (-\epsilon,\epsilon) \ni (s,u)\mapsto \hat{\gamma}_u(s) \in M$ をとり $\gamma=\hat{\gamma}_0,U(s)={{\der \hat{\gamma}} \over {\der u}}(s,0)$ とおく。逆に $U$ が与えられたとき、条件を満たす $\hat{\gamma}$ を構成することもできる。端点を固定しているので $U(a)=U(b)=0$ に注意する。
+端点 $p,q$ を固定したまま $\gamma$ を摂動して、エネルギー $E$ が極小値をとる曲線を調べたい。そのために区分的滑らかな曲線の1パラメータ族 $\hat{\gamma}:[a,b] \times (-\epsilon,\epsilon) \ni (s,u)\mapsto \hat{\gamma}_u(s) \in M$ をとり $\gamma=\hat{\gamma}_0,U(s)={{\der \hat{\gamma}} \over {\der u}}(s,0)$ とおく。逆に $U$ が与えられたとき、条件を満たす $\hat{\gamma}$ を構成することもできる。端点を固定しているとき $U(a)=U(b)=0$ に注意する。
 
 ある $U$ について $u \mapsto E(\hat{\gamma})$ の $u=0$ による微分は $\hat{\gamma}$ の取り方に依存しない。よって $\dot{E}(U) := {\der E(\hat{\gamma}) \over \der u}|_{u=0}$ を定義でき、これは $\gamma$ を $U$ に沿って滑らかに変形したときの差分を表す。特に $E(p,q)$ を実現する $\gamma$ は $\dot{E}(U)=0$ を満たすと考えられる。
 
@@ -373,7 +373,7 @@ $U^-,U^+$ を $s_1-\delta$ で接続したベクトル場を $V_\epsilon \in \ma
 
 逆に (1) が成り立たないとき、$\gamma$ に収束し $[0,1]$ 上最短でない測地線の列 $\{\gamma_i\}$ がとれる。$p,q_i=\gamma_i(1)$ を結ぶ最短測地線を $\sigma_i$ とおくと、$q_i \in V$ を仮定してよいので $w_i:=\dot{\sigma_i}(0) \notin U$ となる必要がある。このとき $w_i \to w \in \bar{B(0;D)} \setminus U$ となるように列を取り直すと、 $\sigma_i \to (s \mapsto \exp_p(sw)) \neq \gamma$ より (2) も不適。 \qed
 
-\define $v \in S_pM$ について $\mbox{cut}(v):=\sup\{s_0 \in [0,D) \colon [0,s_0] \ni s \mapsto \exp_p(sv)\mbox{が最短}\}$  とおく。$q=\exp_p(\mbox{cut}(v)v)$ を $p$ の\textbf{切片} と呼ぶ。 命題\ref{propmin}よりこれは正であり、特に $(M,g)$ が完備なら $\mbox{cut}(v)=\infty$ になり得る。このとき $s \mapsto \exp_p(sv)$ はどの有界区間に制限しても最短になる。このような測地線を\textbf{半直線}と呼ぶ。
+\define $v \in S_pM$ について $\mbox{cut}(v):=\sup\{s_0 \in [0,D) \colon [0,s_0] \ni s \mapsto \exp_p(sv)\mbox{が最短}\}$  とおく。$q=\exp_p(\mbox{cut}(v)v)$ を $p$ の\textbf{切片} と呼ぶ。 命題\ref{propmin}より $\mbox{cut}(v)>0$ であり、特に $(M,g)$ が完備なら $\mbox{cut}(v)=\infty$ になり得る。このとき $s \mapsto \exp_p(sv)$ はどの有界区間に制限しても最短になる。このような測地線を\textbf{半直線}と呼ぶ。
 
 \lem $(M,g)$ が完備Riemann多様体のとき、$(M,g)$ がコンパクト $\iff$ $p$ を始点とする半直線が存在しない。
 
@@ -383,7 +383,7 @@ $U^-,U^+$ を $s_1-\delta$ で接続したベクトル場を $V_\epsilon \in \ma
 
 \prf 補題\ref{lemnbhd} と常微分方程式の一意性から従う。 \qed
 
-\cor $q$ が $p$ の切片 $\iff$ $p,q$ を結ぶ最短測地線上で $p,q$ が共役、または $p,q$ を結ぶ最短測地線が複数存在する。
+\cor\label{corcut} $q$ が $p$ の切片 $\iff$ $p,q$ を結ぶ最短測地線上で $p,q$ が共役、または $p,q$ を結ぶ最短測地線が複数存在する。
 
 \prf 命題 \ref{propconj}、補題\ref{lemnbhd} と常微分方程式の一意性から従う。 \qed
 
@@ -391,7 +391,7 @@ $U^-,U^+$ を $s_1-\delta$ で接続したベクトル場を $V_\epsilon \in \ma
 
 \prf $v_i \to v$ とする。最短測地線の収束性から $\limsup_{i \to \infty} \mbox{cut}(v_i) \leq \mbox{cut}(v)$ 。一方、系\ref{corsmth}より $l<\mbox{cut}(v)$ について $\gamma:[0,l] \to M,s \mapsto \exp_p(sv)$ は線分で前の系から端点は共役でない。したがって補題\ref{lemnbhd}より $\gamma_i:s \mapsto \exp_p(sv)$ も $[0,l]$ 上で最短測地線なので $\liminf_{i \to \infty} \mbox{cut}(v_i) \geq \mbox{cut}(v)$ 。 \qed
 
-\section{Rauchの比較定理}
+\section{空間形との比較}
 
 $(M,g),(\tilde{M},\tilde{g})$ を $m$ 次元Riemann多様体、$\gamma:[0,a] \to M,\tilde{\gamma}:[0,a] \to \tilde{M}$ を $\gamma(0)=p,\tilde{\gamma}(0)=\tilde{p}$ なる正規測地線とする。 $t \in [0,a]$ について $K^-(t)=\min\{K(\Pi_{\gamma}) \colon \dot{\gamma}(t) \in \Pi_{\gamma}\},\tilde{K}^+(t)=\min\{\tilde{K}(\tilde{\Pi}_{\tilde{\gamma}}) \colon \dot{\tilde{\gamma}}(t) \in \tilde{\Pi}_{\tilde{\gamma}}\}$ とおく(ここで $K,\tilde{K}$ は断面曲率)。
 
@@ -399,11 +399,13 @@ $(M,g),(\tilde{M},\tilde{g})$ を $m$ 次元Riemann多様体、$\gamma:[0,a] \to
 \begin{enumerate}
     \item $X(0)=\tilde{X}(0)=0$ 
     \item $|X(a)|=|\tilde{X}(a)|$
+    \item $\gamma$ には $[0,a]$ 上共役な点対が存在しない
+    \item $\forall t \in [0,a],\tilde{K}^+(t) \leq K^-(t)$ 
 \end{enumerate}
 
-さらに定理の(4),(5)を満たすとき、$I(X,X)\leq I(\tilde{X},\tilde{X})$ が成り立つ。
+このとき、 $I(X,X)\leq I(\tilde{X},\tilde{X})$ が成り立つ。
 
-\prf $\{e_i(t)\},\{\tilde{e_i}(t)\}$ を $\gamma,\tilde{\gamma}$ に沿った正規直交基底とし、$e_1=\dot{\gamma},\tilde{e_1}=\dot{\tilde{\gamma}},e_2(a)=X(a)/|X(a)|,\tilde{e_2}(a)=\tilde{X}(a)/|\tilde{X}(a)|$ を満たすとする。ここで、(4)より $|X(a)|=|\tilde{X}(a)|=\alpha \neq 0$ に注意する。
+\prf $\{e_i(t)\},\{\tilde{e_i}(t)\}$ を $\gamma,\tilde{\gamma}$ に沿った正規直交基底とし、$e_1=\dot{\gamma},\tilde{e_1}=\dot{\tilde{\gamma}},e_2(a)=X(a)/|X(a)|,\tilde{e_2}(a)=\tilde{X}(a)/|\tilde{X}(a)|$ を満たすとする。ここで、(2)(3)より $|X(a)|=|\tilde{X}(a)|=\alpha \neq 0$ に注意する。
 
 $X,\tilde{X}$ の $\{e_i(t)\},\{\tilde{e_i}(t)\}$ による成分表示を $\{X^i(t)\},\{\tilde{X}^i(t)\}$ とおくと、条件から
 \begin{enumerate}
@@ -412,7 +414,7 @@ $X,\tilde{X}$ の $\{e_i(t)\},\{\tilde{e_i}(t)\}$ による成分表示を $\{X^
     \item $\forall t\in [0,a],X^1(t)=\tilde{X}^1(t)=0$ 
 \end{enumerate}
 
-が成り立つ。$Y:=\sum_i \tilde{X}^i(t)e_i(t)$ とおくと $Y(0)=0,Y(a)=X(a)$ であり、$X$ はJacobi場なので補題\ref{lemindex}より $I(X,X) \leq I(Y,Y)$ 。一方、(5) を用いて $I(Y,Y) \leq I(\tilde{X},\tilde{X})$ が分かるので、併せて題意を得る。 \qed 
+が成り立つ。$Y:=\sum_i \tilde{X}^i(t)e_i(t)$ とおくと $Y(0)=0,Y(a)=X(a)$ であり、$X$ はJacobi場なので補題\ref{lemindex}より $I(X,X) \leq I(Y,Y)$ 。一方、(4) を用いて $I(Y,Y) \leq I(\tilde{X},\tilde{X})$ が分かるので、併せて題意を得る。 \qed 
 
 \thm\label{thmrauch} (Rauchの比較定理) $X,\tilde{X}$ を $\gamma,\tilde{\gamma}$ のJacobi場とし、次の条件を満たすと仮定する。
 \begin{enumerate}
@@ -444,9 +446,42 @@ $u(t)=|X(t)|^2,\tilde{u}(t)=|\tilde{X}(t)|^2$ とおくと、$\tilde{u}(t)/u(t)$
 が成り立つ。これを移項して欲しかった不等式を得る。
 
 もし $c<a$ ならば連続性から $|\tilde{X}(c)| \geq |X(c)|>0$ となり $c$ の選び方に矛盾。したがって $c=a$ より $\tilde{\gamma}$ は $[0,a]$ 上共役な点対が存在しない。 \qed
+
+\cor 定理の(4),(5)を満たすとし、 $p=\gamma(0),\tilde{p}=\tilde{\gamma}(0)$ とする。 $X_p \in T_pM,\tilde{X}_{\tilde{p}} \in T_{\tilde{p}}\tilde{M}$ が $\ev{X_p,\dot{\gamma}(0)}=\ev{\tilde{X}_{\tilde{p}},\dot{\tilde{\gamma}}(0)},|X_p|=|\tilde{X}_{\tilde{p}}|$ を満たすとき、 $|(d\exp_{p})_{t\dot{\gamma}(0)}X_p| \leq |(d\exp_{\tilde{p}})_{t\dot{\tilde{\gamma}}(0)}\tilde{X}_{\tilde{p}}|$ 。
+
+\prf 前定理と例\ref{egjacobi}より明らか。
 \\
 
-この定理は定曲率を持つ単連結Riemann多様体をモデルとし、考察しているRiemann多様体 $(M,g)$ の曲率と大小関係を持つという仮定のもと調べる、という形で応用されることが多い。
+この定理は定曲率を持つ単連結Riemann多様体(空間形)をモデルとし、考察しているRiemann多様体 $(M,g)$ の曲率と大小関係を持つという仮定のもとで $M$ の幾何を調べる、という形で応用されることが多い。
+
+\lem $p \in M,q \in \mbox{Cut}(p)$ で $\rho(p,q)=\rho(p,\mbox{Cut}(p))$ を満たすとき、次のいずれかが成立する。
+\begin{enumerate}
+    \item $p,q$ を結ぶ最短測地線上で $p,q$ が共役。
+    \item $p,q$ を結ぶ正規最短測地線がちょうど2つ存在する( $\gamma,\sigma$ とおく)。
+\end{enumerate}
+
+さらに、(2)の場合 $l=\rho(p,q)$ として $\dot{\gamma}(l)=-\dot{\sigma}(l)$ が成り立つ。 
+
+\prf 後半の主張が示されれば、系\ref{corcut}とJacobi場全体の線形性から前半も従う。
+
+(2)を仮定して $\dot{\gamma}(l) \neq -\dot{\sigma}(l)$ とすると、$\exists X_q \in S_qM,\mbox{ s.t. } \ev{X_q,\dot{\gamma}(l)}<0,\ev{X_q,\dot{\sigma}(l)}<0$ 。$q$ は $\gamma$ 上 $p$ と共役でないので正則値定理から $l\dot{\gamma}(0) \in \exists U \subset T_pM$ で $\exp_p|_U$ が微分同相になる。 $s$ を十分小さくとると $\xi(s):=(\exp_p|_U)^{-1}\exp_q(sX_q)$ が定義される。$\xi$ は測地線の1パラメータ族 ${\gamma}_s(t)=\exp_p({t\xi(s) \over l})$ の変分ベクトルなので、第一変分公式から ${1 \over 2}{dL({\gamma}) \over ds}(0)=\ev{X_q,\dot{\gamma}(l)}<0$ 。よって十分小さい $s>0$ について $L({\gamma}_s)<L(\gamma)$ 。同様に $\sigma_0=\sigma$ なる測地線の1パラメータ族 $\sigma_s$ が存在して、十分小さい $s>0$ について $L({\sigma}_s)<L(\sigma)$ となる。
+
+$\gamma_s,\sigma_s$ はともに $p,\exp_q(sX_q)$ の測地線だが、 $l_s:=\rho(p,\exp_q(sX_q)) \leq L(\gamma_s)<\rho(p,q)=l$ と $\dot{\gamma}(l) \neq -\dot{\sigma}(l)$ より $\exp_p$ は $B(0;{l_s+l \over 2}) \subset T_pM$ 上単射でない。これは $l=\rho(p,\mbox{Cut}(p))=\iota_p$ に反する。 \qed 
+
+
+\thm\label{thmklingenberg} (Klingenbergの補題) $(M,g)$ を完備Riemann多様体とし、断面曲率 $K$ が定数 $C>0$ で抑えられるとする。このとき、次のいずれかが成り立つ。
+\begin{enumerate}
+    \item $\iota_M \geq {\pi \over \sqrt{C}}$
+    \item 長さ最小を達成する測地閉曲線 $\gamma$ が存在して $\iota_M={L(\gamma) \over 2}$
+\end{enumerate}
+
+\prf まず、定曲率 $C$ のRiemann多様体についてJacobi場を調べよう。Jacobi方程式は ${d^2 J \over dt^2}+CJ=0$ となる。 $w$ を測地線に沿った平行な直交ベクトル場で $|w(t)|=1$ とすると、 $J(t)={\sin t \sqrt{C} \over \sqrt{C}}w(t)$ が初期値 $J(0)=0,J'(0)=w(0)$ の解となる。
+
+$\iota_M=\rho(p,q)$ なる $p \in M,q \in \mbox{Cut}(p)$ をとる。前述の考察と定理\ref{thmrauch}から測地線 $\gamma$ 上のJacobi場は $t \in [0,{\pi \over \sqrt{C}}]$ 上で消えない。よって、もし $p,q$ を結ぶ最短測地線上で2点が共役なら、長さは ${\pi \over \sqrt{C}}$ 以上なので(1)が成り立つ。
+
+もし $p,q$ が共役でないなら、前補題から $p,q$ を結ぶ2つの最短測地線 $\gamma,\sigma$ が取れて $\dot{\gamma}(l)=-\dot{\sigma}(l)\ (l=\rho(p,q))$ 。$p,q$ を入れ替えて考えると、同様にして $\dot{\sigma}(0)=-\dot{\gamma}(0)$ がわかるので、$\gamma,\sigma$ は滑らかに連結でき、1つの測地閉曲線 $\tau$ を作る。このとき作り方から $\iota_M={L(\tau) \over 2}$ であり、 $\tau$ は測地閉曲線の長さの最小値を達成する。なぜなら $\tau'$ を $L(\tau)$ より短い測地閉曲線とすると $\rho(p',q')=L(\tau')$ なる $p',q'$ が存在する。定義から $\exists q'' \in \mbox{Cut}(p') \cap \tau',d(p',q'') \leq {L(\tau') \over 2}<{L(\tau) \over 2}=\iota_M$ より矛盾。したがって(2)が成り立つ。 \qed 
+
+\section{Bishop-Gromovの体積評価}
 
 
 
@@ -455,6 +490,12 @@ $u(t)=|X(t)|^2,\tilde{u}(t)=|\tilde{X}(t)|^2$ とおくと、$\tilde{u}(t)/u(t)$
 
 
 
+%%% TODO: 
+
+% Toponogov Theorem
+% Sphere Theorem (http://math.uchicago.edu/~may/REU2013/REUPapers/Yu.pdf, https://www.maths.gla.ac.uk/~mpowell/topological-manifolds-lecture-notes.pdf, Ex 7.6)
+
+% Soul Theorem(?)
 
 
 \end{document}
