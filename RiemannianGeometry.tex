@@ -80,11 +80,11 @@
 \newcommand{\diag}{{\rm diag}}
 
 %%%%% counter %%%%%
-\makeatletter
-\let\sectionorig\section
-\def\@sectionorig#1{\sectionorig*{\MakeUppercase{#1}}}
-\def\@@sectionorig#1{\sectionorig{\MakeUppercase{#1}}}
-\makeatother
+% \makeatletter
+% \let\sectionorig\section
+% \def\@sectionorig#1{\sectionorig*{\MakeUppercase{#1}}}
+% \def\@@sectionorig#1{\sectionorig{\MakeUppercase{#1}}}
+% \makeatother
 
 %%%%% title %%%%%
 \title{Riemann幾何学とリッチフロー}
@@ -100,12 +100,12 @@
 \chapter{Riemann幾何}
 
 \section{Riemann計量と接続}
-\define $M$ を $n$ 次元可微分多様体とする。 $M$ 上の\textbf{Riemann計量}とは、各点 $p \in M$ の接ベクトル空間に対する内積 $\langle -,- \rangle_p \colon T_pM \times T_pM \to \R$ の族であり、$\langle -,- \rangle \colon M \ni p \mapsto \langle -,- \rangle_p$ が $C^\infty$ 級であるものを指す。組 $(M,\langle -,- \rangle)$ を\textbf{Riemann多様体}という。
+\define $M$ を可微分多様体とする。 $M$ 上の\textbf{Riemann計量}とは、各点 $p \in M$ の接ベクトル空間に対する内積 $\langle -,- \rangle_p \colon T_pM \times T_pM \to \R$ の族であり、$\langle -,- \rangle \colon M \ni p \mapsto \langle -,- \rangle_p$ が $C^\infty$ 級であるものを指す。組 $(M,\langle -,- \rangle)$ を\textbf{Riemann多様体}という。
 
 
 Euclid空間ではベクトルの平行移動が自然に行えるが、一般の多様体上では移動したベクトルが接空間の外にはみ出してしまうことがある。そこで、異なる点の接空間を「つなげる」ことで形式的に平行移動を可能にする機構を作りたい。
 
-\define $M$ を $n$ 次元可微分多様体、$\mathfrak{X}(M)$ を $M$ 上のベクトル場全体とする。
+\define $M$ を可微分多様体、$\mathfrak{X}(M)$ を $M$ 上のベクトル場全体とする。
 
 $M$ 上の\textbf{Affine接続}ないし\textbf{共変微分}とは、写像 $\nabla:\mathfrak{X}(M) \times \mathfrak{X}(M) \to \mathfrak{X}(M)$ であって、次の条件を満たすものである。( $X,Y,Z \in \mathfrak{X}(M), f,g \in C^\infty(M,\R)$ とする)
 
@@ -175,7 +175,7 @@ $\hat{\gamma}$ が滑らかなとき第一項が消え、全ての $U$ に対し
 \prf $(p,0) \in TM$ のある近傍 $D$ が存在して $\exp:D \ni (q,v) \mapsto \exp_q(v) \in M \times M$ が定義される。これについて逆関数定理を使うことで所望の結論を得る。 \qed
 
 
-\lem\label{lemgauss} (Gaussの補題) $p \in M,\delta<\iota_p,v,w \in B(0;\delta) \subset T_pM,q:=\exp_p v \in M$ とすると、微分 $d_v\exp_p:T_v(T_pM) \cong T_pM \to T_qM$ は内積を保存する。つまり、 $\langle d_v\exp_p v,d_v\exp_p w \rangle_q=\langle v,w \rangle_p$ 。
+\lem\label{lemgauss} (Gaussの補題) $p \in M,\delta<\iota_p,v,w \in B(0;\delta) \subset T_pM,q:=\exp_p v \in M$ とすると、微分 $d_v\exp_p:T_v(T_pM) \cong T_pM \to T_qM$ は $v$ と始点を共有するベクトルの等長写像。つまり、 $\langle d_v\exp_p v,d_v\exp_p w \rangle_q=\langle v,w \rangle_p$ 。
 
 \prf $\epsilon>0$ を十分小さくとり $\phi:[0,1] \times (-\epsilon,\epsilon) \to M,(s,t) \mapsto \exp_p(s(v+tw))$ とおく。このとき
 \begin{align*}
@@ -199,7 +199,7 @@ $s \mapsto \phi(s,t)$ は測地線なので $\nabla_{\der \over \der s}{\der \ph
 
 \prf $\exists r:[0,1] \to \mathbb{R}_{\geq 0},\eta:[0,1] \to \{X \in T_pM \colon |X|=1\}\mbox{ s.t. }\gamma(t)=\exp_p(r(t)\eta(t))$ より、$\dot{\gamma}(t)=d_{\gamma(t)}\exp_p(\dot{r}(t)\eta(t))+d_{\gamma(t)}\exp_p(r(t)\dot{\eta}(t))$ 。
 
-ここで $\eta$ が微分可能な $t$ では ${d \over dt}\underset{1}{\underline{\ev{\eta(t),\eta(t)}}}=2\ev{\dot{\eta}(t),\eta(t)}=0$ なので補題\ref{lemgauss}より、上の $\dot{\gamma}(t)$ の分解は直交分解。よって
+ここで $\eta$ が微分可能な $t$ では $2\ev{\dot{\eta}(t),\eta(t)}={d \over dt}\underset{1}{\underline{\ev{\eta(t),\eta(t)}}}=0$ なので補題\ref{lemgauss}より、上の $\dot{\gamma}(t)$ の分解は直交分解。よって
 
 \begin{align*}
     |\dot{\gamma}(t)| &\geq |d_{\gamma(t)}\exp_p(\dot{r}(t)\eta(t))| \\
@@ -313,7 +313,7 @@ $\{e_i\}$ を $T_pM$ の正規直交基底として、
 \end{align}
 
 を満たすとき、 $V$ を\textbf{Jacobi場}という。
-\ref{jacobi}は2階の常微分方程式なので、基点 $p=\gamma(0)$ での初期値 $V(0),\nabla_{\dot{\gamma}}V(0) \in T_pM$ が与えられたとき、条件を満たすJacobi場が一意的にとれる。よって、Jacobi場全体は $2n$ 次元のベクトル空間をなす。
+\ref{jacobi}は2階の常微分方程式なので、基点 $p=\gamma(0)$ での初期値 $V(0),\nabla_{\dot{\gamma}}V(0) \in T_pM$ が与えられたとき、条件を満たすJacobi場が一意的にとれる。よって、 $M$ の次元を $n$ としてJacobi場全体は $2n$ 次元のベクトル空間をなす。
 
 \lem\label{lemnormal} $V$ を $\gamma$ に沿ったJacobi場とする。
 $\ev{V,\dot{\gamma}}=0$ と $\ev{V(0),\dot{\gamma}(0)}=\ev{\nabla_{\dot{\gamma}}V(0),\dot{\gamma}(0)}=0$ は同値(このような $V$ を\textbf{直交Jacobi場}という)。
@@ -321,7 +321,7 @@ $\ev{V,\dot{\gamma}}=0$ と $\ev{V(0),\dot{\gamma}(0)}=\ev{\nabla_{\dot{\gamma}}
 \prf ${d^2 \over dt^2}\ev{V,\dot{\gamma}}=\ev{\nabla_{\dot{\gamma}}\nabla_{\dot{\gamma}}V,\dot{\gamma}}=-\ev{R(\dot{\gamma},V)\dot{\gamma},\dot{\gamma}}=0$ より $\ev{V,\dot{\gamma}}=ct+d\ (c,d \in \R)$ と書ける。 $U=V-{ct+d \over |\dot{\gamma}|^2}\dot{\gamma}$ とおくと $\ev{U,\dot{\gamma}}=0$ より $U$ は直交Jacobi場となる。このとき $\ev{V(0),\dot{\gamma}(0)}=d,\ev{\nabla_{\dot{\gamma}}V(0),\dot{\gamma}(0)}=c$ より題意を得る。\qed
 
 
-\eg\label{egjacobi} $\gamma(s,u)$ を測地線の1パラメータ族とすると $\nabla_{\der \over \der s} \dot{\gamma}$ 。よってJacobi作用素の定義から $U={\der \gamma \over \der u}|_{u=0}$ 。特に $\gamma(s,t)=\exp_p (s(X+uY))$ のとき $U=d_{sX}\exp_{p}(sY)$ であり、初期値は $U(0)=0,\nabla_{\dot{\gamma}}U(0)=Y$ なので $U(0)=0$ なるJacobi場は全てこの形になる。
+\eg\label{egjacobi} $\gamma(s,u)$ を測地線の1パラメータ族とすると $\nabla_{\der \over \der s} \dot{\gamma}$ 。よってJacobi作用素の定義から $U={\der \gamma \over \der u}|_{u=0}$ 。特に $\gamma(s,t)=\exp_p (s(X+uY))$ のとき $U=d_{sX}\exp_{p}(sY)$ であり、初期値は $U(0)=0,\nabla_{\dot{\gamma}}U(0)=Y$ なので $U(0)=0$ なる $\gamma=\exp_p sX$ 上のJacobi場は全てこの形になる。
 
 \lem\label{lemjacobi} 測地線 $\gamma:[0,a] \to M$ の指数形式が半正定値で $U \in \mathcal{V}^0,I(U,U)=0$ ならば、$U$ はJacobi場。
 
@@ -362,7 +362,12 @@ $\gamma_s:=\gamma|_{[0,s]}$ に対し $I_s:=I_{\gamma_s}$ が半正定値とな�
 $U^-,U^+$ を $s_1-\delta$ で接続したベクトル場を $V_\epsilon \in \mathcal{V}^0_{s_1+\epsilon}$ とすると、辺々足して $I_{s_1+\epsilon}(V_\epsilon,V_\epsilon) \leq I_{s_1+\epsilon}(X_\epsilon,X_\epsilon)<0$ 。$\epsilon \downarrow 0$ なる列を適切に選び $U^-,U^+$ を収束させると、 $|V_\epsilon(s_1-\delta)|=1$ より $V_\epsilon$ は0でないベクトル場 $V \in \mathcal{V}^0_{s_1}$ に収束する。これは $I_{s_1}(V,V) \leq 0$ を満たすが、$I_{s_1}$ は半正定値なので0に等しく、補題\ref{lemjacobi}より $V$ はJacobi場。よって $p,\gamma(s_1)$ は共役。
 \qed
 
-\lem\label{lemnbhd} D-完備なRiemann多様体 $(M,g)$ 上の2点 $p,q=\exp_p v$ 間の最短測地線 $\gamma:s \mapsto \exp_p sv$ が  $|v|<D$ であり、$p,q$ が $\gamma$ 上共役でないとする。このとき
+\cor\label{corminimal} 最短測地線 $\gamma:[0,a] \to M$ 上の相異なる2点 $\gamma(s),\gamma(t)\ (s<t)$ が $\gamma$ 上共役ならば $s=0,t=a$ 。 \qed
+\\
+
+次のsectionまで $(M,g)$ に完備性を課す。
+
+\lem\label{lemnbhd} 2点 $p,q=\exp_p v$ 間の最短測地線 $\gamma:s \mapsto \exp_p sv$ で $p,q$ が $\gamma$ 上共役でないとする。このとき、次は同値：
 \begin{enumerate}
     \item $v \in T_pM$ の近傍 $U$ が存在し、$w \in U$ ならば測地線 $s \mapsto \exp_p sw$ は $[0,1]$ 上最短。
     \item $p,q$ を結ぶ最短測地線は $\gamma$ のみ。
@@ -373,7 +378,7 @@ $U^-,U^+$ を $s_1-\delta$ で接続したベクトル場を $V_\epsilon \in \ma
 
 逆に (1) が成り立たないとき、$\gamma$ に収束し $[0,1]$ 上最短でない測地線の列 $\{\gamma_i\}$ がとれる。$p,q_i=\gamma_i(1)$ を結ぶ最短測地線を $\sigma_i$ とおくと、$q_i \in V$ を仮定してよいので $w_i:=\dot{\sigma_i}(0) \notin U$ となる必要がある。このとき $w_i \to w \in \bar{B(0;D)} \setminus U$ となるように列を取り直すと、 $\sigma_i \to (s \mapsto \exp_p(sw)) \neq \gamma$ より (2) も不適。 \qed
 
-\define $v \in S_pM$ について $\mbox{cut}(v):=\sup\{s_0 \in [0,D) \colon [0,s_0] \ni s \mapsto \exp_p(sv)\mbox{が最短}\}$  とおく。$q=\exp_p(\mbox{cut}(v)v)$ を $p$ の\textbf{切片} と呼ぶ。 命題\ref{propmin}より $\mbox{cut}(v)>0$ であり、特に $(M,g)$ が完備なら $\mbox{cut}(v)=\infty$ になり得る。このとき $s \mapsto \exp_p(sv)$ はどの有界区間に制限しても最短になる。このような測地線を\textbf{半直線}と呼ぶ。
+\define $v \in S_pM$ について $\mbox{cut}(v):=\sup\{s_0 \in [0,\infty) \colon [0,s_0] \ni s \mapsto \exp_p(sv)\mbox{が最短}\}$  とおく。$q=\exp_p(\mbox{cut}(v)v)$ を $p$ の\textbf{切片} と呼ぶ。 命題\ref{propmin}より $\mbox{cut}(v)>0$ であり、特に $(M,g)$ が完備なら $\mbox{cut}(v)=\infty$ になり得る。このとき $s \mapsto \exp_p(sv)$ はどの有界区間に制限しても最短になる。このような測地線を\textbf{半直線}と呼ぶ。
 
 \lem $(M,g)$ が完備Riemann多様体のとき、$(M,g)$ がコンパクト $\iff$ $p$ を始点とする半直線が存在しない。
 
@@ -385,15 +390,19 @@ $U^-,U^+$ を $s_1-\delta$ で接続したベクトル場を $V_\epsilon \in \ma
 
 \cor\label{corcut} $q$ が $p$ の切片 $\iff$ $p,q$ を結ぶ最短測地線上で $p,q$ が共役、または $p,q$ を結ぶ最短測地線が複数存在する。
 
-\prf 命題 \ref{propconj}、補題\ref{lemnbhd} と常微分方程式の一意性から従う。 \qed
+\prf 系 \ref{corminimal}、補題\ref{lemnbhd} と常微分方程式の一意性から従う。 \qed
 
 \lem $S_pM \ni v \mapsto \mbox{cut}(v)$ は連続。
 
 \prf $v_i \to v$ とする。最短測地線の収束性から $\limsup_{i \to \infty} \mbox{cut}(v_i) \leq \mbox{cut}(v)$ 。一方、系\ref{corsmth}より $l<\mbox{cut}(v)$ について $\gamma:[0,l] \to M,s \mapsto \exp_p(sv)$ は線分で前の系から端点は共役でない。したがって補題\ref{lemnbhd}より $\gamma_i:s \mapsto \exp_p(sv)$ も $[0,l]$ 上で最短測地線なので $\liminf_{i \to \infty} \mbox{cut}(v_i) \geq \mbox{cut}(v)$ 。 \qed
 
+\cor\label{corzero} $\Sigma(p):=\{v \in T_pM \colon |v|<\mbox{cut}({v \over |v|})\},\mbox{Cut}(p)=\exp_p(\der \Sigma(p))$ を $p$ の切片全体とすると、$M \setminus \mbox{Cut}(p)=\exp_p(\Sigma(p))$ であり $\mbox{Cut}(p)$ は測度零。
+
+\prf 前半は系\ref{corcut}を使えばよい。後半の結論は $\der \Sigma(p)=\{v \in B(0;D) \colon |v|=\mbox{cut}({v \over |v|})\}$ と前補題、連続関数のグラフが測度零であることから従う。 \qed
+
 \section{空間形との比較}
 
-$(M,g),(\tilde{M},\tilde{g})$ を $m$ 次元Riemann多様体、$\gamma:[0,a] \to M,\tilde{\gamma}:[0,a] \to \tilde{M}$ を $\gamma(0)=p,\tilde{\gamma}(0)=\tilde{p}$ なる正規測地線とする。 $t \in [0,a]$ について $K^-(t)=\min\{K(\Pi_{\gamma}) \colon \dot{\gamma}(t) \in \Pi_{\gamma}\},\tilde{K}^+(t)=\min\{\tilde{K}(\tilde{\Pi}_{\tilde{\gamma}}) \colon \dot{\tilde{\gamma}}(t) \in \tilde{\Pi}_{\tilde{\gamma}}\}$ とおく(ここで $K,\tilde{K}$ は断面曲率)。
+$(M,g),(\tilde{M},\tilde{g})$ をRiemann多様体、$\gamma:[0,a] \to M,\tilde{\gamma}:[0,a] \to \tilde{M}$ を $\gamma(0)=p,\tilde{\gamma}(0)=\tilde{p}$ なる正規測地線とする。 $t \in [0,a]$ について $K^-(t)=\min\{K(\Pi_{\gamma}) \colon \dot{\gamma}(t) \in \Pi_{\gamma}\},\tilde{K}^+(t)=\min\{\tilde{K}(\tilde{\Pi}_{\tilde{\gamma}}) \colon \dot{\tilde{\gamma}}(t) \in \tilde{\Pi}_{\tilde{\gamma}}\}$ とおく(ここで $K,\tilde{K}$ は断面曲率)。
 
 \lem $X,\tilde{X}$ を$\gamma,\tilde{\gamma}$ に沿った直交Jacobi場とし、
 \begin{enumerate}
@@ -432,7 +441,7 @@ $X,\tilde{X}$ の $\{e_i(t)\},\{\tilde{e_i}(t)\}$ による成分表示を $\{X^
 $u(t)=|X(t)|^2,\tilde{u}(t)=|\tilde{X}(t)|^2$ とおくと、$\tilde{u}(t)/u(t)$ は $(0,a)$ 上well-definedであり、L'Hospitalの定理より
 \begin{align*}
     \lim_{t \to 0}{{\tilde{u}(t)} \over {u}(t)} &= \lim_{t \to 0} {\ddot{\tilde{u}(t)} \over \ddot{u}(t)} \\
-    &= {|\nabla_{\dot{\gamma}}X(0)|^2 \over |\nabla_{\dot{\tilde{\gamma}}}\tilde{X}(0)|^2}=1
+    &= {|\nabla_{\dot{\tilde{\gamma}}}\tilde{X}(0)|^2 \over |\nabla_{\dot{\gamma}}X(0)|^2}=1
 \end{align*}
 よって $|X| \leq |\tilde{X}|$ を示すためには ${d \over dt}{\tilde{u}(t) \over u(t)} \geq 0 \iff \dot{\tilde{u}}(t)u(t)-\tilde{u}(t)\dot{u}(t) \geq 0$ が分かればよい。
 
@@ -454,6 +463,12 @@ $u(t)=|X(t)|^2,\tilde{u}(t)=|\tilde{X}(t)|^2$ とおくと、$\tilde{u}(t)/u(t)$
 
 この定理は定曲率を持つ単連結Riemann多様体(空間形)をモデルとし、考察しているRiemann多様体 $(M,g)$ の曲率と大小関係を持つという仮定のもとで $M$ の幾何を調べる、という形で応用されることが多い。
 
+定曲率 $C$ のRiemann多様体について、Jacobi場がどのように表示されるかを調べよう。Jacobi方程式は ${d^2 J \over dt^2}+CJ=0$ となる。 $w$ を測地線に沿った平行な直交ベクトル場で $|w(t)|=1$ とすると、 $J(t)=sn_C(t)w(t),sn_C(t)=\begin{cases}
+    {\sin(\sqrt{C}t) \over \sqrt{C}} & (C>0) \\
+    t & (C=0) \\
+    {\sin(\sqrt{-C}t) \over \sqrt{-C}} & (C<0)
+\end{cases}$ が初期値 $J(0)=0,J'(0)=w(0)$ の解となる。
+
 \lem $p \in M,q \in \mbox{Cut}(p)$ で $\rho(p,q)=\rho(p,\mbox{Cut}(p))$ を満たすとき、次のいずれかが成立する。
 \begin{enumerate}
     \item $p,q$ を結ぶ最短測地線上で $p,q$ が共役。
@@ -464,7 +479,7 @@ $u(t)=|X(t)|^2,\tilde{u}(t)=|\tilde{X}(t)|^2$ とおくと、$\tilde{u}(t)/u(t)$
 
 \prf 後半の主張が示されれば、系\ref{corcut}とJacobi場全体の線形性から前半も従う。
 
-(2)を仮定して $\dot{\gamma}(l) \neq -\dot{\sigma}(l)$ とすると、$\exists X_q \in S_qM,\mbox{ s.t. } \ev{X_q,\dot{\gamma}(l)}<0,\ev{X_q,\dot{\sigma}(l)}<0$ 。$q$ は $\gamma$ 上 $p$ と共役でないので正則値定理から $l\dot{\gamma}(0) \in \exists U \subset T_pM$ で $\exp_p|_U$ が微分同相になる。 $s$ を十分小さくとると $\xi(s):=(\exp_p|_U)^{-1}\exp_q(sX_q)$ が定義される。$\xi$ は測地線の1パラメータ族 ${\gamma}_s(t)=\exp_p({t\xi(s) \over l})$ の変分ベクトルなので、第一変分公式から ${1 \over 2}{dL({\gamma}) \over ds}(0)=\ev{X_q,\dot{\gamma}(l)}<0$ 。よって十分小さい $s>0$ について $L({\gamma}_s)<L(\gamma)$ 。同様に $\sigma_0=\sigma$ なる測地線の1パラメータ族 $\sigma_s$ が存在して、十分小さい $s>0$ について $L({\sigma}_s)<L(\sigma)$ となる。
+(2)を仮定して $\dot{\gamma}(l) \neq -\dot{\sigma}(l)$ とすると、$\exists X_q \in S_qM,\mbox{ s.t. } \ev{X_q,\dot{\gamma}(l)}<0,\ev{X_q,\dot{\sigma}(l)}<0$ 。$q$ は $\gamma$ 上 $p$ と共役でないので逆関数定理から $l\dot{\gamma}(0) \in \exists U \subset T_pM$ で $\exp_p|_U$ が微分同相になる。 $s$ を十分小さくとると $\xi(s):=(\exp_p|_U)^{-1}\exp_q(sX_q)$ が定義される。$\xi$ は測地線の1パラメータ族 ${\gamma}_s(t)=\exp_p({t\xi(s) \over l})$ の変分ベクトルなので、第一変分公式から ${1 \over 2}{dL({\gamma}) \over ds}(0)=\ev{X_q,\dot{\gamma}(l)}<0$ 。よって十分小さい $s>0$ について $L({\gamma}_s)<L(\gamma)$ 。同様に $\sigma_0=\sigma$ なる測地線の1パラメータ族 $\sigma_s$ が存在して、十分小さい $s>0$ について $L({\sigma}_s)<L(\sigma)$ となる。
 
 $\gamma_s,\sigma_s$ はともに $p,\exp_q(sX_q)$ の測地線だが、 $l_s:=\rho(p,\exp_q(sX_q)) \leq L(\gamma_s)<\rho(p,q)=l$ と $\dot{\gamma}(l) \neq -\dot{\sigma}(l)$ より $\exp_p$ は $B(0;{l_s+l \over 2}) \subset T_pM$ 上単射でない。これは $l=\rho(p,\mbox{Cut}(p))=\iota_p$ に反する。 \qed 
 
@@ -475,13 +490,88 @@ $\gamma_s,\sigma_s$ はともに $p,\exp_q(sX_q)$ の測地線だが、 $l_s:=\r
     \item 長さ最小を達成する測地閉曲線 $\gamma$ が存在して $\iota_M={L(\gamma) \over 2}$
 \end{enumerate}
 
-\prf まず、定曲率 $C$ のRiemann多様体についてJacobi場を調べよう。Jacobi方程式は ${d^2 J \over dt^2}+CJ=0$ となる。 $w$ を測地線に沿った平行な直交ベクトル場で $|w(t)|=1$ とすると、 $J(t)={\sin t \sqrt{C} \over \sqrt{C}}w(t)$ が初期値 $J(0)=0,J'(0)=w(0)$ の解となる。
-
-$\iota_M=\rho(p,q)$ なる $p \in M,q \in \mbox{Cut}(p)$ をとる。前述の考察と定理\ref{thmrauch}から測地線 $\gamma$ 上のJacobi場は $t \in [0,{\pi \over \sqrt{C}}]$ 上で消えない。よって、もし $p,q$ を結ぶ最短測地線上で2点が共役なら、長さは ${\pi \over \sqrt{C}}$ 以上なので(1)が成り立つ。
+\prf $\iota_M=\rho(p,q)$ なる $p \in M,q \in \mbox{Cut}(p)$ をとる。前述の考察と定理\ref{thmrauch}から測地線 $\gamma$ 上のJacobi場は $t \in [0,{\pi \over \sqrt{C}}]$ 上で消えない。よって、もし $p,q$ を結ぶ最短測地線上で2点が共役なら、長さは ${\pi \over \sqrt{C}}$ 以上なので(1)が成り立つ。
 
 もし $p,q$ が共役でないなら、前補題から $p,q$ を結ぶ2つの最短測地線 $\gamma,\sigma$ が取れて $\dot{\gamma}(l)=-\dot{\sigma}(l)\ (l=\rho(p,q))$ 。$p,q$ を入れ替えて考えると、同様にして $\dot{\sigma}(0)=-\dot{\gamma}(0)$ がわかるので、$\gamma,\sigma$ は滑らかに連結でき、1つの測地閉曲線 $\tau$ を作る。このとき作り方から $\iota_M={L(\tau) \over 2}$ であり、 $\tau$ は測地閉曲線の長さの最小値を達成する。なぜなら $\tau'$ を $L(\tau)$ より短い測地閉曲線とすると $\rho(p',q')=L(\tau')$ なる $p',q'$ が存在する。定義から $\exists q'' \in \mbox{Cut}(p') \cap \tau',d(p',q'') \leq {L(\tau') \over 2}<{L(\tau) \over 2}=\iota_M$ より矛盾。したがって(2)が成り立つ。 \qed 
 
 \section{Bishop-Gromovの体積評価}
+
+\define $(M,g)$ をRiemann多様体、$K$ をある座標近傍系 $(U;x)$ に含まれる $x(K)$ が可測なコンパクト部分集合とする。このとき $K$ の\textbf{体積}を
+\begin{align*}
+    \mbox{Vol}(K)=\int_{x(K)} \sqrt{G \circ x^{-1}}dx
+\end{align*}
+
+で定義する。ここで $G=\det(g_{ij}),g_{ij}=\ev{{\der \over \der x_i},{\der \over \der x_j}}$ で $dx$ はLebesgue測度。
+
+\lem この定義は座標近傍系の取り方に依らない。
+
+\prf $(V;y)$ を別の座標近傍系、$y\circ x^{-1}:x(U\cap V) \to y(U\cap V)$ のヤコビアンを $J$ として、$({\der \over \der x_i})_p=\sum_j J_{ij}(x(p))({\der \over \der y_j})_p \ (p \in x(U \cap V))$ 。よって $g_{ij}^x=J^T(g_{kl}^y)J$ より $\sqrt{G^y\circ y^{-1}} dy=\sqrt{G^y \circ y^{-1}(y \circ x^{-1})}|\det J|dx=\sqrt{G^x \circ x^{-1}}dx$ 。 \qed
+
+$(M,g)$ に完備性を仮定すると、系\ref{corsmth}から $\exp_p:\Sigma(p) \to M \setminus \mbox{Cut}(p)$ は微分同相となるので、 $M$ 上の座標近傍系として扱える。$\Sigma(p)$ 上のLebesgue測度を $dx=r^{n-1}drd\Theta$ と極座標表示して $\mu(r,\Theta):=\begin{cases}
+    \sqrt{G \circ \exp_p(r\Theta)}r^{n-1} & (r\Theta \in \Sigma(p)) \\
+    0 & (o.w.)
+\end{cases}$ とおくと、$\mbox{Cut}(p)$ が測度零(系\ref{corzero})より $\mbox{Vol}(B(p;r))=\int_{B(0;r)} \mu(r,\Theta)drd\Theta$ と表せる。
+
+$\mu$ の性質を調べるため、$\Theta \in S_pM$ を固定して考える。
+
+\prop $\gamma$ を $\dot{\gamma}(0)=\Theta$ の正規測地線、 $V_2,\ldots,V_n$ を $V_j(0)=0$ なる $\gamma$ 上の直交Jacobi場とし、 $\{\nabla_{\dot{\gamma}}V_j(0)\}$ が一次独立だと仮定する。このとき、 $r\Theta \in \Sigma(p)$ なる $r$ について、$\mu(r,\Theta)={\det(V_j(r)) \over \det(\nabla_{\dot{\gamma}}V_j(0))}$ 。ただし、行列式には $(\dot{\gamma(t)})^{\bot}$ の正規直交基底を用いる。
+
+\prf $e_1=\Theta,e_j=\nabla_{\dot{\gamma}}V_j(0)$ は $T_pM$ の基底をなし、座標系 $\{u_i\}$ を作ることができる。よって $du={r^{n-1} \over \det(e_i)_{i=2}^n}drd\Theta$ を得る( $e_1=\Theta=\dot{\gamma}(0)$ に注意)。
+
+例\ref{egjacobi}より $V_j(t)=(d\exp_p)_{t\Theta}(te_j)$ と書け、$\exp_p(r\Theta)$ において $\der_1=\dot{\gamma}(r),\der_j={V_j(r) \over r}$ 。よって $i,j \geq 2$ のとき $\ev{\der_i,\der_j}={\ev{V_i(r),V_j(r)} \over r^2}$ であり、$\gamma$ は正規測地線なので $\ev{\der_1,\der_1}=1$ 。さらに補題\ref{lemgauss}より $i\geq 2$ ならば $\ev{\der_1,\der_i}=0$ 。したがって
+\begin{align*}
+    G &=\det(g_{ij}) \\
+    &= r^{-2n+2}\det(\ev{V_i(r),V_j(r)})_{i,j \geq 2} \\
+    &= r^{-2n+2}\det(V_i(r))_{i \geq 2}^2 \\
+\end{align*}
+
+から与式を得る。 \qed
+
+\lem (Jacobiの公式) $A$ を $\R \to \R^{n\times n}$ の可微分写像とすると、 ${d \over dt}\det A(t)=(\det A(t))\tr(A(t)^{-1}\cdot {dA(t) \over dt})$ 。
+
+\prf Taylor展開から
+\begin{align*}
+    {d \over dt}\det A(t) &= \lim_{h \to 0}{{\det A(t+h)-\det A(t)} \over h} \\
+    &= \lim_{h \to 0}{{\det (A(t)+h{dA}{dt})-\det A(t)} \over h} \\
+    &= \det A(t)\lim_{h \to 0}{{\det (I+hA^{-1}{dA}{dt})-\det I} \over h}
+\end{align*}
+
+ここで、固有多項式の性質から $\det(I+hX)=1+h\tr X+O(h^2)$ より ${d \over dt}\det A(t)=\det A\tr(A^{-1}{dA\over dt})$ が分かる。 \qed
+\\
+
+体積比較をするために、定曲率 $C$ を持つ空間形について $\mu_C(r):=\mu(r,\Theta)$ とおく(これは基点 $p$ や $\Theta$ の取り方に依らない)。
+
+\lem $(M,g)$ を完備Riemann多様体とし $\mbox{Rc} \geq (n-1)C$ が成り立つとする。このとき $\Theta \in S_pM,r\Theta \in \Sigma(p)$ について ${\mu'(r,\Theta) \over \mu(r,\Theta)} \leq {\mu_C'(r,\Theta) \over \mu_C(r,\Theta)}$ 。ただし、微分は $r$ について取ることとする。
+
+\prf $\gamma$ を基点 $p$ 、初期値 $\Theta$ の正規測地線とする。 $\{e_i(t)\}$ を $e_1(t)=\dot{\gamma}(t)$ なる $\gamma$ に沿った平行な正規直交基底とし、 $V_j(t)$ を $V_j(0)=0,V_j(r)=e_j(r)$ なる $\gamma$ に沿ったJacobi場とする。
+
+$A(t)=(\ev{V_i(t),V_j(t)})_{i,j\geq 2},d(t)=\det A(t)=(\det(V_i(t))_{i \geq 2})^2$ とおくと、前補題から ( $A(r)=I$ に注意)
+\begin{align*}
+    {\mu'(r,\Theta) \over \mu(r,\Theta)}={d'(r) \over 2d(r)}={\tr(A'(t)) \over 2}=\sum_{j=2}^n \ev{V_j(r),\nabla_{\dot{\gamma}(r)}V_j(r)}=\sum_{j=2}^n I(V_j,V_j)
+\end{align*}
+
+ここで $H_j(t)={sn_C(t) \over sn_C(r)}e_j(t)$ とおくと、補題\ref{lemindex}より
+\begin{align*}
+    \sum_j I(V_j,V_j) &\leq \sum_j I(H_j,H_j) \\
+    &= \int_{0}^r ({sn_C(t) \over sn_C(r)})^2\{(n-1)k-\mbox{Rc}(\dot{\gamma},\dot{\gamma})\}dt+\sum_j \ev{H_j(r),\nabla_{\dot{\gamma}(r)}H_j(r)}
+\end{align*}
+
+一方、定曲率 $C$ の空間形について同様の計算を行うと ${\mu'_C(r) \over \mu_C(r)}=\sum_j \ev{H_j(r),\nabla_{\dot{\gamma}(r)}H_j(r)}$ より、これらを併せて与式を得る。 \qed
+
+\thm\label{thmbishop} (Bishop-Gromovの体積評価) $(M,g)$ を $\mbox{Rc} \geq (n-1)C$ なる完備Riemann多様体とし、任意の点 $p \in M$ をとる。このとき、$B_r^C$ を定曲率 $C$ の空間形上で半径 $r$ の測地球とすると、 $r \mapsto {\mbox{Vol}(B_r(p)) \over \mbox{Vol}(B_r^C)}$ は単調非増加。とくに $\mbox{Vol}(B_r(p)) \leq \mbox{Vol}(B_r^C)$ 。
+
+\prf $a(r):=\int_{S^{n-1}}\mu(r,\Theta)drd\Theta,b(r)=\int_{S^{n-1}}\mu_C(r)d\Theta$ とおくと、
+\begin{align*}
+    {d \over dr}(\log {\mbox{Vol}(B_r(p)) \over \mbox{Vol}(B_r^C)}) &= {a(r) \over \mbox{Vol}(B_r(p))}-{b(r) \over \mbox{Vol}(B_r^C)} \\
+    &= {\int_0^r (a(r)b(t)-a(t)b(r))dt \over \mbox{Vol}(B_r(p))\mbox{Vol}(B_r^C)}
+\end{align*}
+
+よって前半の主張は $t \leq r$ について $a(r)b(t)-a(t)b(r) \leq 0$ 、つまり ${a(t) \over b(t)}$ が非増加であることを言えばよい。
+
+$\mu_C(r)$ は $\Theta$ の取り方に依らないので ${a(t) \over b(t)}=\int_{S^{n-1}} {\mu(t,\Theta) \over \mu_C(t)}d\Theta$ 。よって ${\mu(t,\Theta) \over \mu_C(t)}$ が任意の $\Theta$ について非増加であればよい。しかし、前補題から ${d \over dt}(\log {\mu(t,\Theta) \over \mu_C(t)}) ={\mu'(r,\Theta) \over \mu(r,\Theta)}-{\mu_C'(r,\Theta) \over \mu_C(r,\Theta)} \leq 0$ なので示された。
+
+後半の主張は、 $r \to 0$ で両者の体積は $\R^n$ 上の球の体積に近似されるので、比が1に近づくことから従う。 \qed 
+
 
 
 
@@ -494,7 +584,6 @@ $\iota_M=\rho(p,q)$ なる $p \in M,q \in \mbox{Cut}(p)$ をとる。前述の�
 
 % Toponogov Theorem
 % Sphere Theorem (http://math.uchicago.edu/~may/REU2013/REUPapers/Yu.pdf, https://www.maths.gla.ac.uk/~mpowell/topological-manifolds-lecture-notes.pdf, Ex 7.6)
-
 % Soul Theorem(?)
 
 
