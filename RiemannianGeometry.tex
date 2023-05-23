@@ -70,6 +70,8 @@
 \newcommand{\Ob}{{\rm Ob}}
 \newcommand{\resp}{{\rm resp.}}
 \newcommand{\GL}{{\rm GL}}
+\newcommand{\Vol}{{\rm Vol}}
+\newcommand{\dVol}{{\rm dVol}}
 \renewcommand{\phi}{\varphi}
 
 \newcommand{\N}{\mathbb{N}}
@@ -506,6 +508,7 @@ $\gamma_s,\sigma_s$ はともに $p,\exp_q(sX_q)$ の測地線だが、 $l_s:=\r
 \lem この定義は座標近傍系の取り方に依らない。
 
 \prf $(V;y)$ を別の座標近傍系、$y\circ x^{-1}:x(U\cap V) \to y(U\cap V)$ のヤコビアンを $J$ として、$({\der \over \der x_i})_p=\sum_j J_{ij}(x(p))({\der \over \der y_j})_p \ (p \in x(U \cap V))$ 。よって $g_{ij}^x=J^T(g_{kl}^y)J$ より $\sqrt{G^y\circ y^{-1}} dy=\sqrt{G^y \circ y^{-1}(y \circ x^{-1})}|\det J|dx=\sqrt{G^x \circ x^{-1}}dx$ 。 \qed
+\\
 
 $(M,g)$ に完備性を仮定すると、系\ref{corsmth}から $\exp_p:\Sigma(p) \to M \setminus \mbox{Cut}(p)$ は微分同相となるので、 $M$ 上の座標近傍系として扱える。$\Sigma(p)$ 上のLebesgue測度を $dx=r^{n-1}drd\Theta$ と極座標表示して $\mu(r,\Theta):=\begin{cases}
     \sqrt{G \circ \exp_p(r\Theta)}r^{n-1} & (r\Theta \in \Sigma(p)) \\
@@ -574,17 +577,70 @@ $\mu_C(r)$ は $\Theta$ の取り方に依らないので ${a(t) \over b(t)}=\in
 
 
 
-
-
-
-
-
-
 %%% TODO: 
 
 % Toponogov Theorem
 % Sphere Theorem (http://math.uchicago.edu/~may/REU2013/REUPapers/Yu.pdf, https://www.maths.gla.ac.uk/~mpowell/topological-manifolds-lecture-notes.pdf, Ex 7.6)
 % Soul Theorem(?)
+
+\newpage
+
+\chapter{リッチフロー}
+
+\section{リッチフローの方程式}
+
+この節ではリッチフローの基本的な性質と例を述べる。
+
+\define $M$ を多様体、$I$ を $\R$ 上の開区間とする。$I$ 上で定義される $M$ 上のRiemann計量の $C^\infty$ な1パラメータ族 $g(t)$ が $g(0)$ を初期値とする\textbf{リッチフロー}であるとは、偏微分方程式
+\begin{align*}
+    {\der \over \der t}g=-2\mbox{Rc}(g)
+\end{align*}
+
+を満たすことを指す。
+
+$(M,g(0))$ がコンパクトのとき、$(M,g(t))$ が体積一定となるように正規化したリッチフローを考えることができる。
+
+$h(t)=\lambda(t)g(t)$ が $\mbox{Vol}(M,h(t)):\mbox{const}$ となる $\lambda(t)$ を求めよう。
+\begin{align*}
+    \dVol_h &= \sqrt{\det(h_{ij})}dx \\
+    &= \sqrt{\det(\lambda(t)g_{ij})}dx \\
+    &= \lambda(t)^{n/2}\dVol_g \\
+    \Vol(h(t)) &= \Vol(g(0)) \\
+    \iff \lambda(t)^{n/2}\Vol(g(t)) &= \Vol(g(0)) \\
+    \iff \lambda(t) &= ({\Vol(g(t)) \over \Vol(g(0))})^{-n/2}
+\end{align*}
+
+と計算できる。また、Jacobiの公式から
+\begin{align*}
+    {d \over dt}\Vol(g(t)) &= \int_M {d \over dt}\sqrt{\det(g_{ij})} dx \\
+    &= \int_M {1 \over 2\sqrt{\det(g_{ij})}}\det(g_{ij})\tr({d \over dt}g_{ij}) dx \\
+    &= -\int_M \tr(\mbox{Rc}^g_{ij}) \dVol(g(t)) = -\int_M R^g \dVol(g(t)) \\
+\end{align*}
+
+$g$ によるスカラー曲率の平均 $r_g:={\int_M R^g \dVol(g(t)) \over \Vol(g(t))}$ と、$h$ での値 $r_h:={\int_M R^h \dVol(g(t)) \over \Vol(g(t))}$ を用いて、
+\begin{align*}
+    r_h &= {r_g \over \lambda(t)} \\
+    {d \over dt}\lambda(t) &= -{2 \over n}({\Vol(g(t)) \over \Vol(g(0))})^{-2/n-1}{{d \over dt} \Vol(g(t)) \over \Vol(g(0))} \\
+    &= {2r_g \over n}\lambda(t) \\
+    &= {2r_h \over n}\lambda(t)^2 \\
+    {d \over dt}h &= -2\lambda(t)\mbox{Rc}_g+{2r_h \over n}\lambda(t)^2g(t) \\
+    &= \lambda(t)(-2\mbox{Rc}_h+{2r_h \over n}h(t)) \\
+\end{align*}
+
+$\lambda(t)$ を取り除くために変数変換 $\tau=\int_{0}^t \lambda(s)ds$ を施すと、
+\begin{align*}
+    {d \over d\tau}h &= -2\mbox{Rc}_h+{2r_h \over n}h
+\end{align*}
+
+を得る。これを\textbf{正規化されたリッチフロー}と呼ぶ。これは元々のリッチフローの解が有限時間でしか存在しないケースを克服するために用いられる。
+
+
+
+
+
+
+
+
 
 
 \end{document}
