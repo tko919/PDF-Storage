@@ -8,9 +8,9 @@
 \usepackage{fancybox}
 \usepackage{mathrsfs}
 \usepackage{physics}
-\usepackage[dvipdfmx]{hyperref}
-\usepackage{pxjahyper}
-\usepackage[all]{xy}
+% \usepackage[dvipdfmx]{hyperref}
+% \usepackage{pxjahyper}
+% \usepackage[all]{xy}
 
 %%%%% theorem environment %%%%%
 \def\theenumi{\arabic{enumi}}
@@ -51,7 +51,7 @@
 \newcommand{\ctens}{\widehat{\otimes}}
 \newcommand{\Ctens}{\widehat{\bigotimes}}
 \newcommand{\ch}{{\rm char}}
-\renewcommand{\L}{\mathscr{L}}
+\renewcommand{\L}{\mathcal{L}}
 \newcommand{\der}{\partial}
 \renewcommand{\tilde}{\widetilde}
 \newcommand{\hlus}{\widehat{\bigoplus}}
@@ -72,6 +72,7 @@
 \newcommand{\GL}{{\rm GL}}
 \newcommand{\Vol}{{\rm Vol}}
 \newcommand{\dVol}{{\rm dVol}}
+\newcommand{\Rc}{{\rm Rc}}
 \renewcommand{\phi}{\varphi}
 
 \newcommand{\N}{\mathbb{N}}
@@ -292,19 +293,19 @@ $\mathcal{V}_s$ を $\gamma|_{0,s}$ に沿った区分的滑らかなベクト�
 $\{e_i\}$ を $T_pM$ の正規直交基底として、
 
 \begin{align*}
-    \mbox{Rc}(X,Y):=\sum_i \ev{R(X,e_i)e_i,Y}=\tr[Z \mapsto R(Z,X)Y]
+    \Rc(X,Y):=\sum_i \ev{R(X,e_i)e_i,Y}=\tr[Z \mapsto R(Z,X)Y]
 \end{align*}
 
-で定まる $TM$ の対称双線形形式を\textbf{Ricci曲率}といい、$R(p)=\sum_i \mbox{Rc}(e_i,e_i)$ で定まる値を\textbf{Scalar曲率}という。
+で定まる $TM$ の対称双線形形式を\textbf{Ricci曲率}といい、$R(p)=\sum_i \Rc(e_i,e_i)$ で定まる値を\textbf{Scalar曲率}という。
 
-\thm\label{thmmyers} (Myersの定理) $\lambda>0,D>{\pi \over \sqrt{\lambda}}$ とする。D-完備な $n$ 次元Riemann多様体 $(M,g)$ について $\mbox{Rc} \geq (n-1)\lambda$ が成り立てば、 $M$ はコンパクトで $\mbox{diam}(M) \leq {\pi \over \sqrt{\lambda}}$ 
+\thm\label{thmmyers} (Myersの定理) $\lambda>0,D>{\pi \over \sqrt{\lambda}}$ とする。D-完備な $n$ 次元Riemann多様体 $(M,g)$ について $\Rc \geq (n-1)\lambda$ が成り立てば、 $M$ はコンパクトで $\mbox{diam}(M) \leq {\pi \over \sqrt{\lambda}}$ 
 
 \prf 2点 $p,q \in M$ をとり $\rho(p,q)=l<D$ とする。定理\ref{thmhopf}より最短測地線 $\gamma:[0,1] \to M$ が存在する。$\{e_i\}_{i=1}^n \ (e_1=\dot{\gamma}/l)$ を $\gamma$ に沿った平行なベクトル場で、各点の接空間の正規直交基底を成すとする。そして $U_i=\sin(\pi s)e_i$ とおくと、 $U_i$ は全域で滑らかなことに注意して
 \begin{align*}
     I(U_i,U_i) &=-\int_0^1 \ev{U_i,\nabla_{\dot{\gamma}}\nabla_{\dot{\gamma}}U_i+R(U_i,\dot{\gamma})\dot{\gamma}} ds \\
     &=-\int_0^1 {\der^2 \sin(\pi s) \over \der s^2}+l^2\sin^2(\pi s) \ev{R(e_i,\dot{\gamma})\dot{\gamma},e_i} ds \\
     &=\int_0^1 \sin^2(\pi s)(\pi^2-l^2 \ev{R(e_i,\dot{\gamma})\dot{\gamma},e_i}) ds \\
-    \sum_{i=2}^n I(U_i,U_i) &=\int_0^1 \sin^2(\pi s)((n-1)\pi^2-l^2 \mbox{Rc}(\dot{\gamma},\dot{\gamma})) ds
+    \sum_{i=2}^n I(U_i,U_i) &=\int_0^1 \sin^2(\pi s)((n-1)\pi^2-l^2 \Rc(\dot{\gamma},\dot{\gamma})) ds
 \end{align*}
 
 ここで $l>\pi/\sqrt{\lambda}$ とすると右辺は負になるので、$\exists U_i,I(U_i,U_i)<0$ 。よって $I$ は半正定値でないので $\gamma$ の最短性に矛盾する。定理\ref{thmhopf}から $M=\exp_p(\bar{B(0;\pi/\sqrt{\lambda})})$ より $M$ はコンパクト。 \qed
@@ -544,7 +545,7 @@ $\mu$ の性質を調べるため、$\Theta \in S_pM$ を固定して考える�
 
 体積比較をするために、定曲率 $C$ を持つ空間形について $\mu_C(r):=\mu(r,\Theta)$ とおく(これは基点 $p$ や $\Theta$ の取り方に依らない)。
 
-\lem $(M,g)$ を完備Riemann多様体とし $\mbox{Rc} \geq (n-1)C$ が成り立つとする。このとき $\Theta \in S_pM,r\Theta \in \Sigma(p)$ について ${\mu'(r,\Theta) \over \mu(r,\Theta)} \leq {\mu_C'(r,\Theta) \over \mu_C(r,\Theta)}$ 。ただし、微分は $r$ について取ることとする。
+\lem $(M,g)$ を完備Riemann多様体とし $\Rc \geq (n-1)C$ が成り立つとする。このとき $\Theta \in S_pM,r\Theta \in \Sigma(p)$ について ${\mu'(r,\Theta) \over \mu(r,\Theta)} \leq {\mu_C'(r,\Theta) \over \mu_C(r,\Theta)}$ 。ただし、微分は $r$ について取ることとする。
 
 \prf $\gamma$ を基点 $p$ 、初期値 $\Theta$ の正規測地線とする。 $\{e_i(t)\}$ を $e_1(t)=\dot{\gamma}(t)$ なる $\gamma$ に沿った平行な正規直交基底とし、 $V_j(t)$ を $V_j(0)=0,V_j(r)=e_j(r)$ なる $\gamma$ に沿ったJacobi場とする。
 
@@ -556,12 +557,12 @@ $A(t)=(\ev{V_i(t),V_j(t)})_{i,j\geq 2},d(t)=\det A(t)=(\det(V_i(t))_{i \geq 2})^
 ここで $H_j(t)={sn_C(t) \over sn_C(r)}e_j(t)$ とおくと、補題\ref{lemindex}より
 \begin{align*}
     \sum_j I(V_j,V_j) &\leq \sum_j I(H_j,H_j) \\
-    &= \int_{0}^r ({sn_C(t) \over sn_C(r)})^2\{(n-1)k-\mbox{Rc}(\dot{\gamma},\dot{\gamma})\}dt+\sum_j \ev{H_j(r),\nabla_{\dot{\gamma}(r)}H_j(r)}
+    &= \int_{0}^r ({sn_C(t) \over sn_C(r)})^2\{(n-1)k-\Rc(\dot{\gamma},\dot{\gamma})\}dt+\sum_j \ev{H_j(r),\nabla_{\dot{\gamma}(r)}H_j(r)}
 \end{align*}
 
 一方、定曲率 $C$ の空間形について同様の計算を行うと ${\mu'_C(r) \over \mu_C(r)}=\sum_j \ev{H_j(r),\nabla_{\dot{\gamma}(r)}H_j(r)}$ より、これらを併せて与式を得る。 \qed
 
-\thm\label{thmbishop} (Bishop-Gromovの体積評価) $(M,g)$ を $\mbox{Rc} \geq (n-1)C$ なる完備Riemann多様体とし、任意の点 $p \in M$ をとる。このとき、$B_r^C$ を定曲率 $C$ の空間形上で半径 $r$ の測地球とすると、 $r \mapsto {\mbox{Vol}(B_r(p)) \over \mbox{Vol}(B_r^C)}$ は単調非増加。とくに $\mbox{Vol}(B_r(p)) \leq \mbox{Vol}(B_r^C)$ 。
+\thm\label{thmbishop} (Bishop-Gromovの体積評価) $(M,g)$ を $\Rc \geq (n-1)C$ なる完備Riemann多様体とし、任意の点 $p \in M$ をとる。このとき、$B_r^C$ を定曲率 $C$ の空間形上で半径 $r$ の測地球とすると、 $r \mapsto {\mbox{Vol}(B_r(p)) \over \mbox{Vol}(B_r^C)}$ は単調非増加。とくに $\mbox{Vol}(B_r(p)) \leq \mbox{Vol}(B_r^C)$ 。
 
 \prf $a(r):=\int_{S^{n-1}}\mu(r,\Theta)drd\Theta,b(r)=\int_{S^{n-1}}\mu_C(r)d\Theta$ とおくと、
 \begin{align*}
@@ -589,18 +590,16 @@ $\mu_C(r)$ は $\Theta$ の取り方に依らないので ${a(t) \over b(t)}=\in
 
 \section{リッチフローの方程式}
 
-この節ではリッチフローの基本的な性質と例を述べる。
-
 \define $M$ を多様体、$I$ を $\R$ 上の開区間とする。$I$ 上で定義される $M$ 上のRiemann計量の $C^\infty$ な1パラメータ族 $g(t)$ が $g(0)$ を初期値とする\textbf{リッチフロー}であるとは、偏微分方程式
 \begin{align*}
-    {\der \over \der t}g=-2\mbox{Rc}(g)
+    {\der \over \der t}g=-2\Rc(g)
 \end{align*}
 
 を満たすことを指す。
 
 $(M,g(0))$ がコンパクトのとき、$(M,g(t))$ が体積一定となるように正規化したリッチフローを考えることができる。
 
-$h(t)=\lambda(t)g(t)$ が $\mbox{Vol}(M,h(t)):\mbox{const}$ となる $\lambda(t)$ を求めよう。
+$h(t)=\lambda(t)g(t)$ が $\mbox{Vol}(M,h(t)):\mbox{const}$ となる $\lambda(t)$ は
 \begin{align*}
     \dVol_h &= \sqrt{\det(h_{ij})}dx \\
     &= \sqrt{\det(\lambda(t)g_{ij})}dx \\
@@ -614,7 +613,7 @@ $h(t)=\lambda(t)g(t)$ が $\mbox{Vol}(M,h(t)):\mbox{const}$ となる $\lambda(t
 \begin{align*}
     {d \over dt}\Vol(g(t)) &= \int_M {d \over dt}\sqrt{\det(g_{ij})} dx \\
     &= \int_M {1 \over 2\sqrt{\det(g_{ij})}}\det(g_{ij})\tr({d \over dt}g_{ij}) dx \\
-    &= -\int_M \tr(\mbox{Rc}^g_{ij}) \dVol(g(t)) = -\int_M R^g \dVol(g(t)) \\
+    &= -\int_M \tr(\Rc^g_{ij}) \dVol(g(t)) = -\int_M R^g \dVol(g(t)) \\
 \end{align*}
 
 $g$ によるスカラー曲率の平均 $r_g:={\int_M R^g \dVol(g(t)) \over \Vol(g(t))}$ と、$h$ での値 $r_h:={\int_M R^h \dVol(g(t)) \over \Vol(g(t))}$ を用いて、
@@ -623,16 +622,69 @@ $g$ によるスカラー曲率の平均 $r_g:={\int_M R^g \dVol(g(t)) \over \Vo
     {d \over dt}\lambda(t) &= -{2 \over n}({\Vol(g(t)) \over \Vol(g(0))})^{-2/n-1}{{d \over dt} \Vol(g(t)) \over \Vol(g(0))} \\
     &= {2r_g \over n}\lambda(t) \\
     &= {2r_h \over n}\lambda(t)^2 \\
-    {d \over dt}h &= -2\lambda(t)\mbox{Rc}_g+{2r_h \over n}\lambda(t)^2g(t) \\
-    &= \lambda(t)(-2\mbox{Rc}_h+{2r_h \over n}h(t)) \\
+    {d \over dt}h &= -2\lambda(t)\Rc_g+{2r_h \over n}\lambda(t)^2g(t) \\
+    &= \lambda(t)(-2\Rc_h+{2r_h \over n}h(t)) \\
 \end{align*}
 
 $\lambda(t)$ を取り除くために変数変換 $\tau=\int_{0}^t \lambda(s)ds$ を施すと、
 \begin{align*}
-    {d \over d\tau}h &= -2\mbox{Rc}_h+{2r_h \over n}h
+    {d \over d\tau}h &= -2\Rc_h+{2r_h \over n}h
 \end{align*}
 
-を得る。これを\textbf{正規化されたリッチフロー}と呼ぶ。これは元々のリッチフローの解が有限時間でしか存在しないケースを克服するために用いられる。
+を得る。これを\textbf{正規化されたリッチフロー}と呼ぶ。これは元々のリッチフローの解が有限時間でしか存在しないケースを克服するために用いられる。 \\
+
+リッチフローの自己相似解、つまり微分同相とスケーリングの組み合わせで得られる解について調べてみる。
+\define 微分同相 $\phi_t:M \to M\ (\phi_0=id_M)$ の族、$\sigma(t)$ を時間依存のスケーリング係数($\sigma(0)=1$) とする。もしリッチフロー $(M,g(t))$ が
+\begin{align*}
+    g(t)=\sigma(t)\phi_t^*g(0)
+\end{align*}
+
+と書けるとき\textbf{ソリトン}と呼ぶ。
+
+ソリトンの満たす条件を考えてみよう。方程式に代入して $t=0$ での値を評価すると
+\begin{align*}
+    {\der \over \der t}g(t) &= \sigma'(t)\phi_t^*g(0)+\sigma(t){\der \over \der t}\phi_t^*g(0) \\
+    -2\Rc(g(0)) &= \sigma'(0)g(0)+\L_V g(0)
+\end{align*}
+
+ここで、$V={\der \phi_t \over \der t}$ であり $\L_V$ はLie微分を表す。
+
+ところで、$X,Y \in \mathfrak{X}(M)$ についてLie微分のLeibniz則から
+\begin{align*}
+    \L_V(X,Y) &= V(g(X,Y))-g(\L_V X,Y)-g(X,\L_V Y) \\
+    &= g(\nabla_V X,Y)+g(X,\nabla_V Y)-g([V,X],Y)-g(X,[V,Y]) \\
+    &= g(\nabla_X V,Y)+g(X,\nabla_Y V)
+\end{align*}
+
+から $(\L_V g)_{ij}=\nabla_i V_j+\nabla_j V_i$ が成り立つので、$\sigma'(0)=2\lambda$ と置いて成分表示すると
+\begin{align*}
+    -2R_{ij}=2\lambda g_{ij}+\nabla_i V_j+\nabla_j V_i
+\end{align*}
+
+ソリトンはスケーリング率が $\lambda=0,\lambda<0,\lambda>0$ のとき、それぞれ\textbf{安定・縮小・拡大ソリトン}という。
+
+特に、$V$ があるスカラー関数 $f$ の勾配として書けるとき、つまり $V_i=\nabla_i f$ となるとき、
+\begin{align*}
+    R_{ij}+\lambda g_{ij}+\nabla_i \nabla_j f=0
+\end{align*}
+
+と変形できる。この解を\textbf{勾配ソリトン}と呼ぶ。次は勾配ソリトンの代表的な例である。
+
+\eg (cigar soliton) $M=\R^2$ として計量を $g(0)={dx^2+dy^2 \over x^2+y^2+1}$ と定める。これが安定勾配ソリトンになることを見る。
+
+Christoffel記号を計算すると
+\begin{align*}
+    \Gamma^x_{xx} = \Gamma^y_{xy} = \Gamma^y_{{yx}} = - \frac{x}{ x^2 + y^2+1} \\
+    \Gamma^y_{yy} = \Gamma^x_{xy} = \Gamma^x_{{yx}} = - \frac{y}{x^2 + y^2+1} \\
+    \Gamma^x_{yy} = \frac{x}{x^2 + y^2+1} \\
+    \Gamma^y_{xx} = \frac{y}{x^2 + y^2+1}
+\end{align*}
+
+これを用いてRicci曲率を求めると $f=-\log(1+x^2+y^2)$ として $R_{ij}+\nabla_i \nabla_j f=0$ を満たすことがわかる(Ricci曲率そのものは省略)。スカラー曲率は $R={4 \over x^2+y^2+1}>0$ であり、原点からの距離が離れるほど小さくなる。
+
+極座標表示は $g={dr^2+r^2d\theta^2 \over r^2+1}$ であり、変数変換 $s=\int_{0}^r {du \over \sqrt{u^2+1}}$ において $g=ds^2+(\tanh s)^2 d\theta^2$ となる。$\tanh s\to 1(s \to \infty)$ から、遠方では $g \approx ds^2+d\theta^2$ となり $S^1 \times \R$ に近い幾何を持つことが分かる。
+
+% TODO:初期値問題(deTurck Trick)
 
 
 
@@ -641,6 +693,10 @@ $\lambda(t)$ を取り除くために変数変換 $\tau=\int_{0}^t \lambda(s)ds$
 
 
 
-
+\begin{thebibliography}{9}
+    \bibitem{petersen} PETERSEN, Peter. Riemannian geometry. New York: Springer, 2006.
+    \bibitem{sheridan} SHERIDAN, Nick; RUBINSTEIN, Hyam. Hamilton's Ricci flow. Honour thesis, 2006.
+    \bibitem{andrews} ANDREWS, Ben; HOPPER, Christopher. The Ricci flow in Riemannian geometry: a complete proof of the differentiable 1/4-pinching sphere theorem. Springer, 2010.
+\end{thebibliography}
 
 \end{document}
