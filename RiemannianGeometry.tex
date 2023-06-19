@@ -8,9 +8,9 @@
 \usepackage{fancybox}
 \usepackage{mathrsfs}
 \usepackage{physics}
-% \usepackage[dvipdfmx]{hyperref}
-% \usepackage{pxjahyper}
-% \usepackage[all]{xy}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+\usepackage[all]{xy}
 
 %%%%% theorem environment %%%%%
 \def\theenumi{\arabic{enumi}}
@@ -72,7 +72,9 @@
 \newcommand{\GL}{{\rm GL}}
 \newcommand{\Vol}{{\rm Vol}}
 \newcommand{\dVol}{{\rm dVol}}
+\newcommand{\Ric}{{\rm Ric}}
 \newcommand{\Rc}{{\rm Rc}}
+\newcommand{\Hess}{{\rm Hess}}
 \renewcommand{\phi}{\varphi}
 
 \newcommand{\N}{\mathbb{N}}
@@ -83,11 +85,11 @@
 \newcommand{\diag}{{\rm diag}}
 
 %%%%% counter %%%%%
-% \makeatletter
-% \let\sectionorig\section
-% \def\@sectionorig#1{\sectionorig*{\MakeUppercase{#1}}}
-% \def\@@sectionorig#1{\sectionorig{\MakeUppercase{#1}}}
-% \makeatother
+\makeatletter
+\let\sectionorig\section
+\def\@sectionorig#1{\sectionorig*{\MakeUppercase{#1}}}
+\def\@@sectionorig#1{\sectionorig{\MakeUppercase{#1}}}
+\makeatother
 
 %%%%% title %%%%%
 \title{Riemann幾何学とリッチフロー}
@@ -366,7 +368,6 @@ $U^-,U^+$ を $s_1-\delta$ で接続したベクトル場を $V_\epsilon \in \ma
 \qed
 
 \cor\label{corminimal} 最短測地線 $\gamma:[0,a] \to M$ 上の相異なる2点 $\gamma(s),\gamma(t)\ (s<t)$ が $\gamma$ 上共役ならば $s=0,t=a$ 。 \qed
-\\
 
 次のsectionまで $(M,g)$ に完備性を課す。
 
@@ -466,11 +467,23 @@ $u(t)=|X(t)|^2,\tilde{u}(t)=|\tilde{X}(t)|^2$ とおくと、$\tilde{u}(t)/u(t)$
 
 この定理は定曲率を持つ単連結Riemann多様体(空間形)をモデルとし、考察しているRiemann多様体 $(M,g)$ の曲率と大小関係を持つという仮定のもとで $M$ の幾何を調べる、という形で応用されることが多い。
 
-定曲率 $C$ のRiemann多様体について、Jacobi場がどのように表示されるかを調べよう。Jacobi方程式は ${d^2 J \over dt^2}+CJ=0$ となる。 $w$ を測地線に沿った平行な直交ベクトル場で $|w(t)|=1$ とすると、 $J(t)=sn_C(t)w(t),sn_C(t)=\begin{cases}
+定曲率 $C$ のRiemann多様体について、Jacobi場がどのように表示されるかを調べよう。まず $sn_C(t)$ を微分方程式
+\begin{align*}
+    \ddot{x}(t)+Cx(t)&=0 \\
+    x(0)&=0 \\
+    \dot{x}(0)&=1
+\end{align*}
+
+の解とすると、具体的に
+\begin{align*}
+    sn_C(t)=\begin{cases}
     {\sin(\sqrt{C}t) \over \sqrt{C}} & (C>0) \\
     t & (C=0) \\
-    {\sin(\sqrt{-C}t) \over \sqrt{-C}} & (C<0)
-\end{cases}$ が初期値 $J(0)=0,J'(0)=w(0)$ の解となる。
+    {\sinh(\sqrt{-C}t) \over \sqrt{-C}} & (C<0)
+    \end{cases}
+\end{align*}
+
+と書ける。 $w$ を測地線に沿った平行な直交ベクトル場で $|w(t)|=1$ とすると、 $J(t)=sn_C(t)w(t)$ が初期値 $J(0)=0,J'(0)=w(0)$ のJacobi方程式 ${d^2 J \over dt^2}+CJ=0$ の解となる。
 
 \lem $p \in M,q \in \mbox{Cut}(p)$ で $\rho(p,q)=\rho(p,\mbox{Cut}(p))$ を満たすとき、次のいずれかが成立する。
 \begin{enumerate}
@@ -526,12 +539,15 @@ $\mu$ の性質を調べるため、$\Theta \in S_pM$ を固定して考える�
 \begin{align*}
     G &=\det(g_{ij}) \\
     &= r^{-2n+2}\det(\ev{V_i(r),V_j(r)})_{i,j \geq 2} \\
-    &= r^{-2n+2}\det(V_i(r))_{i \geq 2}^2 \\
+    &= r^{-2n+2}\det(V_i(r))_{i \geq 2}^2
 \end{align*}
 
 から与式を得る。 \qed
 
-\lem (Jacobiの公式) $A$ を $\R \to \R^{n\times n}$ の可微分写像とすると、 ${d \over dt}\det A(t)=(\det A(t))\tr(A(t)^{-1}\cdot {dA(t) \over dt})$ 。
+\lem (Jacobiの公式) $A$ を $\R \to \R^{n\times n}$ の可微分写像とすると、 
+\begin{align*}
+    {d \over dt}\det A(t)=(\det A(t))\tr(A(t)^{-1}\cdot {dA(t) \over dt})
+\end{align*}
 
 \prf Taylor展開から
 \begin{align*}
@@ -554,7 +570,7 @@ $A(t)=(\ev{V_i(t),V_j(t)})_{i,j\geq 2},d(t)=\det A(t)=(\det(V_i(t))_{i \geq 2})^
     {\mu'(r,\Theta) \over \mu(r,\Theta)}={d'(r) \over 2d(r)}={\tr(A'(t)) \over 2}=\sum_{j=2}^n \ev{V_j(r),\nabla_{\dot{\gamma}(r)}V_j(r)}=\sum_{j=2}^n I(V_j,V_j)
 \end{align*}
 
-ここで $H_j(t)={sn_C(t) \over sn_C(r)}e_j(t)$ とおくと、補題\ref{lemindex}より
+ここで $H_j(t)={sn_C(t) \over sn_C(r)}e_j(t)$ とおくと、これはJacobi場なので補題\ref{lemindex}より
 \begin{align*}
     \sum_j I(V_j,V_j) &\leq \sum_j I(H_j,H_j) \\
     &= \int_{0}^r ({sn_C(t) \over sn_C(r)})^2\{(n-1)k-\Rc(\dot{\gamma},\dot{\gamma})\}dt+\sum_j \ev{H_j(r),\nabla_{\dot{\gamma}(r)}H_j(r)}
@@ -576,13 +592,209 @@ $\mu_C(r)$ は $\Theta$ の取り方に依らないので ${a(t) \over b(t)}=\in
 
 後半の主張は、 $r \to 0$ で両者の体積は $\R^n$ 上の球の体積に近似されるので、比が1に近づくことから従う。 \qed 
 
+等号条件を検証することで、$\Vol(B_r(p))=\Vol(B_r^C)$ と「両者が等長同型であること」が同値であることがわかる。
+
+応用として、Myersの定理の特殊ケースについて考察する。
+
+\thm\label{thmcheng} (Chengの最大直径定理) 完備Riemann多様体 $(M,g)$ が $\Rc \geq (n-1)C>0$ と評価され $\mbox{diam}={\pi \over \sqrt{C}}$ のとき、$(M,g)$ は球面 $S_C^n$ と等長同型。
+
+\prf 正規化して $C=1$ を仮定する。 $\rho(p,q)=\pi$ なる点 $p,q\in M$ を取り、前の定理を適用すると
+
+\begin{align*}
+    {\Vol(B_{\pi/2}(p)) \over \Vol(M)}={\Vol(B_{\pi/2}(p)) \over \Vol(B_\pi(p))} \geq {\Vol(B^1_{\pi/2}) \over \Vol(B^1_{\pi})}={1 \over 2} \\
+    \Rightarrow \Vol(B_{\pi/2}(p)),\Vol(B_{\pi/2}(q)) \geq {1 \over 2}\Vol(M)
+\end{align*}
+
+しかし $B(p;{\pi}),B(q;{\pi})$ はdisjointなので、上の不等式は実は等号である。よって $\Vol(M)=\Vol(B^1)$ より題意が成り立つ。 \qed
+
+
+\section{分裂定理とBusemann関数}
+
+この章では下の定理を示すことを目標とする。
+
+
+\thm\label{thmsplit} (分裂定理) 完備Riemann多様体 $(M,g)$ が直線を含み $\Ric \geq 0$ を満たすとする。このとき、あるRiemann多様体 $(H,g_0)$ が存在して $(M,g)$ は $(H \times \R,g_0+dt^2)$ と等長同型($M$ が\textbf{分裂する}という)。
+
+\lem (Riccati Comparison) $C^\infty$ 級関数 $\rho_1,\rho_2:(0,b) \to \R$ が $\rho_1(+0) \leq \rho_2(+0),\dot{\rho_1}+\rho_1^2 \leq \dot{\rho_2}+\rho_2^2$ を満たすと仮定する。このとき $\rho_1 \leq \rho_2$ 。
+
+\prf $F:=(\rho_2-\rho_1)\exp(\rho_1+\rho_2)$ とおくと、仮定から
+\begin{align*}
+    F'(t) = (\rho_2'-\rho_1'+\rho_2^2-\rho_1^2)\exp(\rho_1+\rho_2) \geq 0    
+\end{align*}
+
+より $F$ は単調非減少。よって $F \geq 0$ から結論が従う。 \qed
+
+特に $\rho_C(t):={sn_C'(t) \over sn_C(t)}$ は $\dot{\rho_C}+\rho_C^2=-C$ を満たすので、補題に用いることができる。\\
+
+次に $M$ 上の $C^\infty$ 級関数 $f$ について勾配とHessianを定義する。勾配の「ベクトルとの内積が方向微分に一致」という特徴づけと、Affine接続が方向微分のアナロジーであることに注意する。
+
+\define $f$ の\textbf{勾配} $\nabla f \in \mathfrak{X}(M)$ を、 $\ev{\nabla f,X}=Xf\ (X \in \mathfrak{X}(M))$ を満たすベクトル場と定める(この $\nabla$ は接続の意味ではない)。また、$f$ の\textbf{Hessian}を $\mbox{Hess}f(X,Y):=\ev{\nabla_X \nabla_f,Y}\ (X,Y \in \mathfrak{X}(M))$ と定義する。これは対称双線形なので $\Delta f:=\tr(\mbox{Hess}f) \in C^\infty(M)$ を考えることができ、\textbf{Laplacian}と呼ぶ。
+
+\prop (Bochner's Formula) $|A|^2:=\sum_{i,j}a_{ij}^2$ として、 ${1 \over 2}\Delta|\nabla f|^2=|\Hess f|^2+\ev{\nabla f,\nabla(\Delta f)}+\Ric(\nabla f,\nabla f)$
+
+\prf $x \in M$ を固定し $\{e_i\}$ を $x$ の近傍で定義される $\forall i,j,\nabla_{e_i}e_j(x)=0\ (\iff \nabla e_i(x)=0)$ なる正規直交標構とする( $T_pM$ の正規直交基底を平行移動させることで作れる)。このとき、
+\begin{align*}
+    {1 \over 2}\Delta|\nabla f|^2 &= {1 \over 2} \sum_i e_i(e_i \ev{\nabla f,\nabla f}) \\
+    &= \sum_i e_i \ev{\nabla_{e_i}\nabla f,\nabla f} \\
+    &= \sum_i e_i \Hess f(e_i,\nabla f) \\
+    &= \sum_i e_i \Hess f(\nabla f,e_i) \\
+    &= \sum_i \ev{\nabla_{e_i}\nabla_{\nabla f}\nabla f,e_i} \\
+    &= \sum_i \{\ev{\nabla_{\nabla f}\nabla_{e_i}\nabla f,e_i}+\ev{\nabla_{[e_i,\nabla f]}\nabla f,e_i}+\ev{R(e_i,\nabla f)\nabla f,e_i}\} \\
+    \sum_i \ev{\nabla_{\nabla f}\nabla_{e_i}\nabla f,e_i} &= \sum_i \{\nabla f\ev{\nabla_{e_i}\nabla f,e_i}-\ev{\nabla_{e_i}\nabla f,\nabla_{\nabla f}e_i}\}= \nabla f(\Delta f)\ (\nabla e_i(x)=0) \\
+    \sum_i \ev{\nabla_{[e_i,\nabla f]}\nabla f,e_i} &= \sum_i \Hess f([e_i,\nabla f],e_i) \\
+    &= \sum_i \Hess f(\nabla_{e_i} \nabla f-\nabla_{\nabla f}e_i,e_i)\ (\nabla:\mbox{Levi-Civita}) \\
+    &= \sum_i \Hess f(e_i,\nabla_{e_i} \nabla f)\ (\Hess f:\mbox{symmetric}) \\
+    &= \sum_i \ev{\nabla_{e_i} \nabla f,\nabla_{e_i} \nabla f} \\
+    &= \sum_{i,j} \ev{\nabla_{e_i} \nabla f,\ev{\nabla_{e_i} \nabla f,e_j}e_j} \\
+    &= \sum_{i,j} \ev{\nabla_{e_i} \nabla f,e_j}\ev{\nabla_{e_i} \nabla f,e_j} =|\Hess f|^2
+\end{align*}
+
+これらを合わせることで与式を得る。 \qed
+
+\define $C^\infty$ 級関数 $r:M \supset U \to \R$ が\textbf{距離関数}であるとは、$|\nabla r| \equiv 1$ を満たすことである。このとき、上の命題の結果は $|\Hess r|^2+\nabla r(\Delta r)=-\Ric(\nabla r,\nabla r)$ となる。
+
+\lem ${(\Delta r)^2 \over n-1} \leq |\Hess r|^2$ 
+
+\prf 上の命題と同様に $\{e_i\}$ を取って、
+\begin{align*}
+    {(\Delta r)^2 \over n-1} &= {1 \over n-1}(\sum_{i \geq 2}\ev{\nabla_{e_i}\nabla r,e_i})^2 \\
+    |\Hess r|^2 &= \sum_{i,j} (\ev{\nabla_{e_i}\nabla r,e_j})^2 \\
+    &= \sum_{i,j \geq 2} (\ev{\nabla_{e_i}\nabla r,e_j})^2
+\end{align*}
+
+となるので、結局 $A\in \R^{k \times k}$ について $|A|^2 \geq {1 \over k}|\tr A|^2$ を示せばよい。固有値を $\lambda_1,\ldots,\lambda_k$ として、
+\begin{align*}
+    |A|^2 &= \tr(AA^T)
+    = \sum_i \lambda^2
+    \geq {(\sum_i \lambda)^2 \over k}={(\tr A)^2 \over k}
+\end{align*}
+
+より従う。 \qed
+
+上記の結果からRicci曲率を用いたLaplacianの評価を得られる。
+
+\lem $n$ 次元Riemann多様体 $(M,g)$ が $\Ric\geq (n-1)C\ (C \in \R)$ を満たすとき、$\Delta r \leq (n-1)\rho_C(r)$ 
+
+\prf $\rho={\Delta r \over n-1}$ とおくと、
+\begin{align*}
+    \dot{\rho}+\rho^2 &= {1 \over n-1}\nabla r(\Delta r)+({\Delta r \over n-1})^2 \\
+    &= {1 \over n-1}\{\nabla r(\Delta r)+{\Delta r \over n-1}\} \\
+    &\leq {1 \over n-1}\{\nabla r(\Delta r)+|\Hess r|^2\} ={-\Ric(\nabla r,\nabla r) \over n-1}\leq -C
+\end{align*}
+
+よってRiccati Comparisonにより $\rho \leq \rho_C$ を得る。 \qed \\
+
+そして、分裂定理の証明で重要な役割を担うBusemann関数について定義する。今後 $\Rc \geq 0$ を仮定して $c:[0,\infty) \to M$ を正規化された半直線とし、 $b_t(x):=\rho(x,c(t))-t$ とする。
+
+\prop $b_t$ は以下の性質を満たす。
+\begin{description}
+    \item[(1)]$x$ を固定したとき、$t \mapsto b_t(x)$ は非増加で絶対値が $\rho(x,c(0))$ に抑えられる。
+    \item[(2)]$|b_t(x)-b_t(y)| \leq \rho(x,y)$
+    \item[(3)]$x$ 全体で $\Delta b_t(x) \leq {n-1 \over b_t+t}$ 
+\end{description}
+
+\prf (1) 三角不等式から
+\begin{align*}
+    |b_t(x)| =|\rho(x,c(t))-\rho(c(0),c(t))| \leq \rho(x,c(0))
+\end{align*}
+
+であり、$s<t$ について、
+\begin{align*}
+    b_t(x)-b_s(x) &=\rho(x,c(t))-\rho(x,c(s))-\rho(c(s),c(t)) \\
+    &\leq \rho(c(t),c(s))-\rho(c(s),c(t))=0
+\end{align*}
+
+(2)は距離の公理から明らか。(3)は $b_t(x)+t$ が距離関数であることから、前補題に $C=0$ を代入して
+\begin{align*}
+    \Delta b_t(x) =\Delta(b_t(x)+t) \leq (n-1){1 \over b_t(x)+t}
+\end{align*}
+
+を得る。 \qed \\
+
+この命題から $\{b_t\}_{t \geq 0}$ はある距離関数 $b_c$ に各点収束し、
+\begin{align*}
+    \rho(b_c(x),b_c(y)) \leq \rho(x,y),|b_c(x)| \leq \rho(x,c(0)),b_c(c(r))=-r
+\end{align*}
+
+を満たす。これを\textbf{Busemann関数}という。
+
+半直線 $c$ と $p\in M$ に対し $p$ から $c(t)$ の線分の族 $\{\sigma_t\}$ を考える。$v_i \in T_pM$ を単位ベクトルとして $\sigma_t(s)=\exp_p(sv_i)$ とおくと、$S_pM$ のコンパクト性から $v_i \to v$ の収束を仮定してよい。このとき $\tilde{c}(s):=\exp_p(sv)$ を考えることができ、 $\sigma_t \to \tilde{c}$ の収束とみなす。このような半直線 $\tilde{c}$ を\textbf{漸近線}という。
+
+\prop 
+\begin{description}
+    \item[(1)]$b_c(x) \leq b_c(p)+b_{\tilde{c}}(x)$
+    \item[(2)]$b_c(\tilde{c}(t))=b_c(p)+b_{\tilde{c}}(\tilde{c}(t))=b_c(p)-t$
+\end{description}
+
+\prf (2)が示されれば、
+\begin{align*}
+    \rho(x,c(s))-s &\leq \rho(x,\tilde{c}(t))+\rho(\tilde{c}(s),c(s))-s \\
+    &= \rho(x,\tilde{c}(t))-t+\rho(p,\tilde{c}(t))+\rho(\tilde{c}(t),c(s))-s \\
+    \to b_c(x) &\leq  \rho(x,\tilde{c}(t))-t+\rho(p,\tilde{c}(t))+b_c(\tilde{c}(t)) \\
+    &\leq \rho(x,\tilde{c}(t))-t+\rho(p,\tilde{c}(t))+b_c(p)-t \\
+    &\to b_{\tilde{c}}(x)+b_c(p) \\
+\end{align*}
+
+より(1)が分かる。(2)を示すために $\tilde{c}$ に収束する線分の族 $\{\sigma_i\}$ をとる。$t_i \to \infty$ について、
+\begin{align*}
+    \rho(p,c(t_i)) &=\rho(p,\sigma_i(s))+\rho(\sigma_i(s),c(t_i)) \\
+    b_c(p) &= \lim (\rho(p,c(t_i))-t_i) \\
+    &= \lim (\rho(p,\tilde{c}(s))+\rho(\tilde{c}(s),c(t_i))-t_i) \\
+    &= \rho(p,\tilde{c}(s))+\lim (\rho(\tilde{c}(s),c(t_i))-t_i) \\
+    &= s+b_c(\tilde{c}(s))
+\end{align*}
+
+が成り立つので(2)が分かった。 \qed
+
+\lem $\Delta b_c \leq 0$ 
+
+\prf $b_c$ は $b_c(p)+b_{\tilde{c}}(x)$ を優関数として取るので、$x=p$ で $\Delta b_c \leq \Delta (b_c(p)+b_{\tilde{c}}(x))=\Delta b_{\tilde{c}}(x)$ 。よって代わりに $x=p$ で $\Delta b_{\tilde{c}}(x) \leq 0$ を示せばよい。$b_t(x)$ は $b_{\tilde{c}}(x)$ の優関数となることに注意して、
+\begin{align*}
+    \Delta b_t(p) \leq {n-1 \over t} \to 0
+\end{align*}
+
+から結論が従う。 \qed
+
+ここまでの準備で分裂定理を証明することができる。
+
+\prf $c:(-\infty,\infty) \to M$ を直線とする。$b^+$ を $c:[0,\infty) \to M$ から、$b^-$ を $c:(-\infty,0] \to M$ から定義されるBusemann関数とする。つまり、
+\begin{align*}
+    b^+(x) &= \lim (\rho(x,c(t))-t) \\
+    b^-(x) &= \lim (\rho(x,c(-t))-t)
+\end{align*}
+
+明らかに $b^+(x)+b^-(x)=\lim (\rho(x,c(t))+\rho(x,c(-t))-2t) \geq 0$ であり、直線上で0に等しい。
+
+前補題から $\Delta(b^+ +b^-) \leq 0$ より $b^+ + b^-$ は優調和関数。よって最小値原理より $b^++b^- \equiv 0$ が従う。$b^+=-b^-$ から $0 \geq \Delta b^+=-\Delta b^- \geq 0$ より $b^{\pm}$ は調和関数。
+
+次に $b^{\pm}$ が距離関数であることを見る。$p \in M$ と漸近線 $\tilde{c}^{\pm}$ を取り $b_t^{\pm}(x)=\rho(x,\tilde{c}^{\pm}(t))-t$ とおくと、漸近線の性質から
+\begin{align*}
+    b_t^+(x) \geq b^+(x)-b^+(p)=-b^-(x)+b^-(p) \geq -b^-_t(x)
+\end{align*}
+
+が成り立つ(等号成立は $x=p$)。$|\nabla b_t^{\pm}(p)|=1$ より $\nabla b_t^+(p)=-\nabla b_t^-(p)$ 。よって $|\nabla b^{\pm}(p)|=1$ が分かり、 $p$ は任意なので $b^{\pm}$ は距離関数になる。
+
+よって、
+\begin{align*}
+    0={(\Delta b^+)^2 \over n-1} \leq |\Hess b^+|^2=-\Ric(\nabla b^+,\nabla b^+) \leq 0
+\end{align*}
+
+より $\Hess b^+ \equiv 0$ が得られる。$\nabla b^+$ の生成する1パラメータ変換群を $\{\phi_t\}$ として
+\begin{align*}
+    \phi:(b^+)^{-1}(0) \times \R \ni (x,t) \mapsto \phi_t(x) \in M
+\end{align*}
+
+とすると、これが求める等長同型写像になっていることが「$b^+$ は $\Hess b^+ \equiv 0$ なる距離関数」という性質から導かれる。 \qed
+
+
+
 
 
 %%% TODO: 
 
 % Toponogov Theorem
-% Sphere Theorem (http://math.uchicago.edu/~may/REU2013/REUPapers/Yu.pdf, https://www.maths.gla.ac.uk/~mpowell/topological-manifolds-lecture-notes.pdf, Ex 7.6)
-% Soul Theorem(?)
+% Sphere Theorem
+% Soul Theorem
 
 \newpage
 
@@ -684,9 +896,14 @@ Christoffel記号を計算すると
 
 極座標表示は $g={dr^2+r^2d\theta^2 \over r^2+1}$ であり、変数変換 $s=\int_{0}^r {du \over \sqrt{u^2+1}}$ において $g=ds^2+(\tanh s)^2 d\theta^2$ となる。$\tanh s\to 1(s \to \infty)$ から、遠方では $g \approx ds^2+d\theta^2$ となり $S^1 \times \R$ に近い幾何を持つことが分かる。
 
-% TODO:初期値問題(deTurck Trick)
 
-
+% TODO:
+% short time existence(deTurck Trick)
+% maximum principle
+% long time existence
+% compactness theorem
+% No-Local-Collapsing Theorem
+% κ solution
 
 
 
@@ -697,6 +914,7 @@ Christoffel記号を計算すると
     \bibitem{petersen} PETERSEN, Peter. Riemannian geometry. New York: Springer, 2006.
     \bibitem{sheridan} SHERIDAN, Nick; RUBINSTEIN, Hyam. Hamilton's Ricci flow. Honour thesis, 2006.
     \bibitem{andrews} ANDREWS, Ben; HOPPER, Christopher. The Ricci flow in Riemannian geometry: a complete proof of the differentiable 1/4-pinching sphere theorem. Springer, 2010.
+    \bibitem{chow} CHOW, Bennett; LU, Peng; NI, Lei. Hamilton's Ricci flow. American Mathematical Soc., 2006.
 \end{thebibliography}
 
 \end{document}
