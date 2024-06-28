@@ -767,14 +767,17 @@ $\mu_C(r)$ は $\Theta$ の取り方に依らないので ${a(t) \over b(t)}=\in
 
 前補題から $\Delta(b^+ +b^-) \leq 0$ より $b^+ + b^-$ は優調和関数。よって最小値原理より $b^++b^- \equiv 0$ が従う。$b^+=-b^-$ から $0 \geq \Delta b^+=-\Delta b^- \geq 0$ より $b^{\pm}$ は調和関数。
 
-次に $b^{\pm}$ が距離関数であることを見る。$p \in M$ と漸近線 $\tilde{c}^{\pm}$ を取り $b_t^{\pm}(x)=\rho(x,\tilde{c}^{\pm}(t))-t$ とおくと、漸近線の性質から
+次に $b^+$ が距離関数であることを見る。$p \in M$ と漸近線 $\tilde{c}^+$ を取る。 $b_t$ の性質(2)から $b^+$ が1-Lipschitzなので $||b^+|| \leq 1$ が従い、$v=\dot{\tilde{c}^+}(0)$ としてCauchy-Schwarzの不等式より
 \begin{align*}
-    b_t^+(x) \geq b^+(x)-b^+(p)=-b^-(x)+b^-(p) \geq -b^-_t(x)
+    ||b^+|| &=||b^+|| \cdot ||v|| \\
+    &\geq |\ev{b^+,v}| =|v(b^+)| \\
+    &= |\lim_h {b^+(\tilde{c}^+(h))-b^+(p) \over h}| \\
+    &= |\lim_h {b^+(p)-h-b^+(p) \over h}|=1
 \end{align*}
 
-が成り立つ(等号成立は $x=p$)。$|\nabla b_t^{\pm}(p)|=1$ より $\nabla b_t^+(p)=-\nabla b_t^-(p)$ 。よって $|\nabla b^{\pm}(p)|=1$ が分かり、 $p$ は任意なので $b^{\pm}$ は距離関数になる。
+よって $|\nabla b^{\pm}(p)|=1$ が分かり、 $p$ は任意なので $b^{\pm}$ は距離関数になる。
 
-よって、
+したがって、
 \begin{align*}
     0={(\Delta b^+)^2 \over n-1} \leq |\Hess b^+|^2=-\Ric(\nabla b^+,\nabla b^+) \leq 0
 \end{align*}

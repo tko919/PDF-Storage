@@ -1,0 +1,261 @@
+\documentclass[dvipdfmx,a4paper]{jsarticle}
+
+%%%%% package %%%%%
+\usepackage{amsmath, amssymb,amsthm}
+\usepackage{type1cm}
+\usepackage{verbatim}
+\usepackage{ascmac}
+\usepackage{fancybox}
+\usepackage{mathrsfs}
+\usepackage{physics}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+\usepackage[all]{xy}
+\usepackage[margin=20truemm]{geometry}
+
+%%%%% theorem environment %%%%%
+\def\theenumi{\arabic{enumi}}
+\def\labelenumi{(\theenumi)}
+\theoremstyle{definition}
+\newtheorem{thm}{定理}[section]
+\newtheorem*{prf}{証明}
+% \newtheorem{prob}{問題}[chapter]
+% \newtheorem{ans}{解答}[chapter]
+\newtheorem{lem}{補題}[section]
+\newtheorem{define}{定義}[section]
+\newtheorem*{war}{注意}
+\newtheorem{prop}{命題}[section]
+\newtheorem{cor}{系}[section]
+\newtheorem{eg}{例}[section]
+\newtheorem{rem}{注意}[section]
+\newtheorem{ex}{演習}[section]
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+
+%%%%% command %%%%%
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\emp}{\emptyset}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\res}{{\rm res}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\rk}{{\rm rank}}
+\renewcommand{\deg}{{\rm deg}}
+\newcommand{\id}{{\rm id}}
+\newcommand{\Fr}{{\rm Frac}}
+\newcommand{\p}{\mathfrak{p}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\nMods}{{\bf \rm nMods}}
+\newcommand{\fMods}{{\bf \rm fMods}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\Der}{{\rm Der}}
+\newcommand{\Spec}{{\rm Spec}}
+\newcommand{\im}{{\rm Im}}
+\newcommand{\ctens}{\widehat{\otimes}}
+\newcommand{\Ctens}{\widehat{\bigotimes}}
+\newcommand{\ch}{{\rm char}}
+\renewcommand{\L}{\mathscr{L}}
+\newcommand{\der}{\partial}
+\renewcommand{\tilde}{\widetilde}
+\newcommand{\hlus}{\widehat{\bigoplus}}
+\newcommand{\cplus}{\widehat{\oplus}}
+\renewcommand{\bar}{\overline}
+\newcommand{\ilim}[1][]{\mathop{\varinjlim}\limits_{#1}}
+\newcommand{\plim}[1][]{\mathop{\varprojlim}\limits_{#1}}
+\newcommand{\Op}{{\rm Op}}
+\newcommand{\Ker}{{\rm Ker}}
+\newcommand{\pr}{{\rm pr}}
+\renewcommand{\id}{{\rm id}}
+\newcommand{\Cok}{{\rm Cok}}
+\renewcommand{\hat}{\widehat}
+\newcommand{\Mor}{{\rm Mor}}
+\renewcommand{\ch}{{\rm Char}}
+\newcommand{\Ob}{{\rm Ob}}
+\newcommand{\resp}{{\rm resp.}}
+\newcommand{\GL}{{\rm GL}}
+\newcommand{\Vol}{{\rm Vol}}
+\newcommand{\dVol}{{\rm dVol}}
+\newcommand{\Ric}{{\rm Ric}}
+\newcommand{\Rc}{{\rm Rc}}
+\newcommand{\Hess}{{\rm Hess}}
+\newcommand{\inj}{{\rm inj}}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\refname}{References}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\diag}{{\rm diag}}
+
+%%%%% counter %%%%%
+\makeatletter
+\let\sectionorig\section
+\def\@sectionorig#1{\sectionorig*{\MakeUppercase{#1}}}
+\def\@@sectionorig#1{\sectionorig{\MakeUppercase{#1}}}
+% \renewcommand{\section}{\@ifstar{\@sectionorig}{\@@sectionorig}}
+\makeatother
+
+\begin{document}
+
+\title{Cheegerの有限性定理}
+\date{}
+
+\maketitle
+
+\section{目標}
+このレポートでは、Cheegerの有限性定理の証明の概略について述べる。
+
+\thm (Cheeger) $n \geq 2,K,D,v>0$ について、「$\mbox{Diam} \leq D,\Vol \geq v,|\sec| \leq K$ なる $n$ 次元閉Riemann多様体の族」は有限個の微分同相類で代表される。
+
+\section{準備}
+証明を記すうえで前提となる事実を列挙する。
+\begin{enumerate}
+    \item Ricci曲率 $\Rc(v,w)=\Tr(x \mapsto R(x,v)w)=\sum_i g(R(e_i,w)e_i)$ ( $\{e_i\}$ :直交基底)
+    \item 断面曲率 $\sec(v,w)={g(R(w,v)v,w) \over g(v \wedge w,v \wedge w)}$
+    \item 単射半径 $\iota$ : $\exp_p:T_pM \to M$ が微分同相となる半径の上界
+\end{enumerate}
+
+\thm (Klingenberg's estimate) $(M,g)$ を完備Riemann多様体とし $\sec \leq C (const.)$ とする。このとき、$\iota_M \geq {\pi \over \sqrt{C}}$ となるか、最短の閉測地線 $\gamma$ が存在して $\iota_M={L(\gamma) \over 2}$ 。
+
+\thm (Ambrose) $(M,g),(N,h)$ をRiemann多様体、$f:M \to N$ を局所等長写像とする。 $(M,g)$ が完備なら $f$ は滑らかな被覆写像である。
+
+\thm (Bishop-Gromov) $(M,g)$ を完備Riemann多様体とし $\Rc \leq (n-1)k$ とする。このとき、$r \mapsto {\Vol B(p,r) \over v(n,k,r)}$ は単調非減少。ここで $v(n,k,r)$ は断面曲率が $k$ で一定の空間上で半径 $r$ の閉球の体積。
+
+\thm\label{thmsplit} (分裂定理) 完備Riemann多様体 $(M,g)$ が直線を含み $\Ric \geq 0$ を満たすとする。このとき、あるRiemann多様体 $(H,g_0)$ が存在して $(M,g)$ は $(H \times \R,g_0+dt^2)$ と等長同型($M$ が\textbf{分裂する}という)。
+
+\section{Riemann多様体の族上のノルム}
+
+基点つきRiemann多様体 $(M,g,p)$ 上の $C^{m,\alpha}$-norm が $||(M,g,p)||_{C^{m,\alpha},r} \leq Q$ であることを、次の条件を満たす $C^{m+1,\alpha}$ -class chart $\phi:B(0,r) \to U \ni p$ が存在することと定義する。 
+\begin{enumerate}
+    \item $|D\phi|,|D\phi^{-1}| \leq \exp(Q)$
+    \item 任意の多重指数 $|I| \leq m$ について $r^{|I|+\alpha}||\der^{I}g_{kl}||_{\alpha} \leq Q$
+\end{enumerate}
+
+上のnormを入れた位相を pointed-$C^{m,\alpha}$ 位相と呼ぶ。Riemann多様体の族自体には各点のsupを取ったものがそのままノルムになり、単に $C^{m,\alpha}$ 位相と呼ぶ。
+
+Ascoli-Arzelaの定理に対応する結果が次である。
+
+\thm\label{cpt} $Q>0,n \geq 2,m \geq 0,\alpha \in (0,1],r>0$ とする。「基点つき $n$ 次元Riemann多様体 $(M,g,p)$ で $||(M,g,p)||_{C^{m,\alpha},r} \leq Q$ なるものの族」は pointed-$C^{1,\beta} (\beta<\alpha)$ 位相でコンパクト。 \qed
+
+\cor 上の族の部分集合として、$\mbox{diam} \leq D$ という制限をつけたものは $C^{m,\beta}$ 位相でコンパクトであり、高々有限個の微分同相類を含む。
+\prf 直径とノルムの条件から定数個のchartで被覆でき、上の定理と合わせて前半が従う。\\
+また、座標変換が $C^1$ ノルムで十分近い二つのRiemann多様体は微分同相であること \cite[Theorem 2.1.6]{hirsch} を用いると、任意の $C^{m,\beta}$ 位相でのコンパクト性は微分同相類の有限性を意味する。\qed
+
+\eg $(M,g)$ を完備平坦なRiemann多様体とすると $\forall r \in \iota(M,g),||(M,g)||_{C^{m,\alpha},r}=0$ 。特に $\forall r>0, ||(\R^n,g_{\R^n})||_{C^{m,\alpha},r}=0$ だが、実は任意の $m,\alpha,r$ で等式が成り立つこととEuclid空間と等長同型であることが後で示される。
+
+\section{調和座標と調和ノルム}
+Riemann多様体上の調和座標 $(U,\{x_i\})$ とは、$\Delta x_i=0$ が成り立つことを指す。
+
+\prop Riemann多様体 $(M,g)$ 上の各点 $p$ について調和座標系 $p \in (U,\{x_i\})$ が存在する。
+
+\prf まず適当なchart $(U,\{y_i\})$ を取り $y(p)=0$ とすると、座標変換 $y \mapsto x$ が満たすべき条件は
+\begin{align*}
+    \Delta x_i={1 \over \sqrt{\det g_{ij}}}\der_i(\sqrt{\det g_{ij}}g^{ij}\der_jx_k)
+\end{align*}
+
+この解を見つけるためには、Dirchlet問題 $\Delta x_k=0,x_k=y_k (\mbox{on} \der B(0,\epsilon))$ を解けばよい。 \\
+$\{x_k\}$ が実際に座標系となることはelliptic estimatesから従う。\qed
+
+\lem\label{harm}  Riemann多様体 $(M,g)$ 上の調和座標系 $(U,\{x_i\})$ について、次が成り立つ。
+\begin{enumerate}
+    \item $\Delta u={1 \over \sqrt{\det g_{st}}} \der_i(\sqrt{\det g_{st}} g^{ij}\der_j u)=g^{ij}\der_i\der_j u$
+    \item ${1 \over 2}\Delta g_{ij}+Q(g,\der g)=-\Rc_{ij}$ ( $Q$ : 分子が $g$ の多項式と $\der g$ の二次式で分母が $\sqrt{\det g_{ij}}$ にのみ依存する有理多項式)
+\end{enumerate}
+
+\prf 
+(1) 定義から
+\begin{align*}
+    0 &= \Delta x^k \\
+    &={1 \over \sqrt{\det g_{st}}} \der_i(\sqrt{\det g_{st}} g^{ij}\der_j x^k) \\
+    &=g^{ij}\der_i\der_j x^k+{1 \over \sqrt{\det g_{st}}} \der_i(\sqrt{\det g_{st}} g^{ij})\der_j x^k \\
+    &=g^{ij}\der_i\delta_j^k+{1 \over \sqrt{\det g_{st}}} \der_i(\sqrt{\det g_{st}} g^{ij})\delta_j^k\\
+    &={1 \over \sqrt{\det g_{st}}} \der_i(\sqrt{\det g_{st}} g^{ik}) \\
+    \Delta u&={1 \over \sqrt{\det g_{st}}} \der_i(\sqrt{\det g_{st}} g^{ij}\der_j u) \\
+    &=g^{ij}\der_i\der_j u+{1 \over \sqrt{\det g_{st}}} \der_i(\sqrt{\det g_{st}} g^{ij})\der_j u \\
+    &=g^{ij}\der_i\der_j u
+\end{align*}
+
+% TODO
+(2) Bochner's formulaを行列表示して得られる。詳細略。
+\qed
+
+上の等式をEinstein計量の場合に適用する。つまり $\Rc_{ij}=(n-1)kg_{ij}$ のとき、 ${1 \over 2}\Delta g_{ij}=-(n-1)kg_{ij}-Q(g,\der g)$ 。このとき右辺は $C^1$ 級で意味を持つ式になっている。つまり、$g$ が $C^{1,\alpha}$ 級のとき左辺が $C^{\alpha}$ 級となるが、elliptic estimateから $g$ は $C^{2,\alpha}$ 級になる。この議論を反復することで $g$ のsmoothnessが従う。\\
+
+harmonic norm $||(M,g,p)||^{har}_{C^{m,\alpha},r}$ を、選択するchartに調和性を課したときのノルムと定義する。
+
+次の命題も\ref{cpt}とほとんど同様に示される。収束先でノルムの不等式が保たれることを示す際にDirichlet問題を解く必要がある。
+
+\prop  $Q>0,n \geq 2,m \geq 0,\alpha \in (0,1],r>0$ とする。「基点つき $n$ 次元Riemann多様体 $(M,g,p)$ で $||(M,g,p)||^{har}_{C^{m,\alpha},r} \leq Q$ なるものの族」は pointed-$C^{1,\beta} (\beta<\alpha)$ 位相でコンパクト。\qed
+
+調和座標を用いるメリットとして、計量がRicci曲率によって制御されることが挙げられる。これは次の補題に集約される。
+
+\lem Riemann多様体 $(M,g)$ が有界なRicci曲率 $|\Rc| \leq \Lambda$ を持ち、$\forall r'>r,||(M,g,p)||^{har}_{C^1,r'} \leq K$ が成り立つとき、$\forall \alpha \in (0,1)$ について $C^{1,\alpha}$ ノルムが有界、つまり  $||(M,g,p)||^{har}_{C^{1,\alpha},r} \leq C$ 。
+
+\prf 調和座標を固定し計量成分 $g_{ij}$ を評価する。$\Delta=g^{ij}\der_i \der_j$ に注意する。elliptic estimateから
+\begin{align*}
+    ||g_{ij}||_{C^{1,\alpha},B(0,r)} \leq C(||\Delta g_{ij}||_{C^0,B(0,r')}+||g_{ij}||_{C^\alpha,B(0,r')})
+\end{align*}
+
+\ref{harm} (2)から、
+\begin{align*}
+    ||\Delta g_{ij}||_{C^0,B(0,r')} \leq 2\Lambda||g_{ij}||_{C^0,B(0,r')}+C'||g_{ij}||_{C^1,B(0,r')}
+\end{align*}
+
+上の二つの評価を合わせて結論を得る。 \qed
+
+実は、分裂定理を用いるとharmonic normの評価を単射半径の評価に置き換えることができる。
+
+\thm (Anderson) $n>2,\alpha \in (0,1),\Lambda ,R>0$ が与えられるとき、任意の $Q>0$ について $r>0$ が存在し、「 $|\Rc| \leq \Lambda,\iota \geq R$ なる $n$ 次元閉Riemann多様体の族」は $||(M,g)||^{har}_{C^{1,\alpha},r} \leq Q$ を満たす。
+
+\prf 背理法で示す。ある $Q>0$ と $\forall i \geq 1,(M_i,g_i)$ が存在して、
+\begin{align*}
+    |\Rc| &\leq \Lambda \\
+    \iota &\geq R \\
+    ||(M_i,g_i)||^{har}_{C^{1,\alpha},i^{-1}} &> Q
+\end{align*}
+が成り立つとする。
+scaleの連続性からある $r_i \in (0,i^{-1})$ で $||(M,g,p)||^{har}_{C^{m,\alpha},r_i} = Q$ となるので、$\bar{g_i}=r_i^{-2}g_i$ とrescaleすると上の条件は
+\begin{align*}
+    |\Rc| &\leq r_i\Lambda \\
+    \iota &\geq r_i^{-1}R \\
+    ||(M_i,g_i)||^{har}_{C^{1,\alpha},1} &= Q
+\end{align*}
+となる。定義から $||(M_i,g_i,p_i)||^{har}_{C^{1,\alpha},1} \in [{Q \over 2},Q]$ なる $p_i \in M_i$ が存在する。
+
+前の補題から $\forall \gamma \in (0,1)$ について $C^{1,\gamma}$ ノルムで有界なので、\ref{cpt}から pointed- $C^{1,\alpha}$ 位相で収束部分列が取れる。極限を $(M,g,p)$ とすると、ノルムの連続性から $||(M,g,p)||^{har}_{C^{1,\alpha},1} \in [{Q \over 2},Q]$ が成り立つ。
+
+\begin{claim}
+    $(M,g)=(\R^n,g_{std})$
+\end{claim}
+
+この主張が成り立てば $||(M,g,p)||^{har}_{C^{1,\alpha},1} \in [{Q \over 2},Q]$ と矛盾し背理法が成立する。
+
+収束する調和座標を取ると\ref{harm}から各 $(M_i,\bar{g}_i)$ で ${1 \over 2}\Delta \bar{g}_{kl}+Q(\bar{g},\der \bar{g})=-\Rc_{kl}$ が成り立っているが、Ricci曲率の評価から $|-\Rc| \leq r_i^{-2}\Lambda \bar{g}\to 0$ であり、極限では ${1 \over 2}\Delta g_{kl}+Q(g,\der g)=0$ が分かる。これは $(M,g)$ がEinstein方程式 $\Rc=0$ の弱解であることを意味し、\ref{harm}の系からsmoothでRicci平坦な多様体であることが従う。また、$\iota \geq r_i^{-1}R \to \infty$ であり任意の $(M,g)$ 上の測地線は $(M_i,g_i)$ 上の測地線の極限であることから $\iota(M,g)=\infty$ が分かる。よって分裂定理から $(M,g)$ が標準的なEuclid空間になることが分かった。
+
+\qed
+
+上のRicci曲率に対する評価を断面曲率に対する評価に取り替えて次を得る。
+\thm $n\geq 2,\alpha \in (0,1),R,K>0$ が与えられるとき、任意の $Q>0$ について $r>0$ が存在し、「 $|\sec| \leq K,\iota \geq R$ なる $n$ 次元閉Riemann多様体の族」は $||(M,g)||^{har}_{C^{1,\alpha},r} \leq Q$ を満たす。
+
+\section{主定理の証明}
+
+前節の内容から、後は単射半径が制御できれば有限性定理を示すことが出来る。これは半径1の球の体積による評価から実現される。
+
+\lem $n\geq 2,v,K>0$ が与えられるとき、$R>0$ が存在し、「 $|\sec| \leq K,\Vol B(p,1) \geq v (p \in M)$ なる $n$ 次元閉Riemann多様体 $(M,g)$ は $\iota_M \geq R$ を満たす。
+
+\prf 補題の条件を満たし $\iota {M_i} \to 0$ となる列 $(M_i,g_i)$ を取る。$\iota (M_i,p_i)=\iota_{M_i}$ とし $\bar{g_i}=(\iota M_i)^{-2}g_i$ と正規化すると、$\iota(M,\bar{g_i})=1,|\sec(M,\bar{g_i})| \leq (\iota M_i)^{2}K=K_i \to 0$ となる。上の定理からこれは pointed-$C^{1,\alpha}$ 位相で収束部分列を持ち、収束先 $(M,g,p)$ は平坦となる。\\
+まず $\iota(M,p) \leq 1$ を導く。 ${\pi \over \sqrt{K_i}} \to \infty$ とKlingenberg's estimateから、 $(M_i,g_i,p_i)$ は長さ2の閉測地線を持つ。これは pointed-$C^{1,\alpha}$ 位相で長さ2の閉測地線に収束するから $\iota \leq 1$ が得られる。 \\
+一方で、$\Vol B(p_i,1) \geq v$ とBishop-Gromov不等式から、ある $v'$ が存在し $r<1$ について $\Vol B(p_i,r) \geq v' r^n$ が成り立つ。このとき収束先では $\forall r,\Vol B(p_i,r) \geq v' r^n$ が成り立ち、 $(M,g)$ の平坦性から $(M,g)=(\R^n,g_{std})$ である。 \\
+上の主張をもう少し詳しく説明する。Ambroseの定理から普遍被覆 $p:\tilde{M}=\R^n \to M$ が存在し、基本群の元は $\R^n$ の等長写像として実現される。位数が有限の元が存在するとき、その等長写像はある点を中心に回転するものであり、特に固定点を持つ。これは作用が自由であることに反するので基本群はtorsion-free。よって $M$ 自身が単連結でないとするとGalois対応から部分群 $\Z$ に対応する被覆 $\hat{M} \to M$ が取れる。これは $\hat{M}=\R^{n-1} \times S^1$ を意味し、体積の増大度が $r^{n-1}$ のオーダーであることから矛盾。よって $M=\R^n$ であり、 $\iota(M,p) \leq 1$ と合わせて列 $(M_i,g_i)$ の存在が否定される。 \qed
+
+
+
+\begin{thebibliography}{9}
+    \bibitem{petersen} Petersen, Peter. Riemannian geometry. Vol. 171. New York: Springer, 2006.
+    \bibitem{hirsch}Hirsch, Morris W. Differential topology. Vol. 33. Springer Science \& Business Media, 2012.
+\end{thebibliography}
+
+
+
+\end{document}
