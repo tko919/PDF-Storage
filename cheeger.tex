@@ -21,14 +21,13 @@
 \newtheorem*{prf}{証明}
 % \newtheorem{prob}{問題}[chapter]
 % \newtheorem{ans}{解答}[chapter]
-\newtheorem{lem}{補題}[section]
-\newtheorem{define}{定義}[section]
+\newtheorem{lem}[thm]{補題}
+\newtheorem{define}[thm]{定義}
 \newtheorem*{war}{注意}
-\newtheorem{prop}{命題}[section]
-\newtheorem{cor}{系}[section]
-\newtheorem{eg}{例}[section]
-\newtheorem{rem}{注意}[section]
-\newtheorem{ex}{演習}[section]
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{eg}[thm]{例}
+\newtheorem{rem}[thm]{注意}
 \newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
 
 %%%%% command %%%%%
@@ -87,14 +86,6 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\diag}{{\rm diag}}
-
-%%%%% counter %%%%%
-\makeatletter
-\let\sectionorig\section
-\def\@sectionorig#1{\sectionorig*{\MakeUppercase{#1}}}
-\def\@@sectionorig#1{\sectionorig{\MakeUppercase{#1}}}
-% \renewcommand{\section}{\@ifstar{\@sectionorig}{\@@sectionorig}}
-\makeatother
 
 \begin{document}
 

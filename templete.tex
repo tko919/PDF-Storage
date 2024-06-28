@@ -1,4 +1,4 @@
-\documentclass[a4paper]{jsarticle}
+\documentclass[dvipdfmx,a4paper]{jsarticle}
 
 %%%%% package %%%%%
 \usepackage{amsmath, amssymb,amsthm}
@@ -8,25 +8,93 @@
 \usepackage{fancybox}
 \usepackage{mathrsfs}
 \usepackage{physics}
-% \usepackage{tikz}
-% \usepackage[ipa]{zxjafont}
-% \usepackage[utf8]{inputenc}
-% \usepackage{amsmath}
-% \usepackage{mathtools}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+\usepackage[all]{xy}
+\usepackage[margin=20truemm]{geometry}
+
+%%%%% theorem environment %%%%%
+\def\theenumi{\arabic{enumi}}
+\def\labelenumi{(\theenumi)}
+\theoremstyle{definition}
+\newtheorem{thm}{定理}[section]
+\newtheorem*{prf}{証明}
+% \newtheorem{prob}{問題}[chapter]
+% \newtheorem{ans}{解答}[chapter]
+\newtheorem{lem}[thm]{補題}
+\newtheorem{define}[thm]{定義}
+\newtheorem*{war}{注意}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{eg}[thm]{例}
+\newtheorem{rem}[thm]{注意}
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+
+%%%%% command %%%%%
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\emp}{\emptyset}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\res}{{\rm res}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\rk}{{\rm rank}}
+\renewcommand{\deg}{{\rm deg}}
+\newcommand{\id}{{\rm id}}
+\newcommand{\Fr}{{\rm Frac}}
+\newcommand{\p}{\mathfrak{p}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\nMods}{{\bf \rm nMods}}
+\newcommand{\fMods}{{\bf \rm fMods}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\Der}{{\rm Der}}
+\newcommand{\Spec}{{\rm Spec}}
+\newcommand{\im}{{\rm Im}}
+\newcommand{\ctens}{\widehat{\otimes}}
+\newcommand{\Ctens}{\widehat{\bigotimes}}
+\newcommand{\ch}{{\rm char}}
+\renewcommand{\L}{\mathscr{L}}
+\newcommand{\der}{\partial}
+\renewcommand{\tilde}{\widetilde}
+\newcommand{\hlus}{\widehat{\bigoplus}}
+\newcommand{\cplus}{\widehat{\oplus}}
+\renewcommand{\bar}{\overline}
+\newcommand{\ilim}[1][]{\mathop{\varinjlim}\limits_{#1}}
+\newcommand{\plim}[1][]{\mathop{\varprojlim}\limits_{#1}}
+\newcommand{\Op}{{\rm Op}}
+\newcommand{\Ker}{{\rm Ker}}
+\newcommand{\pr}{{\rm pr}}
+\renewcommand{\id}{{\rm id}}
+\newcommand{\Cok}{{\rm Cok}}
+\renewcommand{\hat}{\widehat}
+\newcommand{\Mor}{{\rm Mor}}
+\renewcommand{\ch}{{\rm Char}}
+\newcommand{\Ob}{{\rm Ob}}
+\newcommand{\resp}{{\rm resp.}}
+\newcommand{\GL}{{\rm GL}}
+\newcommand{\Vol}{{\rm Vol}}
+\newcommand{\dVol}{{\rm dVol}}
+\newcommand{\Ric}{{\rm Ric}}
+\newcommand{\Rc}{{\rm Rc}}
+\newcommand{\Hess}{{\rm Hess}}
+\newcommand{\inj}{{\rm inj}}
+\renewcommand{\phi}{\varphi}
 \renewcommand{\refname}{References}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\diag}{{\rm diag}}
+
 
 \begin{document}
 
-\title{a}
+\title{}
 \author{tko919}
+\date{}
 
 \maketitle
 
-\section{b}
-
-
-\begin{thebibliography}{9}
-\bibitem{}
-\end{thebibliography}
 
 \end{document}
